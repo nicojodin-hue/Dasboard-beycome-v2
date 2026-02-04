@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Property — beycome</title>
+    <style>
+        :root {
+            --c-primary: #152330;
+            --c-accent: #e8956f;
+            --c-accent-hover: #d4845f;
+            --c-text-secondary: #636366;
+            --c-border: #e0e0e0;
+            --c-bg: #fff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { overflow-y: scroll; }
+        html, body { overscroll-behavior: none; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--c-bg);
+            color: var(--c-primary);
+            min-height: 100vh;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 32px; background: #fff; border-bottom: 1px solid var(--c-border);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-back {
+            display: flex; align-items: center; gap: 6px;
+            color: var(--c-primary); font-size: 14px; font-weight: 600;
+            cursor: pointer; background: none; border: none; font-family: inherit; text-decoration: none;
+        }
+        .header-back:hover { color: var(--c-accent); }
+        .header-logo {
+            font-size: 22px; font-weight: 600; color: var(--c-primary);
+            text-decoration: none; display: flex; align-items: center; gap: 8px;
+        }
+        .header-logo svg { flex-shrink: 0; }
+        .header-help { color: var(--c-accent); font-size: 14px; font-weight: 500; text-decoration: none; }
+        .header-help:hover { text-decoration: underline; }
+
+        /* ===== LANDING HERO ===== */
+        #landingPage {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-height: calc(100vh - 54px); padding: 40px 24px; text-align: center;
+        }
+        .hero-title {
+            font-size: clamp(32px, 5vw, 56px); font-weight: 900; color: var(--c-primary);
+            line-height: 1.1; margin-bottom: 16px; text-transform: uppercase;
+        }
+        .hero-sub { font-size: 16px; color: var(--c-text-secondary); margin-bottom: 40px; }
+        .search-bar {
+            display: flex; align-items: center; background: #fff;
+            border: 1px solid var(--c-border); border-radius: 40px;
+            padding: 6px 6px 6px 24px; max-width: 600px; width: 100%;
+            box-shadow: 0 2px 12px rgba(0,0,0,.06);
+        }
+        .search-bar input {
+            flex: 1; border: none; outline: none; font-size: 15px;
+            font-family: inherit; color: var(--c-primary); background: transparent;
+        }
+        .search-bar input::placeholder { color: #aaa; }
+        .btn-list {
+            padding: 14px 36px; border-radius: 30px; border: none;
+            background: var(--c-accent); color: #fff; font-size: 15px;
+            font-weight: 600; cursor: pointer; font-family: inherit;
+            transition: background .2s;
+        }
+        .btn-list:hover { background: var(--c-accent-hover); }
+        .stats {
+            display: flex; gap: 0; margin-top: 48px; justify-content: center;
+        }
+        .stat {
+            padding: 0 40px; text-align: center;
+            border-right: 1px solid var(--c-border);
+        }
+        .stat:last-child { border-right: none; }
+        .stat-val { font-size: 24px; font-weight: 700; color: var(--c-accent); }
+        .stat-label { font-size: 13px; color: var(--c-text-secondary); margin-top: 4px; }
+
+        /* ===== FORM PAGE ===== */
+        #formPage { display: none; }
+        .form-body { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
+        .section { margin-bottom: 48px; }
+        .section-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+        .section-sub { font-size: 13px; color: var(--c-text-secondary); margin-bottom: 24px; }
+        .row { display: flex; gap: 48px; align-items: flex-start; }
+        .col-left { flex: 1; }
+        .col-right { width: 400px; flex-shrink: 0; }
+        .divider { border: none; border-top: 1px solid #e8e8e8; margin: 40px 0; }
+        .lbl { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+        .req { color: var(--c-accent); }
+
+        /* Toggle group */
+        .toggle-group { display: flex; gap: 12px; margin-bottom: 28px; }
+        .toggle-btn {
+            padding: 12px 36px; border-radius: 24px; border: 1px solid var(--c-border);
+            background: #fff; font-size: 14px; font-weight: 600; cursor: pointer;
+            font-family: inherit; transition: all .2s; color: var(--c-text-secondary);
+        }
+        .toggle-btn.active { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
+
+        /* Type cards */
+        .types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; max-width: 480px; }
+        .type-card {
+            border: 1px solid #e8e8e8; border-radius: 12px; padding: 20px 12px;
+            text-align: center; cursor: pointer; transition: all .2s; background: #fafafa;
+        }
+        .type-card:hover { border-color: var(--c-accent); }
+        .type-card.active { background: var(--c-accent); border-color: var(--c-accent); color: #fff; }
+        .type-icon { font-size: 28px; margin-bottom: 6px; }
+        .type-name { font-size: 13px; font-weight: 500; }
+
+        /* Counters */
+        .counters { display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+        .counter { display: flex; flex-direction: column; gap: 6px; }
+        .counter-label { font-size: 13px; font-weight: 600; }
+        .counter-row { display: flex; align-items: center; border: 1px solid var(--c-border); border-radius: 8px; overflow: hidden; }
+        .counter-btn {
+            width: 36px; height: 40px; border: none; background: #fafafa; cursor: pointer;
+            font-size: 18px; color: var(--c-text-secondary); font-family: inherit;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .counter-btn:hover { background: #f0f0f0; }
+        .counter-val {
+            width: 40px; text-align: center; font-size: 15px; font-weight: 600;
+            border: none; background: #fff; font-family: inherit;
+        }
+
+        /* Inputs */
+        .input-row { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+        .input-group { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 180px; }
+        .input-group label { font-size: 13px; font-weight: 600; }
+        .fi {
+            padding: 10px 14px; border: 1px solid var(--c-border); border-radius: 8px;
+            font-size: 14px; font-family: inherit; width: 100%; background: #fff;
+        }
+        .fi:focus { outline: none; border-color: var(--c-accent); box-shadow: 0 0 0 3px rgba(232,149,111,.1); }
+        textarea.fi { resize: vertical; min-height: 120px; }
+        select.fi { appearance: auto; }
+
+        /* Unit toggle */
+        .unit-toggle { display: flex; border: 1px solid var(--c-border); border-radius: 8px; overflow: hidden; }
+        .unit-btn {
+            padding: 10px 20px; border: none; background: #fff; font-size: 13px;
+            font-weight: 500; cursor: pointer; font-family: inherit; color: var(--c-text-secondary);
+        }
+        .unit-btn.active { background: var(--c-accent); color: #fff; }
+
+        /* Estimate */
+        .estimate { margin: 28px 0; }
+        .est-price { font-size: 48px; font-weight: 800; color: var(--c-accent); }
+        .est-price span { font-size: 13px; font-weight: 400; color: var(--c-text-secondary); margin-left: 4px; }
+        .est-range { font-size: 14px; color: var(--c-text-secondary); margin-top: 4px; }
+        .est-changes { display: flex; gap: 24px; margin-top: 8px; font-size: 13px; }
+        .est-down { color: #f75353; }
+        .est-up { color: #81c797; }
+
+        /* Map */
+        .map-box {
+            width: 100%; height: 280px; border-radius: 12px; background: #e8e8e8;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 12px; overflow: hidden;
+        }
+        .map-inner {
+            width: 100%; height: 100%; background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+        }
+        .update-loc { font-size: 13px; color: var(--c-accent); text-decoration: underline; cursor: pointer; text-align: center; display: block; }
+
+        /* Radios */
+        .radios { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+        .radio-item { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; }
+        .radio-dot {
+            width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--c-border);
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all .2s;
+        }
+        .radio-item.active .radio-dot { border-color: var(--c-accent); }
+        .radio-item.active .radio-dot::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--c-accent); }
+
+        /* Packages */
+        .pkg-row { display: flex; gap: 48px; align-items: flex-start; }
+        .pkg-left { flex: 1; }
+        .pkg-right { width: 340px; flex-shrink: 0; }
+        .package {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 0; border-bottom: 1px solid #f0f0f0; cursor: pointer;
+        }
+        .package:last-child { border-bottom: none; }
+        .pkg-left-inner { display: flex; align-items: center; gap: 12px; }
+        .pkg-dot {
+            width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--c-border);
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .package.active .pkg-dot { border-color: var(--c-accent); }
+        .package.active .pkg-dot::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--c-accent); }
+        .pkg-name { font-size: 15px; color: var(--c-text-secondary); }
+        .package.active .pkg-name { font-weight: 700; color: var(--c-primary); }
+        .pkg-badge { font-size: 11px; color: var(--c-accent); font-weight: 600; margin-left: 8px; }
+        .pkg-price { font-size: 15px; font-weight: 600; }
+        .pkg-strike { text-decoration: line-through; color: #aaa; margin-right: 6px; font-weight: 400; }
+
+        /* Includes */
+        .includes { background: #fafafa; border-radius: 12px; padding: 20px; }
+        .includes-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+        .includes li { font-size: 13px; color: var(--c-text-secondary); margin-bottom: 6px; list-style: none; padding-left: 8px; }
+        .includes li::before { content: '- '; }
+        .includes li strong { color: var(--c-primary); }
+
+        /* Add-ons */
+        .addons { margin-top: 28px; }
+        .addon {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 0; border-bottom: 1px solid #f0f0f0; cursor: pointer;
+        }
+        .addon-left { display: flex; align-items: center; gap: 10px; }
+        .addon-check {
+            width: 20px; height: 20px; border: 2px solid var(--c-border); border-radius: 4px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: all .2s;
+        }
+        .addon-check.checked { background: var(--c-accent); border-color: var(--c-accent); }
+        .addon-check.checked::after { content: '✓'; color: #fff; font-size: 12px; font-weight: 700; }
+        .addon-more { color: var(--c-accent); font-size: 13px; cursor: pointer; font-weight: 500; }
+
+        /* Total */
+        .total-row {
+            display: flex; justify-content: space-between; padding: 20px 0;
+            font-size: 18px; font-weight: 700; border-top: 2px solid var(--c-primary); margin-top: 8px;
+        }
+        .terms { font-size: 12px; color: var(--c-text-secondary); margin: 20px 0; line-height: 1.6; }
+        .terms a { color: var(--c-accent); }
+        .buy-q { font-size: 14px; margin: 20px 0; display: flex; align-items: center; gap: 16px; }
+        .buy-q label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+
+        /* Footer buttons */
+        .footer-btns { display: flex; gap: 16px; margin-top: 24px; }
+        .btn-save {
+            padding: 14px 32px; border-radius: 24px; border: 1px solid var(--c-primary);
+            background: #fff; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
+        }
+        .btn-save:hover { background: #f5f5f5; }
+        .btn-pay {
+            padding: 14px 32px; border-radius: 24px; border: none;
+            background: var(--c-accent); color: #fff; font-size: 14px; font-weight: 600;
+            cursor: pointer; font-family: inherit;
+        }
+        .btn-pay:hover { background: var(--c-accent-hover); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .row { flex-direction: column; gap: 24px; }
+            .col-right { width: 100%; }
+            .pkg-row { flex-direction: column; gap: 24px; }
+            .pkg-right { width: 100%; }
+            .header { padding: 12px 16px; }
+            .form-body { padding: 24px 16px 60px; }
+            .stat { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <a class="header-back" href="./" id="backBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+    </a>
+    <a class="header-logo" href="./">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8956f" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+        beycome
+    </a>
+    <a class="header-help" href="tel:8046565007">Need help? 804-656-5007</a>
+</header>
+
+<!-- ===== LANDING PAGE ===== -->
+<div id="landingPage">
+    <h1 class="hero-title">Your Savings Journey<br>Starts Here</h1>
+    <p class="hero-sub">Sell your home with full control. MLS exposure. One flat fee. Zero BS.</p>
+    <div class="search-bar">
+        <input type="text" id="addressInput" placeholder="Type your property address" value="742 Evergreen Terrace, Springfield, FL 33101">
+        <button class="btn-list" id="listBtn">List</button>
+    </div>
+    <div class="stats">
+        <div class="stat"><div class="stat-val">18,969</div><div class="stat-label">Properties closed</div></div>
+        <div class="stat"><div class="stat-val">$216.1 M</div><div class="stat-label">In commissions saved</div></div>
+        <div class="stat"><div class="stat-val">Every 40 min</div><div class="stat-label">One of our properties is sold</div></div>
+    </div>
+</div>
+
+<!-- ===== FORM PAGE ===== -->
+<div id="formPage">
+<div class="form-body">
+
+    <!-- HOME FACTS -->
+    <div class="section">
+        <div class="row">
+            <div class="col-left">
+                <div class="section-title">Home facts</div>
+                <div class="section-sub">*Mandatory fields</div>
+
+                <p style="font-size:15px;font-weight:600;margin-bottom:16px" id="addrLine">742 Evergreen Terrace, Springfield, FL 33101 is:</p>
+
+                <div class="toggle-group">
+                    <button class="toggle-btn active" data-val="sale">For Sale</button>
+                    <button class="toggle-btn" data-val="rent">For Rent</button>
+                </div>
+
+                <div class="lbl">Which of these best describes your property?<span class="req">*</span></div>
+                <div class="types">
+                    <div class="type-card active" data-t="house"><div class="type-icon">🏠</div><div class="type-name">House</div></div>
+                    <div class="type-card" data-t="apartment"><div class="type-icon">🏢</div><div class="type-name">Apartment</div></div>
+                    <div class="type-card" data-t="condo"><div class="type-icon">🏬</div><div class="type-name">Condo</div></div>
+                    <div class="type-card" data-t="townhouse"><div class="type-icon">🏘️</div><div class="type-name">Townhouse</div></div>
+                    <div class="type-card" data-t="mobile"><div class="type-icon">🏡</div><div class="type-name">Mobile home</div></div>
+                    <div class="type-card" data-t="land"><div class="type-icon">🌿</div><div class="type-name">Lot/Land</div></div>
+                    <div class="type-card" data-t="multi"><div class="type-icon">🏗️</div><div class="type-name">Multi-family</div></div>
+                </div>
+
+                <p style="font-size:15px;font-weight:600;margin-bottom:4px">Share or verify some basics about your property:</p>
+                <p style="font-size:13px;color:#636366;margin-bottom:20px">Don't worry, you'll be able to add more details later.</p>
+
+                <div class="counters">
+                    <div class="counter"><div class="counter-label">Beds<span class="req">*</span></div><div class="counter-row"><button class="counter-btn" data-dir="-">−</button><input class="counter-val" value="3" readonly><button class="counter-btn" data-dir="+">+</button></div></div>
+                    <div class="counter"><div class="counter-label">Baths<span class="req">*</span></div><div class="counter-row"><button class="counter-btn" data-dir="-">−</button><input class="counter-val" value="2" readonly><button class="counter-btn" data-dir="+">+</button></div></div>
+                    <div class="counter"><div class="counter-label">1/2 baths</div><div class="counter-row"><button class="counter-btn" data-dir="-">−</button><input class="counter-val" value="0" readonly><button class="counter-btn" data-dir="+">+</button></div></div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group"><label>Living Area Sqft<span class="req">*</span></label><input class="fi" type="text" value="1850"></div>
+                    <div class="input-group"><label>Lot Size<span class="req">*</span></label><input class="fi" type="text" value="6200"></div>
+                    <div class="input-group" style="flex:0;min-width:auto"><label>&nbsp;</label><div class="unit-toggle"><button class="unit-btn active">Sqft</button><button class="unit-btn">Acres</button></div></div>
+                </div>
+
+                <p style="font-size:15px;font-weight:600;margin-bottom:4px">Set your desired selling price:</p>
+                <p style="font-size:13px;color:#636366;margin-bottom:12px">You can change it anytime.</p>
+                <div class="input-group" style="max-width:300px;margin-bottom:8px"><label>Set your price<span class="req">*</span></label><input class="fi" type="text" placeholder="$350,000" value="$485,000"></div>
+                <p style="font-size:13px;color:#636366;margin-top:4px">Your potential commission savings: <span style="color:#e8956f;cursor:pointer">ⓘ</span></p>
+
+                <div class="estimate">
+                    <p style="font-size:15px;font-weight:600;margin-bottom:8px">Property price estimation:</p>
+                    <div class="est-price">$479,000 <span>as of 2/03/2026</span></div>
+                    <div class="est-range">Est. Range: <strong>$456K</strong> – <strong>$502K</strong></div>
+                    <div class="est-changes">
+                        <span class="est-down">▼ Est. change · Last 1 Month: -$2,000</span>
+                        <span class="est-up">▲ Est. change · Last 12 Months: +4.12%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-right">
+                <div class="map-box">
+                    <div class="map-inner">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span style="font-size:13px" id="mapAddr">742 Evergreen Terrace</span>
+                        <span style="font-size:11px;color:#999" id="mapCity">Springfield, Florida</span>
+                    </div>
+                </div>
+                <a class="update-loc" href="#">Update location</a>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- DESCRIBE YOUR HOME -->
+    <div class="section">
+        <div class="row">
+            <div style="width:260px;flex-shrink:0"><div class="section-title" style="font-size:24px">Describe your home</div></div>
+            <div style="flex:1">
+                <p style="font-size:15px;font-weight:600;margin-bottom:4px">Let's describe your property</p>
+                <p style="font-size:13px;color:#636366;margin-bottom:16px">Share what makes your place special; you can always change it later.</p>
+                <textarea class="fi" style="min-height:140px">Welcome to this charming home located on Evergreen Terrace. This well-maintained property features spacious living areas and abundant natural light throughout. The kitchen is equipped with modern appliances and ample storage. Enjoy the serene backyard, perfect for relaxation and outdoor activities. Conveniently situated near local amenities, this home offers a blend of comfort and accessibility.</textarea>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- LEGAL INFORMATION -->
+    <div class="section">
+        <div class="row">
+            <div style="width:260px;flex-shrink:0"><div class="section-title" style="font-size:24px">Legal information</div></div>
+            <div style="flex:1">
+                <p style="font-size:14px;font-weight:600;margin-bottom:16px">Apart from being savvy and smart, which best describes you?<span class="req">*</span></p>
+                <div class="radios" id="radios">
+                    <div class="radio-item active" data-r="diy"><div class="radio-dot"></div><span><strong>Homeowner/DIY</strong> managing my own deal.</span></div>
+                    <div class="radio-item" data-r="investor"><div class="radio-dot"></div><span><strong>Investor</strong> looking to improve ROI on your properties.</span></div>
+                    <div class="radio-item" data-r="agent"><div class="radio-dot"></div><span><strong>Real estate agent</strong> with no local MLS license.</span></div>
+                    <div class="radio-item" data-r="wholesaler"><div class="radio-dot"></div><span><strong>Wholesaler</strong> selling properties for others (Purchase Agreement).</span></div>
+                    <div class="radio-item" data-r="builder"><div class="radio-dot"></div><span><strong>Builder</strong> uploading multiple new construction listings.</span></div>
+                    <div class="radio-item" data-r="budget"><div class="radio-dot"></div><span><strong>Budget</strong> looking for the cheapest solution.</span></div>
+                    <div class="radio-item" data-r="remote"><div class="radio-dot"></div><span><strong>Remote</strong> to manage my property transaction.</span></div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group"><label>Your full name<span class="req">*</span></label><input class="fi" type="text" value="John Doe"></div>
+                    <div class="input-group"><label>Email<span class="req">*</span></label><input class="fi" type="email" value="john.doe@email.com"></div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group"><label>Phone<span class="req">*</span></label><input class="fi" type="tel" value="305-555-1234"></div>
+                    <div class="input-group" style="display:flex;align-items:flex-end"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px"><input type="checkbox" style="accent-color:#e8956f"> There is a secondary owner?</label></div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group"><label>Shipping address</label><input class="fi" type="text" value="123 Main St, Miami, FL 33101"></div>
+                </div>
+                <p style="font-size:15px;font-weight:700;margin:28px 0 8px">MLS Preference</p>
+                <p style="font-size:13px;color:#636366;margin-bottom:12px">Based on your property's type and location, we've automatically selected the most suitable local MLS.</p>
+                <select class="fi" style="max-width:300px"><option>MiamiMLS</option><option>BeachesMLS</option><option>StellarMLS</option></select>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PACKAGE OPTIONS -->
+    <div class="section">
+        <div class="section-title" style="font-size:24px;margin-bottom:24px">Package options</div>
+        <div class="pkg-row">
+            <div class="pkg-left">
+                <div class="package" data-pkg="basic"><div class="pkg-left-inner"><div class="pkg-dot"></div><div class="pkg-name">Basic Package</div></div><div class="pkg-price">$99</div></div>
+                <div class="package active" data-pkg="enhanced"><div class="pkg-left-inner"><div class="pkg-dot"></div><div class="pkg-name">Enhanced Package <span class="pkg-badge">Recommended!</span></div></div><div class="pkg-price">$399</div></div>
+                <div class="package" data-pkg="concierge"><div class="pkg-left-inner"><div class="pkg-dot"></div><div class="pkg-name">Concierge Package</div></div><div class="pkg-price"><span class="pkg-strike">$1,399</span> $999</div></div>
+                <div class="total-row" style="border-top:1px solid #e0e0e0;margin-top:16px;font-size:15px"><span>Sub Total</span><span id="subtotal">$399</span></div>
+            </div>
+            <div class="pkg-right">
+                <div class="includes">
+                    <div class="includes-title">Includes:</div>
+                    <ul>
+                        <li><strong>Listing on your local MLS</strong></li>
+                        <li><strong>Syndication to 100+ top real estate sites</strong></li>
+                        <li><strong>25 HDR Professional Photos</strong></li>
+                        <li><strong>1x Key lock box</strong></li>
+                        <li><strong>1x personalized yard sign + open house package</strong></li>
+                        <li><strong>Customizable flyers and brochure</strong></li>
+                        <li><strong>Virtual tour YouTube&copy; video</strong></li>
+                        <li>Printable promotional items</li>
+                        <li>Craigslist&copy; easy click &amp; share Ad</li>
+                        <li>Digital advertising for social media</li>
+                        <li>Featured on beycome.com</li>
+                        <li><strong>Maximum photos allowed by the MLS</strong></li>
+                        <li>Direct online offers &amp; messaging dashboard</li>
+                        <li>Free, unlimited updates and changes</li>
+                        <li>Free, unlimited open house scheduler</li>
+                        <li>Free ShowingTime&#8480; (when available)</li>
+                        <li>Free Home Visit Manager tool</li>
+                        <li>24-month MLS listing</li>
+                        <li>Cancel anytime for free</li>
+                        <li>$0 due at closing — no hidden fees, ever</li>
+                        <li>Free access to all legal forms/disclosures</li>
+                        <li>Call, chat, and email support (6 days a week)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD-ONS -->
+    <div class="section">
+        <p style="font-size:13px;color:#636366;margin-bottom:16px">Looking to enhance your real estate experience? Explore our <em>&agrave; la carte</em> options.</p>
+        <div class="addons" id="addons">
+            <div class="addon" data-price="99"><div class="addon-left"><div class="addon-check"></div><span>Add Full Immersive 3D tour - $99</span></div><span class="addon-more">+ More</span></div>
+            <div class="addon" data-price="99"><div class="addon-left"><div class="addon-check"></div><span>Add Drone - $99</span></div><span class="addon-more">+ More</span></div>
+            <div class="addon" data-price="199"><div class="addon-left"><div class="addon-check"></div><span>Access to our Broker support - $199</span></div><span class="addon-more">+ More</span></div>
+            <div class="addon" data-price="65"><div class="addon-left"><div class="addon-check"></div><span>Add a full Comparative Analysis (CMA) - $65</span></div><span class="addon-more">+ More</span></div>
+            <div class="addon" data-price="79"><div class="addon-left"><div class="addon-check checked"></div><span>List your property in an additional MLS - $79</span></div><span class="addon-more">+ More</span></div>
+            <div class="addon" data-price="19"><div class="addon-left"><div class="addon-check"></div><span>Add Home Warranty Listing Coverage - $19</span></div><span class="addon-more">+ More</span></div>
+            <div class="addon" data-price="34.99"><div class="addon-left"><div class="addon-check"></div><span>Add 1 Yard Sign - $34.99</span></div><span class="addon-more">+ More</span></div>
+            <div class="addon" data-price="44.99"><div class="addon-left"><div class="addon-check"></div><span>Add 1 Open House Signage - $44.99</span></div><span class="addon-more">+ More</span></div>
+            <div class="addon" data-price="30"><div class="addon-left"><div class="addon-check"></div><span>Add 1 Key Lockbox - $30</span></div><span class="addon-more">+ More</span></div>
+        </div>
+
+        <div class="total-row"><span>Total</span><span id="total">$478</span></div>
+
+        <div class="terms">By creating this listing on beycome.com, I agree that I am the owner or have authority to act on behalf of the property owner, I will not provide incorrect information or state a discriminatory preference and I will comply with beycome.com <a href="#">rules and terms of use</a>.</div>
+
+        <div class="buy-q">
+            <span>Are you also looking to buy?</span>
+            <label><input type="radio" name="buyq" style="accent-color:#e8956f"> Yes</label>
+            <label><input type="radio" name="buyq" style="accent-color:#e8956f"> No</label>
+        </div>
+
+        <div class="footer-btns">
+            <button class="btn-save" id="saveBtn">Save &amp; Exit</button>
+            <button class="btn-pay" id="payBtn">Continue with Payment</button>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<script>
+(function() {
+    var landing = document.getElementById('landingPage');
+    var form = document.getElementById('formPage');
+    var addrInput = document.getElementById('addressInput');
+    var backBtn = document.getElementById('backBtn');
+
+    // LIST button — show form
+    document.getElementById('listBtn').addEventListener('click', function() {
+        var addr = addrInput.value.trim();
+        if (addr) {
+            document.getElementById('addrLine').textContent = addr + ' is:';
+        }
+        landing.style.display = 'none';
+        form.style.display = 'block';
+        window.scrollTo(0, 0);
+    });
+
+    // Back button — return to landing
+    backBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (form.style.display === 'block') {
+            form.style.display = 'none';
+            landing.style.display = 'flex';
+            window.scrollTo(0, 0);
+        } else {
+            window.location.href = './';
+        }
+    });
+
+    // Sale/Rent toggle
+    document.querySelectorAll('.toggle-btn').forEach(function(b) {
+        b.addEventListener('click', function() {
+            document.querySelectorAll('.toggle-btn').forEach(function(x) { x.classList.remove('active'); });
+            this.classList.add('active');
+        });
+    });
+
+    // Type cards
+    document.querySelectorAll('.type-card').forEach(function(c) {
+        c.addEventListener('click', function() {
+            document.querySelectorAll('.type-card').forEach(function(x) { x.classList.remove('active'); });
+            this.classList.add('active');
+        });
+    });
+
+    // Counters
+    document.querySelectorAll('.counter-btn').forEach(function(b) {
+        b.addEventListener('click', function() {
+            var input = this.parentElement.querySelector('.counter-val');
+            var v = parseInt(input.value) || 0;
+            if (this.dataset.dir === '+') v++;
+            else if (v > 0) v--;
+            input.value = v;
+        });
+    });
+
+    // Unit toggle
+    document.querySelectorAll('.unit-btn').forEach(function(b) {
+        b.addEventListener('click', function() {
+            document.querySelectorAll('.unit-btn').forEach(function(x) { x.classList.remove('active'); });
+            this.classList.add('active');
+        });
+    });
+
+    // Radio buttons
+    document.querySelectorAll('.radio-item').forEach(function(r) {
+        r.addEventListener('click', function() {
+            document.querySelectorAll('.radio-item').forEach(function(x) { x.classList.remove('active'); });
+            this.classList.add('active');
+        });
+    });
+
+    // Package selection + totals
+    var pkgPrices = { basic: 99, enhanced: 399, concierge: 999 };
+
+    function updateTotal() {
+        var activePkg = document.querySelector('.package.active');
+        var base = pkgPrices[activePkg.dataset.pkg] || 399;
+        var addons = 0;
+        document.querySelectorAll('.addon-check.checked').forEach(function(c) {
+            addons += parseFloat(c.closest('.addon').dataset.price) || 0;
+        });
+        document.getElementById('subtotal').textContent = '$' + base;
+        document.getElementById('total').textContent = '$' + (base + addons);
+    }
+
+    document.querySelectorAll('.package').forEach(function(p) {
+        p.addEventListener('click', function() {
+            document.querySelectorAll('.package').forEach(function(x) { x.classList.remove('active'); });
+            this.classList.add('active');
+            updateTotal();
+        });
+    });
+
+    // Add-on checkboxes
+    document.querySelectorAll('.addon').forEach(function(a) {
+        a.addEventListener('click', function() {
+            var c = this.querySelector('.addon-check');
+            c.classList.toggle('checked');
+            updateTotal();
+        });
+    });
+
+    // Save & Exit
+    document.getElementById('saveBtn').addEventListener('click', function() {
+        window.location.href = './';
+    });
+
+    // Continue with Payment
+    document.getElementById('payBtn').addEventListener('click', function() {
+        alert('Redirecting to payment...');
+        window.location.href = './';
+    });
+})();
+</script>
+</body>
+</html>
