@@ -30,6 +30,7 @@
             --c-pink-bg: #fdf2f8;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        button, input, textarea, select { font-family: inherit; }
         html { overflow-y: scroll; }
         html, body { overscroll-behavior: none; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--c-bg); min-height: 100vh; min-width: 320px; }
@@ -48,7 +49,33 @@
         .notifications-btn.has-unread:hover svg { animation: bell-ring 0.5s ease-in-out; }
         @keyframes bell-ring { 0% { transform: rotate(0); } 15% { transform: rotate(14deg); } 30% { transform: rotate(-12deg); } 45% { transform: rotate(10deg); } 60% { transform: rotate(-8deg); } 75% { transform: rotate(4deg); } 90% { transform: rotate(-2deg); } 100% { transform: rotate(0); } }
         @keyframes bell-swing { 0%, 80%, 100% { transform: rotate(0); } 85% { transform: rotate(6deg); } 95% { transform: rotate(-6deg); } }
-        .notifications-badge,.nav-badge,.mobile-bottom-nav-badge{position:absolute;background:#b3261e;color:white;font-size:10px;font-weight:600;min-width:16px;height:16px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+        .pkg-card{flex:1;min-width:160px;border:2px solid var(--c-border);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.2s;position:relative;background:var(--c-bg-white)}
+        .notifications-badge,.nav-badge{background:#b3261e;color:white;font-size:10px;font-weight:600;min-width:16px;height:16px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;padding:0 4px}
+        .notifications-badge{position:absolute}
+        .nav-badge{position:relative;top:-1px;margin-left:4px}
+        .pkg-card:hover{border-color:var(--c-accent)}
+        .pkg-card.selected{border-color:var(--c-accent);background:#f8f9ff;box-shadow:0 2px 12px rgba(125,143,247,0.15)}
+        .pkg-card input{display:none}
+        .pkg-name{font-size:15px;font-weight:600;color:var(--c-primary);margin-bottom:8px}
+        .pkg-price{font-size:28px;font-weight:700;color:var(--c-primary)}
+        .pkg-price.accent{color:var(--c-accent)}
+        .pkg-price-old{font-size:16px;font-weight:500;color:var(--c-text-secondary);text-decoration:line-through;margin-right:6px}
+        .pkg-sub{font-size:12px;color:var(--c-text-secondary);margin-top:4px}
+        .pkg-badge{position:absolute;top:-10px;right:12px;background:#FF9B77;color:white;font-size:11px;font-weight:600;padding:3px 10px;border-radius:10px}
+        .pkg-upsell{font-size:11px;color:var(--c-accent);margin-top:8px;cursor:pointer}
+        .pkg-included{font-size:11px;color:var(--c-accent);font-weight:600;margin-top:8px;display:flex;align-items:center;gap:4px}
+        .alc-item{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:14px 16px;border:1px solid var(--c-border);border-radius:10px;cursor:pointer;transition:all 0.2s;background:var(--c-bg-white);position:relative}
+        .alc-item:hover{border-color:var(--c-accent)}
+        .alc-item.checked{border-color:var(--c-accent);background:#f8f9ff}
+        .alc-item.featured{border-color:var(--c-accent);background:#f8f9ff}
+        .alc-left{display:flex;align-items:center;gap:10px;flex:1}
+        .alc-left input{accent-color:var(--c-accent);width:16px;height:16px}
+        .alc-name{font-size:14px;color:var(--c-primary)}
+        .alc-right{display:flex;align-items:center;gap:10px}
+        .alc-price{font-size:14px;font-weight:600;color:var(--c-primary)}
+        .alc-badge{position:absolute;top:-9px;right:12px;font-size:10px;font-weight:600;padding:2px 8px;border-radius:8px;color:white}
+        .alc-badge.popular{background:var(--c-accent)}
+        .alc-badge.urgent{background:var(--c-warning)}
         .notifications-badge { top: 4px; right: 4px; }
         .nav-badge { top: 0; right: 2px; }
         .notifications-menu { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: var(--c-bg-white); border: 1px solid var(--c-border); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); width: 360px; max-height: 480px; z-index: 1100; overflow: hidden; }
@@ -78,11 +105,14 @@
         @media (max-width: 480px) { .notifications-menu { width: calc(100vw - 32px); right: -60px; } }
 
         /* Base button styles */
-        .icon-btn{width:37px;height:37px;border-radius:50%;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--c-text-secondary);transition:all 0.2s}
-        .icon-btn:hover{background:var(--c-bg-light);color:var(--c-accent)}
-        .input{padding:12px;border:1px solid var(--c-border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;width:100%;box-sizing:border-box}
+        .icon-btn,.contact-icon-btn,.notifications-btn,.calendar-nav-btn,.mobile-back-btn,.mobile-action-btn,.event-popover-close,.chat-close-mobile{width:37px;height:37px;border-radius:50%;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--c-text-secondary);transition:all 0.2s}
+        .icon-btn:hover,.contact-icon-btn:hover,.notifications-btn:hover,.calendar-nav-btn:hover,.mobile-back-btn:hover,.mobile-action-btn:hover,.event-popover-close:hover,.chat-close-mobile:hover{background:var(--c-bg-light);color:var(--c-accent)}
+        .input{padding:8px 12px;border:1px solid var(--c-border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;width:100%;box-sizing:border-box;height:37px}
+        .input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+        .input[type="number"]::-webkit-outer-spin-button,.input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
         .input:focus{border-color:var(--c-accent)}
-        .btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--c-border);background:var(--c-bg-white);font-family:inherit;transition:all 0.2s;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:37px;box-sizing:border-box}
+        .input.input-error,.input-error{border-color:var(--c-error) !important;}
+        .btn{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid var(--c-border);background:var(--c-bg-white);transition:all 0.2s;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:37px}
         .btn:hover{border-color:var(--c-accent);color:var(--c-accent)}
         .btn-p{background:var(--c-accent);color:white;border-color:var(--c-accent)}
         .btn-p:hover{background:var(--c-accent-hover);border-color:var(--c-accent-hover);color:white}
@@ -94,7 +124,7 @@
         .btn-accent{border-color:var(--c-accent);color:var(--c-accent)}
         .btn-lg{padding:10px 20px;font-size:14px;font-weight:600;border-radius:12px}
         .dashboard-dropdown { position: relative; }
-        .dashboard-btn { font-size: 14px; font-weight: 500; color: var(--c-primary); padding: 8px 16px; border-radius: 8px; background: transparent; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; height: 37px; box-sizing: border-box; }
+        .dashboard-btn { font-size: 14px; font-weight: 500; color: var(--c-primary); padding: 8px 16px; border-radius: 8px; background: transparent; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; height: 37px; }
         .dashboard-btn:hover { color: var(--c-accent); }
         .dashboard-btn .dashboard-text { display: inline; }
         .hamburger-icon { display: none; }
@@ -148,8 +178,8 @@
         .chat-message.bot > div { width: 100%; }
         .chat-message.user { justify-content: flex-end; }
         .chat-message.user > div { width: auto; max-width: 85%; }
-        .message-bubble,.mobile-thread-bubble{padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.5}
-        .message-bubble{width:100%;padding:8px 12px;border-radius:12px}
+        .message-bubble{padding:8px 12px;border-radius:12px;font-size:14px;line-height:1.5}
+        .mobile-thread-bubble{padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.5}
         .chat-message.bot .message-bubble { background: transparent; color: var(--c-primary); }
         .chat-message.user .message-bubble { background: #e8e8e8; color: var(--c-primary); }
         .chat-input-container { padding: 20px; background: var(--c-bg-white); border-top: 1px solid var(--c-border); border-radius: 0 0 12px 12px; }
@@ -158,7 +188,6 @@
         .chat-input:focus { border-color: var(--c-accent); }
         .chat-send-btn,.mobile-send-btn{background:var(--c-primary);border:none;border-radius:50%;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center}
         .chat-send-btn{position:absolute;right:6px;width:30px;height:30px}
-        .mobile-send-btn:hover{background:#1e3a50}
         .mobile-send-btn{width:36px;height:36px;flex-shrink:0}
         .mobile-send-btn:hover{background:#1e3a50}
         .chat-mic-btn { position: absolute; right: 42px; width: 30px; height: 30px; background: transparent; border: none; color: var(--c-text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
@@ -172,16 +201,16 @@
         .visit-tabs .filter-dropdown + .property-filter-dropdown { margin-left: 0; }
         @media (max-width: 768px) { .visit-tabs { gap: 10px; } .visit-tabs .message-tabs { order: 2; width: 100%; overflow-x: auto; } .visit-tabs .filter-dropdown { order: 1; } }
         @media (max-width: 480px) { .visit-tabs { gap: 8px; } }
-        .visit-tab { padding: 12px 24px 12px 0; border: none; background: transparent; font-size: 14px; font-weight: 600; color: var(--c-primary); cursor: pointer; border-bottom: 1px solid transparent; margin-bottom: -1px; font-family: inherit; text-align: left; flex-shrink: 0; }
+        .visit-tab { padding: 12px 24px 12px 0; border: none; background: transparent; font-size: 14px; font-weight: 600; color: var(--c-primary); cursor: pointer; border-bottom: 1px solid transparent; margin-bottom: -1px; text-align: left; flex-shrink: 0; }
         .visit-tab.active { color: var(--c-accent); border-bottom: 1px solid var(--c-accent); }
         .visit-tab.active span:first-child { color: var(--c-accent); }
         .filter-dropdown { position: relative; flex-shrink: 0; }
-        .filter-btn { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--c-border); background: var(--c-bg-white); border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--c-primary); cursor: pointer; font-family: inherit; min-width: 120px; justify-content: space-between; box-sizing: border-box; height: 37px; white-space: nowrap; touch-action: manipulation; }
+        .filter-btn { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--c-border); background: var(--c-bg-white); border-radius: 20px; font-size: 14px; font-weight: 500; color: var(--c-primary); cursor: pointer; min-width: 120px; justify-content: space-between; height: 37px; white-space: nowrap; touch-action: manipulation; }
         .filter-btn:hover { border-color: var(--c-accent); color: var(--c-accent); }
-        .filter-btn span { font-size: 13px; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .filter-btn span { font-size: 14px; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         @media (max-width: 480px) { .filter-btn { min-width: 100px; padding: 8px 12px; } }
         
-        .filter-count { font-size: 13px; font-weight: 500; color: var(--c-text-secondary); min-width: 16px; text-align: center; display: inline-block; }
+        .filter-count { font-size: 14px; font-weight: 500; color: var(--c-text-secondary); min-width: 16px; text-align: center; display: inline-block; }
         .property-filter-item .property-name { flex: 1; }
         .visit-card,.property-card,.profile-section,.invoice-card,.calendar-page-body,.chat-widget,.event-popover{background:var(--c-bg-white);border-radius:12px;border:1px solid var(--c-border);box-shadow:0 2px 8px rgba(0,0,0,0.08)}
         .visit-card{padding:20px;width:100%;box-sizing:border-box;min-height:90px}
@@ -193,8 +222,6 @@
         .visit-meta-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--c-text-secondary); flex-wrap: wrap; }
         @media (max-width: 480px) { .visit-meta-row { flex-direction: column; align-items: flex-start; gap: 4px; } }
         .visit-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-        .contact-icon-btn,.notifications-btn,.calendar-nav-btn,.mobile-back-btn,.mobile-action-btn,.event-popover-close,.chat-close-mobile{width:37px;height:37px;border-radius:50%;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--c-text-secondary);transition:all 0.2s}
-        .contact-icon-btn:hover,.notifications-btn:hover,.calendar-nav-btn:hover,.mobile-back-btn:hover,.mobile-action-btn:hover,.event-popover-close:hover,.chat-close-mobile:hover{background:var(--c-bg-light);color:var(--c-accent)}
         .status-badge { font-size: 10px; padding: 4px 8px; border-radius: 20px; font-weight: 500; }
         .status-badge.pending { background: var(--c-warning-bg); color: var(--c-pending); }
         .status-badge.accepted { background: var(--c-success-bg); color: var(--c-success-dark); }
@@ -204,7 +231,7 @@
         .property-card { overflow: hidden; }
         .property-image { height: 160px; background: linear-gradient(135deg, var(--c-accent) 0%, #a5b4fc 100%); display: flex; align-items: center; justify-content: center; }
         .property-details { padding: 20px; }
-        .property-details h3 { font-size: 14px; font-weight: 600; color: var(--c-primary); margin-bottom: 4px; }
+        .property-details h3 { font-size: 15px; font-weight: 600; color: var(--c-primary); margin-bottom: 4px; }
         .property-details p { font-size: 13px; color: var(--c-text-secondary); margin-bottom: 12px; }
         .property-footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
         .property-delete-btn { margin-top: 12px; width: 100%; }
@@ -215,10 +242,6 @@
         .property-status.processing { background: var(--c-accent-bg); color: var(--c-accent-dark); }
         .property-status.request-doc { background: var(--c-error-bg); color: var(--c-error); }
         .property-status.activate { background: #f0f9f3; color: var(--c-success); }
-        .add-property-card { border: 1px dashed var(--c-border); display: flex; align-items: center; justify-content: center; min-height: 260px; cursor: pointer; background: var(--c-bg-white); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        .add-property-card:hover { border-color: var(--c-accent); }
-        .add-property-content { text-align: center; color: var(--c-text-secondary); }
-        .calendar-add-btn{border-radius:8px}
         .property-filter-dropdown { position: relative; }
         
         .calendar-legend { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
@@ -237,10 +260,10 @@
         .calendar-nav { display: flex; align-items: center; gap: 8px; }
         .calendar-nav-btn { border: 1px solid var(--c-border); border-radius: 8px; color: var(--c-primary); }
         .calendar-nav-btn:hover { border-color: var(--c-accent); }
-        .calendar-today-btn { padding: 8px 16px; border: 1px solid var(--c-border); background: var(--c-bg-white); border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--c-primary); cursor: pointer; font-family: inherit; transition: all 0.2s; height: 37px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; }
+        .calendar-today-btn { padding: 8px 16px; border: 1px solid var(--c-border); background: var(--c-bg-white); border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--c-primary); cursor: pointer; transition: all 0.2s; height: 37px; display: inline-flex; align-items: center; justify-content: center; }
         .calendar-today-btn:hover { border-color: var(--c-accent); color: var(--c-accent); }
         .calendar-view-toggle { display: flex; background: var(--c-bg-light); border-radius: 8px; padding: 4px; height: 37px; box-sizing: border-box; align-items: center; }
-        .calendar-view-btn { padding: 8px 16px; border: none; background: transparent; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--c-text-secondary); cursor: pointer; font-family: inherit; transition: all 0.2s; height: 29px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; }
+        .calendar-view-btn { padding: 8px 16px; border: none; background: transparent; border-radius: 6px; font-size: 14px; font-weight: 500; color: var(--c-text-secondary); cursor: pointer; transition: all 0.2s; height: 29px; display: inline-flex; align-items: center; justify-content: center; }
         .calendar-view-btn.active { background: var(--c-bg-white); color: var(--c-primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 8px; }
         .calendar-weekday { text-align: center; font-size: 12px; font-weight: 600; color: var(--c-text-secondary); padding: 8px; text-transform: uppercase; }
@@ -333,33 +356,39 @@
             .week-time-slot { height: 45px; }
             .week-hour-row { height: 45px; }
         }
-        .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1200;align-items:center;justify-content:center;padding:20px}
+        .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(21,35,48,0.6);z-index:1200;align-items:center;justify-content:center;padding:20px}
         .modal-overlay.show{display:flex}
         .modal { background: var(--c-bg-white); border-radius: 12px; max-width: 480px; width: calc(100% - 32px); max-height: 90vh; overflow-y: auto; padding: 20px; margin: 16px; border: 1px solid var(--c-border); }
         @media (max-width: 480px) { .modal { padding: 20px; border-radius: 12px; } .modal-actions { flex-direction: column; } .modal-btn { width: 100%; flex: none; } }
         .modal h2 { font-size: 14px; font-weight: 700; color: var(--c-primary); margin-bottom: 12px; }
         .modal p { font-size: 14px; color: var(--c-primary); line-height: 1.5; margin-bottom: 16px; }
         .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 13px; color: var(--c-primary); font-weight: 600; margin-bottom: 8px; }
-        .form-group input,.form-group textarea,.profile-input,.form-select{width:100%;padding:12px;border:1px solid var(--c-border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;box-sizing:border-box}
+        .form-group label { display: block; font-size: 14px; color: var(--c-primary); font-weight: 500; margin-bottom: 8px; }
+        .form-group input,.form-group textarea,.profile-input,.form-select{width:70%;padding:8px 12px;border:1px solid var(--c-border);border-radius:8px;font-size:14px;outline:none;height:37px}
+        .form-group textarea{height:auto;padding:12px}
+        .form-group input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+        .form-group input[type="number"]::-webkit-outer-spin-button,.form-group input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
         .form-group input:focus,.form-group textarea:focus,.profile-input:focus,.form-select:focus{border-color:var(--c-accent)}
         .form-group textarea { resize: vertical; min-height: 80px; }
         .form-select { background: var(--c-bg-white); cursor: pointer; }
         .modal-actions { display: flex; gap: 12px; }
         .modal-btn{flex:1;min-width:fit-content;white-space:nowrap}
         
-        .submit-title { font-size:63px; font-weight:800; color:var(--c-primary); margin-bottom:16px; line-height:1.2; text-transform:uppercase; }
-        .submit-subtitle { font-size:18px; color:var(--c-text-secondary); line-height:1.6; margin-bottom:32px; }
-        .submit-search-bar { display:flex; align-items:center; width:100%; max-width:560px; background:var(--c-bg-white); border:1px solid var(--c-border); border-radius:28px; padding:6px 6px 6px 20px; box-shadow:0 4px 16px rgba(0,0,0,0.08); }
+        .submit-title { font-size:63px; font-weight:700; color:var(--c-primary); margin-bottom:16px; line-height:1.2; text-transform:uppercase; }
+        .submit-subtitle { font-size:15px; font-weight:600; color:var(--c-primary); line-height:1.6; margin-bottom:32px; }
+        .submit-search-bar { display:flex; align-items:center; width:100%; max-width:560px; background:var(--c-bg-white); border:1px solid var(--c-border); border-radius:28px; padding:6px 6px 6px 20px; box-shadow:0 4px 16px rgba(0,0,0,0.08); flex-wrap:nowrap; }
         .submit-stats { display:grid; grid-template-columns:repeat(3,1fr); margin-top:56px; max-width:640px; width:100%; }
         .submit-stat { padding:0 40px; }
         .submit-stat-middle { border-left:1px solid var(--c-border); border-right:1px solid var(--c-border); }
-        .submit-stat-number { font-size:22px; font-weight:700; color:var(--c-accent); line-height:1; white-space:nowrap; }
+        .submit-stat-number { font-size:22px; font-weight:700; color:var(--c-primary); line-height:1; white-space:nowrap; }
         .submit-stat-label { font-size:14px; color:var(--c-text-secondary); margin-top:8px; white-space:nowrap; }
         @media (max-width: 768px) {
+            #submitStep2 > div > div:last-child { display: none; }
             .submit-title { font-size:36px; }
             .submit-subtitle { font-size:15px; padding:0 10px; }
-            .submit-search-bar { max-width:100%; }
+            .submit-search-bar { max-width:100%; padding:5px 5px 5px 14px; }
+            .submit-search-bar input { font-size:14px; padding:10px 0; }
+            .submit-search-bar .btn { padding:8px 20px; font-size:14px; height:40px; }
             .submit-stats { max-width:100%; }
             .submit-stat { padding:0 20px; }
             .submit-stat-number { font-size:18px; }
@@ -368,12 +397,71 @@
         @media (max-width: 480px) {
             .submit-title { font-size:28px; }
             .submit-subtitle { font-size:14px; }
+            .submit-search-bar { border-radius:20px; padding:4px 4px 4px 12px; }
+            .submit-search-bar input { font-size:13px; padding:8px 0; }
+            .submit-search-bar .btn { padding:8px 16px; font-size:13px; height:38px; border-radius:18px; }
             .submit-stats { grid-template-columns:1fr; gap:24px; margin-top:40px; }
             .submit-stat { padding:0; }
             .submit-stat-middle { border-left:none; border-right:none; border-top:1px solid var(--c-border); border-bottom:1px solid var(--c-border); padding:24px 0; }
             .submit-stat-number { font-size:20px; }
             .submit-stat-label { font-size:13px; }
         }
+        .stepper-pill{display:inline-flex;align-items:center;border:1px solid var(--c-border);border-radius:20px;height:37px;background:var(--c-bg-white);transition:border-color 0.2s}
+        .stepper-btn{width:32px;height:100%;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--c-text-secondary);font-size:15px;font-weight:500;transition:color 0.15s;user-select:none;-webkit-user-select:none}
+        .stepper-btn:hover{color:var(--c-accent)}
+        .stepper-btn.disabled{opacity:0.25;pointer-events:none}
+        .stepper-num{min-width:20px;text-align:center;font-size:14px;font-weight:500;color:var(--c-primary);padding:0 2px;cursor:text;outline:none;border-radius:4px}
+        .stepper-num:focus{background:var(--c-bg-light)}
+        .sp-row{display:flex;gap:12px;align-items:center}
+        .sp-row-end{display:flex;gap:12px;align-items:flex-end}
+        .sp-row-wrap{display:flex;gap:12px;flex-wrap:wrap}
+        .sp-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .sp-section{margin-bottom:32px}
+        .sp-mb-sm{margin-bottom:12px}
+        .sp-mb-md{margin-bottom:16px}
+        .sp-heading{font-size:15px;font-weight:600;color:var(--c-primary);margin-bottom:4px}
+        .sp-subheading{font-size:14px;font-weight:600;color:var(--c-primary);margin-bottom:6px}
+        .sp-desc{font-size:13px;color:var(--c-text-secondary);margin-bottom:16px}
+        .sp-fine-print{font-size:13px;color:var(--c-text-secondary);line-height:1.5}
+        .sp-caption{font-size:12px;color:var(--c-text-secondary)}
+        .sp-card{background:var(--c-bg-white);border:1px solid var(--c-border);border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+        .sp-card-bg{background:var(--c-bg-light);border-radius:12px;padding:20px}
+        .sp-card-accent{background:linear-gradient(135deg,#f8f9ff 0%,#fff 100%);border:1px solid var(--c-accent);border-radius:12px;padding:20px}
+        .sp-check{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--c-primary)}
+        .sp-check-ok{color:var(--c-success);flex-shrink:0}
+        .sp-dropzone{border:2px dashed var(--c-border);border-radius:10px;padding:24px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(--c-bg-white)}
+        .sp-dropzone:hover{border-color:var(--c-accent)}
+        .sp-stat-box{flex:1;min-width:140px;border-radius:8px;padding:12px}
+        .sp-stat-label{display:flex;align-items:center;gap:4px;margin-bottom:4px}
+        .sp-stat-val{font-size:16px;font-weight:600}
+        .sp-warn{font-size:12px;color:var(--c-warning);font-weight:500}
+        .sp-underwriter{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--c-bg-light);border-radius:8px}
+        .sp-order-row{display:flex;align-items:center;justify-content:space-between}
+        .sp-order-divider{height:1px;background:var(--c-border);margin:12px 0}
+        .sp-title-card{margin-top:16px;border:2px solid var(--c-accent);border-radius:12px;padding:24px;background:linear-gradient(135deg,#f8f9ff 0%,#fff 100%);box-shadow:0 2px 12px rgba(125,143,247,0.12);position:relative;overflow:hidden}
+        .sp-title-badge{position:absolute;top:0;right:0;background:var(--c-accent);color:white;font-size:10px;font-weight:600;padding:4px 12px;border-radius:0 0 0 8px}
+        .sp-price-input{position:relative}
+        .sp-price-symbol{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;font-weight:600;color:var(--c-text-secondary)}
+        .sp-savings{font-size:14px;color:var(--c-primary);font-weight:500}
+        .sp-avm-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+        .sp-avm-price{font-size:32px;font-weight:700;color:var(--c-primary);margin-bottom:4px}
+        .sp-avm-range{font-size:13px;color:var(--c-text-secondary);margin-bottom:16px}
+        .sp-signing-bg{background:var(--c-bg-light);border-radius:10px;padding:16px;margin-bottom:16px}
+        .sp-signing-header{display:flex;align-items:flex-start;gap:10px}
+        .sp-signing-icon{font-size:18px;flex-shrink:0}
+        .sp-doc-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--c-bg-white);border:1px solid var(--c-border);border-radius:8px;margin-top:6px}
+        .submit-prop-type{padding:12px 20px;border-radius:12px;font-size:14px;font-weight:500;transition:all 0.2s;cursor:pointer}
+        .submit-prop-type:hover{border-color:var(--c-accent);color:var(--c-accent);background:var(--c-accent-bg)}
+        .submit-prop-type.selected{border-color:var(--c-accent);color:var(--c-accent);background:var(--c-accent-bg);font-weight:600;animation:propPop 0.3s ease}
+        .mls-badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;margin-left:8px;background:#FF9B77;color:white;white-space:nowrap}
+        .alc-info-btn{width:24px;height:24px;border-radius:50%;border:1px solid var(--c-border);background:transparent;cursor:pointer;font-size:14px;font-weight:600;color:var(--c-text-secondary);display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0;line-height:1}
+        .alc-info-btn:hover{border-color:var(--c-accent);color:var(--c-accent)}
+        .alc-info-btn.open{transform:rotate(45deg);border-color:var(--c-accent);color:var(--c-accent)}
+        .alc-info{width:100%;font-size:13px;color:var(--c-text-secondary);line-height:1.5;padding:10px 0 0 36px;animation:alcFadeIn 0.2s ease}
+        @keyframes alcFadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+        @media (min-width: 769px) { #packageIncludes { display: none !important; } }
+        @media (max-width: 768px) { #packageIncludesRight { display: none !important; } }
+        @keyframes propPop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
         .mobile-bottom-nav { display: none; position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); width: 388px; background: var(--c-bg-white); border: 1px solid var(--c-border); border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); z-index: 200; padding: 10px 0; padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
         .mobile-bottom-nav-chat { padding: 12px 14px 10px 14px; border-bottom: 1px solid var(--c-border); }
         .mobile-nav-chat-wrapper { display: flex; align-items: center; position: relative; }
@@ -420,7 +508,7 @@
         #inboxList .visit-card { display: block; width: 100%; margin-bottom: 12px; cursor: pointer; }
         #inboxList .visit-card .visit-actions { display: none; }
         #inboxList .visit-card h3 .status-badge { margin-left: 12px; }
-        .address-main { font-weight: 600; color: var(--c-primary); display: block; line-height: 1.3; }
+        .address-main { font-weight: 600; color: var(--c-primary); display: block; line-height: 1.3; font-size: 15px; }
         .address-secondary { font-weight: 400; color: var(--c-text-secondary); font-size: 13px; display: block; margin-top: 0; line-height: 1.3; margin-bottom: 6px; }
         .address-line { display: inline; }
         .visit-info h3 .status-badge { vertical-align: middle; }
@@ -435,12 +523,12 @@
         
         .compose-btn{border-radius:20px}
         .message-tabs { display: flex; gap: 4px; background: var(--c-bg-light); border-radius: 20px; padding: 4px; }
-        .message-tab { padding: 8px 16px; border: none; background: transparent; border-radius: 16px; font-size: 13px; font-weight: 500; color: var(--c-text-secondary); cursor: pointer; font-family: inherit; transition: all 0.2s; display: flex; align-items: center; gap: 8px; height: 29px; box-sizing: border-box; }
+        .message-tab { padding: 8px 16px; border: none; background: transparent; border-radius: 16px; font-size: 14px; font-weight: 500; color: var(--c-text-secondary); cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; height: 29px; }
         .message-tab:hover { color: var(--c-primary); }
-        .message-tab.active { background: var(--c-bg-white); color: var(--c-primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .message-tab.active { background: var(--c-accent-bg); color: var(--c-accent); box-shadow: none; border: 1px solid var(--c-accent); }
         .tab-badge { background: var(--c-accent); color: white; font-size: 11px; font-weight: 600; min-width: 18px; height: 18px; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; padding: 0 5px; }
         .message-tab.active .tab-badge { background: var(--c-accent); }
-        .message-search { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--c-border); border-radius: 20px; background: var(--c-bg-white); flex: 1; max-width: 280px; height: 37px; box-sizing: border-box; }
+        .message-search { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--c-border); border-radius: 20px; background: var(--c-bg-white); flex: 1; max-width: 280px; height: 37px; }
         .message-search svg { color: var(--c-text-secondary); flex-shrink: 0; }
         .message-search input { border: none; outline: none; font-size: 13px; font-family: inherit; width: 100%; background: transparent; }
         .message-search input::placeholder { color: var(--c-text-secondary); }
@@ -452,7 +540,7 @@
         .profile-form { display: flex; flex-direction: column; gap: 16px; }
         .profile-field { display: flex; flex-direction: column; gap: 6px; }
         .profile-field label { font-size: 13px; font-weight: 500; color: var(--c-text-secondary); }
-        .profile-input { padding: 12px 14px; transition: border-color 0.2s; }
+        .profile-input { padding: 8px 12px; transition: border-color 0.2s; }
         .profile-input.disabled { background: var(--c-bg-light); color: var(--c-text-secondary); cursor: not-allowed; }
         .profile-input-wrapper { position: relative; display: flex; align-items: center; }
         .profile-input-wrapper .profile-input { flex: 1; padding-right: 40px; }
@@ -491,14 +579,12 @@
         .mobile-message-view { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--c-bg-white); z-index: 1200; flex-direction: column; }
         .mobile-message-view.show { display: flex; }
         .mobile-message-header { display: flex; align-items: center; gap: 12px; padding: 16px; border-bottom: 1px solid var(--c-border); background: var(--c-bg-white); }
-        .mobile-back-btn { width: 36px; height: 36px; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--c-primary); }
-        .mobile-back-btn:hover { background: var(--c-bg-light); }
+        .mobile-back-btn{width:36px;height:36px;color:var(--c-primary)}
         .mobile-message-title { flex: 1; }
         .mobile-message-title h3 { font-size: 16px; font-weight: 600; color: var(--c-primary); margin: 0 0 4px 0; }
         .mobile-message-title p { font-size: 13px; color: var(--c-text-secondary); margin: 0; }
         .mobile-message-actions-top { display: flex; gap: 8px; }
-        .mobile-action-btn { width: 36px; height: 36px; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--c-text-secondary); }
-        .mobile-action-btn:hover { background: var(--c-bg-light); color: var(--c-accent); }
+        .mobile-action-btn{width:36px;height:36px}
         .mobile-message-thread { flex: 1; overflow-y: auto; padding: 16px; background: var(--c-bg-light); }
         .mobile-thread-message { margin-bottom: 16px; }
         .mobile-thread-message.incoming .mobile-thread-bubble { background: var(--c-bg-white); border-radius: 16px 16px 16px 4px; margin-right: 40px; }
@@ -529,10 +615,10 @@
         .mobile-thread-message.outgoing .mobile-thread-time { text-align: right; color: var(--c-text-secondary); }
         .mobile-message-reply { padding: 12px 16px; border-top: 1px solid var(--c-border); background: var(--c-bg-white); }
         .mobile-reply-wrapper { display: flex; align-items: center; gap: 8px; background: var(--c-bg-light); border-radius: 24px; padding: 4px 4px 4px 16px; }
-        .mobile-reply-input { flex: 1; border: none; background: transparent; font-size: 14px; outline: none; padding: 8px 0; font-family: inherit; }
+        .mobile-reply-input { flex: 1; border: none; background: transparent; font-size: 14px; outline: none; padding: 8px 0; }
         
         .mobile-quick-actions { display: flex; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--c-border); background: var(--c-bg-white); overflow-x: auto; }
-        .mobile-quick-btn { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--c-border); background: var(--c-bg-white); border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--c-primary); cursor: pointer; white-space: nowrap; font-family: inherit; height: 37px; box-sizing: border-box; transition: all 0.2s; }
+        .mobile-quick-btn { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--c-border); background: var(--c-bg-white); border-radius: 20px; font-size: 14px; font-weight: 500; color: var(--c-primary); cursor: pointer; white-space: nowrap; height: 37px; transition: all 0.2s; }
         .mobile-quick-btn:hover { border-color: var(--c-accent); color: var(--c-accent); }
         .mobile-quick-btn.danger { border-color: var(--c-error); color: var(--c-error); }
         @media (min-width: 1025px) { .mobile-message-view { display: none !important; } }
@@ -540,14 +626,42 @@
     </style>
 </head>
 <body>
+    <svg style="display:none">
+        <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></symbol>
+        <symbol id="i-chev-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></symbol>
+        <symbol id="i-chev-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></symbol>
+        <symbol id="i-chev-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></symbol>
+        <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></symbol>
+        <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></symbol>
+        <symbol id="i-house" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></symbol>
+        <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></symbol>
+        <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></symbol>
+        <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></symbol>
+        <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></symbol>
+        <symbol id="i-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></symbol>
+        <symbol id="i-attach" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></symbol>
+        <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></symbol>
+        <symbol id="i-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></symbol>
+        <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></symbol>
+        <symbol id="i-dots" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></symbol>
+        <symbol id="i-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></symbol>
+        <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></symbol>
+    </svg>
     <header class="main-header">
         <div class="main-header-container">
-            <div class="main-header-left"><a href="#">Sell</a><a href="#">Buy</a><a href="#">Title Services</a></div>
+            <div class="main-header-left"><a href="#">Sell</a><a href="#">Buy</a><a href="#">Title services</a></div>
             <div class="main-header-center"><a href="#" class="logo" style="color: var(--c-primary); text-transform: lowercase;">beycome</a></div>
             <div class="main-header-right">
                 <div class="notifications-dropdown">
                     <button class="notifications-btn" onclick="toggleMenu('notificationsMenu',event)">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                        <svg width="20" height="20"><use href="#i-bell"/></svg>
                         <span class="notifications-badge" id="notificationsBadge">4</span>
                     </button>
                     <div class="notifications-menu" id="notificationsMenu">
@@ -568,7 +682,7 @@
                         <svg class="hamburger-icon mobile-only" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                     </button>
                     <div class="dashboard-menu" id="dashboardMenu">
-                        <a href="#" class="dashboard-menu-item desktop-only" onclick="showPage('account', event)">My Account</a>
+                        <a href="/profile" class="dashboard-menu-item desktop-only">My Account</a>
                         <a href="#" class="dashboard-menu-item mobile-only"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>Dashboard</a>
                         <a href="#" class="dashboard-menu-item desktop-only">Sign Out</a>
                         <a href="#" class="dashboard-menu-item mobile-only" style="color: var(--c-error);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>Sign Out</a>
@@ -583,16 +697,16 @@
         <div class="nav-container">
             <ul class="nav-menu">
                 <li class="nav-item"><a href="javascript:void(0)" class="nav-link">Dashboard</a></li>
-                <li class="nav-item"><a href="javascript:void(0)" class="nav-link" onclick="showPage('properties', event)">Properties</a></li>
-                <li class="nav-item"><a href="javascript:void(0)" class="nav-link active" onclick="showPage('offers', event)">Offers<span class="nav-badge">1</span></a></li>
-                <li class="nav-item"><a href="javascript:void(0)" class="nav-link" onclick="showPage('visits', event)">Showings<span class="nav-badge" id="visitsBadge">2</span></a></li>
-                <li class="nav-item"><a href="javascript:void(0)" class="nav-link" onclick="showPage('messages', event)">Inbox<span class="nav-badge" id="messagesBadge">3</span></a></li>
-                <li class="nav-item"><a href="javascript:void(0)" class="nav-link" onclick="showPage('calendar', event)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></a></li>
+                <li class="nav-item"><a href="/your-listing" class="nav-link">Properties</a></li>
+                <li class="nav-item"><a href="/offers" class="nav-link active">Offers<span class="nav-badge">1</span></a></li>
+                <li class="nav-item"><a href="/requested-show" class="nav-link">Showings<span class="nav-badge" id="visitsBadge">2</span></a></li>
+                <li class="nav-item"><a href="/your-messages" class="nav-link">Inbox<span class="nav-badge" id="messagesBadge">3</span></a></li>
+                <li class="nav-item"><a href="/calendar" class="nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></a></li>
                 <li class="nav-item" style="position: relative;">
                     <a href="javascript:void(0)" class="nav-link has-dropdown" onclick="toggleMenu('toolsMenu',event)">More<svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
                     <div class="menu right" id="toolsMenu">
-                        <a href="javascript:void(0)" class="menu-item" onclick="showPage('account', event)">Account</a>
-                        <a href="javascript:void(0)" class="menu-item" onclick="showPage('contracts', event)">Contract Center</a>
+                        <a href="/profile" class="menu-item">Account</a>
+                        <a href="/contract" class="menu-item">Contract Center</a>
                     </div>
                 </li>
             </ul>
@@ -633,7 +747,7 @@
                                     <span class="status-badge" style="background: var(--c-warning-bg); color: var(--c-warning);">Expires in 48 hours</span>
                                 </div>
                             </div>
-                            <div class="visit-actions"><button class="btn" onclick="viewOffer(this)">View the Offer</button></div>
+                            <div class="visit-actions"><button class="btn" onclick="viewOffer(this)">View the offer</button></div>
                     </div>
                 </div>
                 <div class="visit-card">
@@ -646,7 +760,7 @@
                                     <span class="status-badge accepted">Accepted</span>
                                 </div>
                             </div>
-                            <div class="visit-actions"><button class="btn">View the Offer</button></div>
+                            <div class="visit-actions"><button class="btn">View the offer</button></div>
                         </div>
                     </div>
                 </div>
@@ -661,7 +775,7 @@
                                     <span class="status-badge pending">Awaiting Response</span>
                                 </div>
                             </div>
-                            <div class="visit-actions"><button class="btn">View the Offer</button></div>
+                            <div class="visit-actions"><button class="btn">View the offer</button></div>
                         </div>
                     </div>
                 </div>
@@ -669,7 +783,7 @@
 
             <div class="page-content" id="propertiesPage" style="display: none;">
                 <div class="visit-tabs">
-                    <button class="btn btn-accent compose-btn" onclick="function addNewProperty() { window.location.href = 'submit-property'; }"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>Add New Property</button>
+                    <button class="btn btn-accent compose-btn" onclick="window.location.hash='/submit-property'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>Add new property</button>
                     <div class="property-filter-dropdown" id="propertiesPropertyFilter" style="display:none;">
                         <button class="filter-btn" onclick="togglePagePropertyFilter('properties',event)">
                             <span id="propertiesPropertyFilterText">All Properties</span>
@@ -679,19 +793,12 @@
                     </div>
                 </div>
                 <div class="property-grid" id="propertyGrid">
-                    <div class="property-card" data-property-id="1">
-                        <div class="property-image"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
-                        <div class="property-details"><h3>1505 N Jean Baptiste Pointe du Sable Lake Shore Dr</h3><p>Bonadelle Ranchos-Madera Ranchos, CA 33135</p><div class="property-footer"><span class="property-price">$485,000</span><span class="property-status activate">Activate</span></div><button class="btn btn-danger property-delete-btn" onclick="event.stopPropagation(); deleteProperty(1, '1505 N Jean Baptiste Pointe du Sable Lake Shore Dr')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>Delete</button></div>
-                    </div>
-                    <div class="property-card" data-property-id="2">
+                    <div class="property-card" data-property-id="2" style="position:relative;">
+                        <span class="property-status request-doc" style="position:absolute;top:10px;left:10px;z-index:10;">Request extra document</span>
                         <div class="property-image" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
-                        <div class="property-details"><h3>456 Ocean Drive</h3><p>Miami Beach, FL 33139</p><div class="property-footer"><span class="property-price">$725,000</span><span class="property-status request-doc">Request extra document</span></div><button class="btn btn-danger property-delete-btn" onclick="event.stopPropagation(); deleteProperty(2, '456 Ocean Drive')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>Delete</button></div>
+                        <div class="property-details"><h3>456 Ocean Drive</h3><p>Miami Beach, FL 33139</p><div class="property-footer"><span class="property-price">$725,000</span></div><button class="btn btn-danger property-delete-btn" onclick="event.stopPropagation(); deleteProperty(2, '456 Ocean Drive')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>Delete</button></div>
                     </div>
-                    <div class="property-card" data-property-id="3">
-                        <div class="property-image" style="background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
-                        <div class="property-details"><h3>789 Palm Avenue</h3><p>Coral Gables, FL 33134</p><div class="property-footer"><span class="property-price">$650,000</span><span class="property-status processing">Processing</span></div><button class="btn btn-danger property-delete-btn" onclick="event.stopPropagation(); deleteProperty(3, '789 Palm Avenue')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>Delete</button></div>
-                    </div>
-                    <div class="add-property-card" style="display:none;"><div class="add-property-content"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin: 0 auto 12px; display: block;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg><p style="font-weight: 500;">Add New Property</p></div></div>
+
                 </div>
             </div>
 
@@ -980,8 +1087,6 @@
                 </div>
             </div>
 
-            <div class="page-content" id="addPropertyPage" style="display: none;"></div>
-
             <div class="page-content" id="contractsPage" style="display: none;">
                 <div class="visit-tabs">
                     <div class="filter-dropdown">
@@ -1264,27 +1369,27 @@
             </div>
         </div>
         <div class="mobile-bottom-nav-items">
-            <div class="mobile-bottom-nav-item" onclick="mobileNavTo('properties', event)">
+            <div class="mobile-bottom-nav-item" onclick="window.location.href='/your-listing'">
                 <div class="mobile-bottom-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
                 <span class="mobile-bottom-nav-label">Properties</span>
             </div>
-            <div class="mobile-bottom-nav-item active" onclick="mobileNavTo('offers', event)">
+            <div class="mobile-bottom-nav-item active" onclick="window.location.href='/offers'">
                 <div class="mobile-bottom-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg><span class="mobile-bottom-nav-badge">1</span></div>
                 <span class="mobile-bottom-nav-label">Offers</span>
             </div>
-            <div class="mobile-bottom-nav-item" onclick="mobileNavTo('visits', event)">
+            <div class="mobile-bottom-nav-item" onclick="window.location.href='/requested-show'">
                 <div class="mobile-bottom-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span class="mobile-bottom-nav-badge" id="mobileVisitsBadge">2</span></div>
                 <span class="mobile-bottom-nav-label">Showings</span>
             </div>
-            <div class="mobile-bottom-nav-item" onclick="mobileNavTo('messages', event)">
+            <div class="mobile-bottom-nav-item" onclick="window.location.href='/your-messages'">
                 <div class="mobile-bottom-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><span class="mobile-bottom-nav-badge" id="mobileMessagesBadge">3</span></div>
                 <span class="mobile-bottom-nav-label">Inbox</span>
             </div>
             <div class="mobile-more-wrapper">
                 <div class="menu up right" id="mobileDropupMenu">
-                    <button class="menu-item" onclick="mobileNavTo('calendar', event); closeAllDropdowns();"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>Calendar</button>
-                    <button class="menu-item" onclick="mobileNavTo('contracts', event); closeAllDropdowns();"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>Contracts</button>
-                    <button class="menu-item" onclick="mobileNavTo('account', event); closeAllDropdowns();"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Account</button>
+                    <button class="menu-item" onclick="window.location.href='/calendar'; closeAllDropdowns();"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>Calendar</button>
+                    <button class="menu-item" onclick="window.location.href='/contract'; closeAllDropdowns();"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>Contracts</button>
+                    <button class="menu-item" onclick="window.location.href='/profile'; closeAllDropdowns();"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Account</button>
                 </div>
                 <div class="mobile-bottom-nav-item" onclick="toggleMenu('mobileDropupMenu',event)">
                 <div class="mobile-bottom-nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></div>
@@ -1342,7 +1447,7 @@
     <div class="modal-overlay" id="addEventModal">
         <div class="modal" style="max-width: 480px;">
             <h2>📅 Add to Calendar</h2>
-            <div class="form-group"><label>Event Type</label><select id="addEventType" class="form-select" onchange="updateAddEventForm()"><option value="visit">👁️ Visit / Showing</option><option value="milestone">📋 Milestone (Inspection, Appraisal, etc.)</option><option value="deadline">⚠️ Deadline</option><option value="closing">🔑 Closing</option><option value="other">📌 Other</option></select></div>
+            <div class="form-group"><label>Event Type</label><select id="addEventType" class="form-select"><option value="visit">👁️ Visit / Showing</option><option value="milestone">📋 Milestone (Inspection, Appraisal, etc.)</option><option value="deadline">⚠️ Deadline</option><option value="closing">🔑 Closing</option><option value="other">📌 Other</option></select></div>
             
             <div class="form-group"><label>Property</label><select id="addEventProperty" class="form-select"><option value="1505 N Jean Baptiste Pointe du Sable Lake Shore Dr">1505 N Jean Baptiste Pointe du Sable Lake Shore Dr, Bonadelle Ranchos-Madera Ranchos, CA 33135</option><option value="456 Ocean Drive">456 Ocean Drive, Miami Beach, FL</option><option value="789 Palm Avenue">789 Palm Avenue, Coral Gables, FL</option></select></div>
             <div class="form-group"><label>Title / Description</label><input type="text" id="addEventTitle" placeholder="e.g., Home Inspection with ABC Inspections"></div>
@@ -1356,6 +1461,29 @@
 
     
 
+    <div class="modal-overlay" id="compareModal" style="z-index:2100;">
+        <div class="modal" style="max-width:720px; padding:0; overflow:hidden; max-height:85vh;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--c-border);">
+                <h2 style="margin:0; font-size:18px; font-weight:700; color:var(--c-primary);">Compare packages</h2>
+                <button class="icon-btn" onclick="closeModal('compareModal')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            </div>
+            <div style="overflow:auto; padding:0 24px 24px; max-height:calc(85vh - 70px);">
+                <table style="width:100%; border-collapse:collapse; font-size:13px; min-width:500px;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:left; padding:16px 12px 12px 0; font-weight:500; color:var(--c-text-secondary); width:40%;"></th>
+                            <th style="text-align:center; padding:16px 8px 12px; font-weight:700; color:var(--c-primary);">Basic<br><span style="font-size:18px;">$99</span></th>
+                            <th style="text-align:center; padding:16px 8px 12px; font-weight:700; color:var(--c-accent); background:#f8f9ff; border-radius:12px 12px 0 0;">Enhanced<br><span style="font-size:18px;">$399</span></th>
+                            <th style="text-align:center; padding:16px 8px 12px; font-weight:700; color:var(--c-primary);">Concierge<br><span style="font-size:18px;">$999</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="compareTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="documentViewerModal">
         <div class="modal" style="max-width: 800px; padding: 0; overflow: hidden;">
             <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--c-border);"><h3 id="documentViewerTitle" style="margin: 0; font-size: 16px; font-weight: 600;">Document</h3><div style="display: flex; gap: 8px;"><button class="btn" onclick="downloadDocument()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download</button><button class="btn btn-s" onclick="closeModal('documentViewerModal')">Close</button></div></div>
@@ -1368,40 +1496,466 @@
             <div style="max-width:1400px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between;">
                 <a href="javascript:void(0)" style="display:flex; align-items:center; gap:6px; text-decoration:none; color:var(--c-primary); font-size:14px; font-weight:500;" onclick="closeSubmitProperty(event)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>Back</a>
                 <a href="#" class="logo" style="color:var(--c-primary); text-transform:lowercase; text-decoration:none;">beycome</a>
-                <button class="btn" onclick="closeSubmitProperty(event)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Close</button>
+                <div></div>
             </div>
         </header>
-        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:calc(100vh - 80px); text-align:center; padding:40px 20px;">
+        <div id="submitStep1" style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:calc(100vh - 80px); text-align:center; padding:40px 20px;">
             <h1 class="submit-title">Your Savings Journey<br>Starts Here</h1>
-            <p class="submit-subtitle">Sell your home with full control. MLS exposure. One flat fee. Zero BS.</p>
+            <p class="submit-subtitle">Full control. Maximum exposure. One flat fee. Zero BS</p>
             <div class="submit-search-bar">
-                <input type="text" id="submitPropertyAddress" placeholder="Enter your property address" style="flex:1; border:none; outline:none; font-size:15px; padding:12px 0; font-family:inherit; background:transparent; min-width:0;">
+                <input type="text" id="submitPropertyAddress" placeholder="Enter your property address" value="742 Evergreen Terrace, Springfield, IL 62704" style="flex:1; border:none; outline:none; font-size:15px; padding:12px 0; font-family:inherit; background:transparent; min-width:0;">
                 <button class="btn btn-p" style="border-radius:22px; padding:10px 28px; font-size:15px; font-weight:600; height:44px; white-space:nowrap; flex-shrink:0;" onclick="handleListProperty()">List</button>
             </div>
             <div class="submit-stats">
                 <div class="submit-stat">
-                    <div class="submit-stat-number">18,858</div>
+                    <div class="submit-stat-number" data-target="18858" data-prefix="" data-suffix="" data-format="number">0</div>
                     <div class="submit-stat-label">Properties closed</div>
                 </div>
                 <div class="submit-stat submit-stat-middle">
-                    <div class="submit-stat-number">$216.0 M</div>
+                    <div class="submit-stat-number" data-target="216" data-prefix="$" data-suffix=".0 M" data-format="plain">$0.0 M</div>
                     <div class="submit-stat-label">In commissions saved</div>
                 </div>
                 <div class="submit-stat">
-                    <div class="submit-stat-number">Every 40 min</div>
+                    <div class="submit-stat-number" data-target="40" data-start="999" data-prefix="Every " data-suffix=" min" data-format="countdown">Every 999 min</div>
                     <div class="submit-stat-label">One of our properties is sold</div>
                 </div>
             </div>
         </div>
+
+        <div id="submitStep2" style="display:none; max-width:1000px; margin:0 auto; padding:40px 20px 80px;">
+            <div style="display:flex; gap:32px; align-items:flex-start;">
+                <div style="flex:1; min-width:0;">
+                    <h2 style="font-size:24px; font-weight:700; color:var(--c-primary); margin-bottom:4px;"><span id="step2PropertyAddress"></span></h2>
+                    <div style="font-size:14px; color:var(--c-text-secondary); margin-bottom:8px; display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                        <span>📍 Covered by <strong style="color:var(--c-primary);" id="mlsInlineText">Miami Association of Realtors (MIAMI MLS)</strong></span>
+                        <span>·</span>
+                        <span style="position:relative;"><a href="javascript:void(0)" style="color:var(--c-accent); text-decoration:none; font-weight:500;" onclick="toggleMenu('mlsInlineMenu',event)">Change MLS</a>
+                        <div class="menu" id="mlsInlineMenu" style="min-width:320px;">
+                            <button class="menu-item active" onclick="selectMlsInline('Miami Association of Realtors (MIAMI MLS)',event)">Miami Association of Realtors (MIAMI MLS)<span class="mls-badge">Local MLS</span></button>
+                            <button class="menu-item" onclick="selectMlsInline('Stellar MLS',event)">Stellar MLS</button>
+                            <button class="menu-item" onclick="selectMlsInline('Broward–Palm Beach MLS',event)">Broward–Palm Beach MLS</button>
+                        </div></span>
+                    </div>
+
+            <div class="message-tabs" style="margin:16px 0 32px; display:inline-flex;">
+                <button class="message-tab active" id="saleTab" onclick="selectListingType('sale',this)">For Sale</button>
+                <button class="message-tab" id="rentTab2" onclick="selectListingType('rent',this)">For Rent</button>
+            </div>
+
+            <div style="margin-bottom:32px;">
+                <label style="display:block; font-size:15px; font-weight:600; color:var(--c-primary); margin-bottom:12px;">Which of these best describes your property?<span class="required-mark">*</span></label>
+                <div style="display:flex; flex-wrap:wrap; gap:10px;" id="propertyTypeGrid">
+                    <button class="btn submit-prop-type" onclick="selectPropertyType(this)">🏠 House</button>
+                    <button class="btn submit-prop-type" onclick="selectPropertyType(this)">🏢 Apartment</button>
+                    <button class="btn submit-prop-type" onclick="selectPropertyType(this)">🏙️ Condo</button>
+                    <button class="btn submit-prop-type" onclick="selectPropertyType(this)">🏡 Townhouse</button>
+                    <button class="btn submit-prop-type" onclick="selectPropertyType(this)">🏠 Mobile home</button>
+                    <button class="btn submit-prop-type" onclick="selectPropertyType(this)">🌳 Lot/Land</button>
+                    <button class="btn submit-prop-type" onclick="selectPropertyType(this)">🏘️ Multi-family</button>
+                </div>
+            </div>
+
+            <div style="margin-bottom:32px;">
+                <h3 style="font-size:15px; font-weight:600; color:var(--c-primary); margin-bottom:4px;">Share or verify some basics about your <span id="propertyTypeLabel">property</span>:</h3>
+                <p style="font-size:13px; color:var(--c-text-secondary);">Don't worry, you'll be able to add more details later.</p>
+            </div>
+
+            <div id="fieldUnitNumber" style="display:none; margin-bottom:20px; display:none;">
+                <div style="display:flex; gap:12px; align-items:end;">
+                    <div class="form-group" style="margin-bottom:0; max-width:200px;">
+                        <label>Unit Number<span class="required-mark" id="unitRequiredMark">*</span></label>
+                        <input type="text" id="submitUnitNumber" class="input" placeholder="e.g., 4B, 201" style="width:100%">
+                    </div>
+                    <label style="height:44px; display:flex; align-items:center; gap:6px; white-space:nowrap; cursor:pointer; font-size:13px; color:var(--c-text-secondary);">
+                        No unit #
+                        <input type="checkbox" id="noUnitCheckbox" onchange="toggleNoUnit()" style="accent-color:var(--c-accent); margin:0;">
+                    </label>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:12px; margin-bottom:32px;" id="bedsRow">
+                <div class="form-group" id="fieldBeds">
+                    <label>Beds<span class="required-mark">*</span></label>
+                    <div class="stepper-pill">
+                        <button class="stepper-btn disabled" onclick="stepValue('submitBeds',-1)" id="submitBeds_minus">−</button>
+                        <span class="stepper-num" id="submitBeds" contenteditable="true" onblur="clampStepper('submitBeds')" onkeydown="stepperKeydown(event,'submitBeds')">0</span>
+                        <button class="stepper-btn" onclick="stepValue('submitBeds',1)" id="submitBeds_plus">+</button>
+                    </div>
+                </div>
+                <div class="form-group" id="fieldBaths">
+                    <label>Baths<span class="required-mark">*</span></label>
+                    <div class="stepper-pill">
+                        <button class="stepper-btn disabled" onclick="stepValue('submitBaths',-1)" id="submitBaths_minus">−</button>
+                        <span class="stepper-num" id="submitBaths" contenteditable="true" onblur="clampStepper('submitBaths')" onkeydown="stepperKeydown(event,'submitBaths')">0</span>
+                        <button class="stepper-btn" onclick="stepValue('submitBaths',1)" id="submitBaths_plus">+</button>
+                    </div>
+                </div>
+                <div class="form-group" id="fieldHalfBaths">
+                    <label>1/2 Baths</label>
+                    <div class="stepper-pill">
+                        <button class="stepper-btn disabled" onclick="stepValue('submitHalfBaths',-1)" id="submitHalfBaths_minus">−</button>
+                        <span class="stepper-num" id="submitHalfBaths" contenteditable="true" onblur="clampStepper('submitHalfBaths')" onkeydown="stepperKeydown(event,'submitHalfBaths')">0</span>
+                        <button class="stepper-btn" onclick="stepValue('submitHalfBaths',1)" id="submitHalfBaths_plus">+</button>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex; gap:12px; margin-bottom:32px; align-items:flex-end;" id="propertyDetailsGrid">
+                <div class="form-group" id="fieldLivingArea" style="margin-bottom:0;">
+                    <label>Living Area Sqft<span class="required-mark">*</span></label>
+                    <input type="text" id="submitLivingArea" class="input" placeholder="0" oninput="formatDecimalInput(this)" maxlength="9" style="width:120px; height:37px; padding:8px 12px;">
+                </div>
+                <div class="form-group" id="fieldLotSize" style="margin-bottom:0;">
+                    <label>Lot Size<span class="required-mark">*</span></label>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <input type="text" id="submitLotSize" class="input" placeholder="0" oninput="formatDecimalInput(this)" style="width:120px; min-width:120px; height:37px; padding:8px 12px;">
+                        <div class="message-tabs" style="display:inline-flex;">
+                            <button class="message-tab active" id="sqftTab" onclick="selectLotUnit('sqft',this)">Sqft</button>
+                            <button class="message-tab" id="acresTab" onclick="selectLotUnit('acres',this)">Acres</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group sp-section">
+                <label>Set your price<span class="required-mark">*</span></label>
+                <div class="sp-row">
+                    <div class="sp-price-input"><span class="sp-price-symbol">$</span><input type="text" id="submitPrice" class="input" placeholder="0" value="0" style="padding-left:28px;width:120px;" oninput="formatDecimalInput(this); calculateSavings(); updateOrderTotal()"></div>
+                    <span class="sp-savings">💰 Your potential commission savings: $<span id="savingsAmount">0</span></span>
+                </div>
+            </div>
+
+            <div class="sp-card sp-section">
+                <div class="sp-avm-header"><span style="font-size:13px;font-weight:600;color:var(--c-text-secondary);">Property price estimation</span><span style="font-size:11px;color:var(--c-text-secondary);">as of 1/21/2026</span></div>
+                <div class="sp-avm-price">$381,000</div>
+                <div class="sp-avm-range">Est. Range: <strong style="color:var(--c-primary);">$324K – $438K</strong></div>
+                <div class="sp-row-wrap sp-mb-md">
+                    <div class="sp-stat-box" style="background:var(--c-error-bg);"><div class="sp-stat-label"><span style="color:var(--c-error);font-size:14px;">▼</span><span class="sp-caption">Last 1 Month</span></div><div class="sp-stat-val" style="color:var(--c-error);">-$15,000</div></div>
+                    <div class="sp-stat-box" style="background:var(--c-error-bg);"><div class="sp-stat-label"><span style="color:var(--c-error);font-size:14px;">▼</span><span class="sp-caption">Last 12 Months</span></div><div class="sp-stat-val" style="color:var(--c-error);">-10.77%</div></div>
+                </div>
+                <details style="cursor:pointer;"><summary class="sp-caption" style="font-weight:600;color:var(--c-accent);list-style:none;display:flex;align-items:center;gap:4px;">More details <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></summary><p style="font-size:11px;color:var(--c-text-secondary);line-height:1.5;margin-top:12px;padding-top:12px;border-top:1px solid var(--c-border);">This AVM is based on Realtors Property Resource's RPR, which is calculated by analyzing nearby, similar, & most recently closed homes. beycome™ and brand children disclaims any liability arising out of the use of this AVM.</p></details>
+            </div>
+
+            <div style="margin-bottom:32px;">
+                <h3 style="font-size:15px; font-weight:600; color:var(--c-primary); margin-bottom:4px;">Let's describe your property</h3>
+                <p style="font-size:13px; color:var(--c-text-secondary); margin-bottom:16px;">Share what makes your place special; you can always change it later.</p>
+                <textarea id="submitDescription" class="input" placeholder="e.g., Bright corner unit with updated kitchen, hardwood floors throughout, and a private balcony overlooking the garden..." style="min-height:220px; resize:vertical; font-family:inherit;"></textarea>
+            </div>
+
+            <div style="margin-bottom:32px;">
+                <h3 style="font-size:15px; font-weight:600; color:var(--c-primary); margin-bottom:4px;">Legal information for <span id="legalHeaderAddress"></span></h3>
+                <p style="font-size:13px; color:var(--c-text-secondary); margin-bottom:20px;">Please provide the legal owner's details. If the property has multiple owners, all parties must sign the listing agreement to remain in compliance.</p>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label>Full name<span class="required-mark">*</span></label>
+                        <input type="text" id="submitOwnerName" class="input" placeholder="John Doe" value="John Doe" style="width:100%">
+                    </div>
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label>Email<span class="required-mark">*</span></label>
+                        <input type="email" id="submitOwnerEmail" class="input" placeholder="john.doe@email.com" value="john.doe@email.com" style="width:100%">
+                    </div>
+                </div>
+                <div style="display:flex; gap:12px; align-items:flex-end; margin-bottom:12px;">
+                    <div class="form-group" style="margin-bottom:0; width:230px;">
+                        <label>Phone<span class="required-mark">*</span></label>
+                        <input type="tel" id="submitOwnerPhone" class="input" placeholder="(305) 555-1234" value="(305) 555-1234" oninput="formatPhoneNumber(this)" maxlength="14" style="width:100%">
+                    </div>
+                    <label class="checkbox-label" style="font-size:14px; font-weight:500; color:var(--c-primary); cursor:pointer; height:44px; display:flex; align-items:center; white-space:nowrap;">
+                        <input type="checkbox" id="secondaryOwnerCheckbox" onchange="toggleSecondaryOwner()" style="accent-color:var(--c-accent); margin-top:1px;">
+                        <span>There is a secondary owner <span class="info-bubble" onclick="event.stopPropagation();event.preventDefault();toggleInfoBubble(this)">?<span class="info-tooltip" style="width:300px; left:auto; right:-20px; transform:none; white-space:normal; word-wrap:break-word;">Per MLS rules and in compliance with applicable state and federal laws, we are required to obtain all Signing Authority Documents. All owners must sign the listing agreement.<span style="position:absolute; top:100%; right:30px; left:auto; transform:none; border:6px solid transparent; border-top-color:var(--c-primary);"></span></span></span></span>
+                    </label>
+                </div>
+
+                <div id="secondaryOwnerFields" style="display:none; margin-bottom:12px;">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label>Full name<span class="required-mark">*</span></label>
+                            <input type="text" id="submitSecondaryName" class="input" placeholder="Full name" style="width:100%">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label>Email<span class="required-mark">*</span></label>
+                            <input type="email" id="submitSecondaryEmail" class="input" placeholder="email@example.com" style="width:100%">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="shippingAddressSection" style="display:none;">
+                <div style="margin-bottom:16px;">
+                    <label class="checkbox-label" style="font-size:14px; font-weight:500; color:var(--c-primary); cursor:pointer;">
+                        <input type="checkbox" id="shippingAddressCheckbox" onchange="toggleShippingAddress()" style="accent-color:var(--c-accent); margin-top:1px;">
+                        <span>Did you use a different shipping address?</span>
+                    </label>
+                </div>
+                <div id="shippingAddressField" class="form-group" style="margin-bottom:16px; display:none;">
+                    <input type="text" id="submitShippingAddress" class="input" placeholder="123 Main St, Miami, FL 33101" style="width:100%">
+                </div>
+                </div>
+
+                <div style="margin-bottom:16px;">
+                    <label class="checkbox-label" style="font-size:14px; font-weight:500; color:var(--c-primary); cursor:pointer;">
+                        <input type="checkbox" id="signingAuthorityCheckbox" onchange="toggleSigningAuthority()" style="accent-color:var(--c-accent); margin-top:1px;">
+                        <span>Are you signing on behalf of a Trust, Corporation, LLC, or under Power of Attorney?</span>
+                    </label>
+                </div>
+                <div id="signingAuthoritySection" style="display:none; margin-bottom:16px;">
+                    <div style="background:var(--c-bg-light); border-radius:10px; padding:16px; margin-bottom:16px;">
+                        <div style="display:flex; align-items:flex-start; gap:10px;">
+                            <span style="font-size:18px; flex-shrink:0;">📋</span>
+                            <div>
+                                <div style="display:flex; align-items:center; gap:6px; margin-bottom:8px;">
+                                    <label style="font-size:14px; font-weight:600; color:var(--c-primary); margin:0;">Upload Legal Signing Documents</label>
+                                    <span class="info-bubble" onclick="toggleInfoBubble(this)">?<span class="info-tooltip" style="width:300px; left:auto; right:-20px; transform:none;">Per MLS rules and in compliance with applicable state and federal laws, we are required to obtain all Signing Authority Documents.<br><br>All owners must sign the listing agreement. If someone signs on behalf of an entity or another individual, they must clearly indicate their proper title (for example: Trustee of a Trust, Managing Member of an LLC, Corporate Officer, or Attorney-in-Fact under a Power of Attorney, as applicable).<span style="position:absolute; top:100%; right:30px; left:auto; transform:none; border:6px solid transparent; border-top-color:var(--c-primary);"></span></span></span>
+                                </div>
+                                <p style="font-size:13px; color:var(--c-text-secondary); line-height:1.5; margin:0 0 12px 0;">Please upload documentation proving your signing authority (e.g., Trust Agreement, Articles of Organization, Corporate Resolution, or Power of Attorney).</p>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:8px;">
+                            <label style="font-size:13px; font-weight:500; color:var(--c-primary);">Signing Capacity<span class="required-mark">*</span></label>
+                            <select id="signingCapacity" class="form-select" style="width:100%;">
+                                <option value="">Select your signing capacity...</option>
+                                <option value="trustee">Trustee of a Trust</option>
+                                <option value="llc">Managing Member of an LLC</option>
+                                <option value="corporate">Corporate Officer</option>
+                                <option value="poa">Attorney-in-Fact (Power of Attorney)</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:8px;">
+                            <label style="font-size:13px; font-weight:500; color:var(--c-primary);">Entity / Principal Name<span class="required-mark">*</span></label>
+                            <input type="text" id="signingEntityName" class="input" placeholder="e.g., Smith Family Trust, ABC Holdings LLC" style="width:100%;">
+                        </div>
+                        <div style="border:2px dashed var(--c-border); border-radius:10px; padding:24px; text-align:center; cursor:pointer; transition:all 0.2s; background:var(--c-bg-white);" onclick="document.getElementById('signingDocInput').click()" onmouseover="this.style.borderColor='var(--c-accent)'" onmouseout="this.style.borderColor='var(--c-border)'">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--c-text-secondary)" stroke-width="1.5" style="margin-bottom:8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                            <p style="font-size:13px; font-weight:500; color:var(--c-primary); margin-bottom:4px;">Click to upload or drag & drop</p>
+                            <p style="font-size:12px; color:var(--c-text-secondary); margin:0;">PDF, DOC, DOCX, JPG, PNG — Max 10MB</p>
+                        </div>
+                        <input type="file" id="signingDocInput" style="display:none;" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" onchange="handleSigningDocUpload(event)">
+                        <div id="signingDocList" style="margin-top:8px;"></div>
+                    </div>
+                </div>
+                </div>
+
+            <div style="margin-bottom:32px;">
+                <h3 style="font-size:15px; font-weight:600; color:var(--c-primary); margin-bottom:4px;">Choose one of our True Flat Fee packages</h3>
+                <p style="font-size:13px; color:var(--c-text-secondary); margin-bottom:16px;">Save thousands. Keep your equity. Close on your terms. <a href="javascript:void(0)" onclick="document.getElementById('compareModal').classList.add('show')" style="color:var(--c-accent); font-weight:500; text-decoration:none;">Compare packages</a></p>
+                <div style="display:flex; gap:12px; flex-wrap:wrap;" id="packageOptionsForm">
+                    <label class="pkg-card" onclick="selectPackageForm(this)">
+                        <input type="radio" name="packageForm" value="basic">
+                        <div class="pkg-name">Basic</div>
+                        <div class="pkg-price">$99</div>
+                        <div class="pkg-sub">Everything you need<br>Nothing you don't</div>
+                        <div class="pkg-upsell" onclick="event.stopPropagation(); toggleTitleFromUpsell(this)">Add Title/Escrow · $99</div>
+                    </label>
+                    <label class="pkg-card selected" onclick="selectPackageForm(this)">
+                        <input type="radio" name="packageForm" value="enhanced" checked>
+                        <span class="pkg-badge">Most popular</span>
+                        <div class="pkg-name">Enhanced</div>
+                        <div class="pkg-price accent">$399</div>
+                        <div class="pkg-sub">Pro Photos · Signage<br>& more</div>
+                        <div class="pkg-upsell" onclick="event.stopPropagation(); toggleTitleFromUpsell(this)">Add Title/Escrow · $99</div>
+                    </label>
+                    <label class="pkg-card" onclick="selectPackageForm(this)">
+                        <input type="radio" name="packageForm" value="concierge">
+                        <div class="pkg-name">Concierge</div>
+                        <div><span class="pkg-price-old">$1,399</span><span class="pkg-price">$999</span></div>
+                        <div class="pkg-sub">Full service<br>Sit back · We've got this</div>
+                        <div class="pkg-included">🏛️ Title Settlement included</div>
+                    </label>
+                </div>
+                <div id="packageIncludes" style="margin-top:16px; background:var(--c-bg-light); border-radius:12px; padding:20px; display:none;">
+                    <div style="font-size:14px; font-weight:600; color:var(--c-primary); margin-bottom:12px;">Includes<span id="packageIncludesSubtitle" style="font-weight:500; color:var(--c-accent); margin-left:6px;"></span></div>
+                    <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--c-primary); line-height:1.5;" id="packageIncludesList"></div>
+                </div>
+                <div id="titleSettlementCard" style="display:none; margin-top:16px; border:2px solid var(--c-accent); border-radius:12px; padding:24px; background:linear-gradient(135deg, #f8f9ff 0%, #fff 100%); box-shadow:0 2px 12px rgba(125,143,247,0.12); position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; right:0; background:var(--c-accent); color:white; font-size:10px; font-weight:600; padding:4px 12px; border-radius:0 0 0 8px;">INCLUDED WITH CONCIERGE</div>
+                    <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:16px; margin-top:8px;">
+                        <span style="font-size:24px;">🏛️</span>
+                        <div>
+                            <div style="font-size:16px; font-weight:700; color:var(--c-primary); margin-bottom:2px;">Beycome Title</div>
+                            <div style="font-size:13px; color:var(--c-text-secondary);">Settlement fee underwritten by Old Republic</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+                        <div style="display:flex; align-items:center; gap:8px; font-size:14px; color:var(--c-primary);"><span style="color:var(--c-success);">✓</span> Title search & clearance</div>
+                        <div style="display:flex; align-items:center; gap:8px; font-size:14px; color:var(--c-primary);"><span style="color:var(--c-success);">✓</span> Escrow & secure fund transfer</div>
+                        <div style="display:flex; align-items:center; gap:8px; font-size:14px; color:var(--c-primary);"><span style="color:var(--c-success);">✓</span> Closing coordination & docs</div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                        <span style="font-size:12px; color:var(--c-text-secondary);">Underwritten by</span>
+                        <span style="font-size:13px; font-weight:600; color:var(--c-primary);">Old Republic</span>
+                    </div>
+                    <div style="font-size:10px; color:var(--c-text-secondary); line-height:1.5; border-top:1px solid var(--c-border); padding-top:12px;">* Florida only. Covers Beycome Title settlement fees. Title insurance, inspections, appraisal, taxes, and documentary stamp taxes are separate. Title insurance, taxes, and doc stamps are state-regulated, so pricing is the same regardless of the provider you choose.</div>
+                </div>
+            </div>
+
+            <div style="margin-top:40px; margin-bottom:32px;">
+                <h3 style="font-size:15px; font-weight:600; color:var(--c-primary); margin-bottom:4px;">À la carte options</h3>
+                <p style="font-size:13px; color:var(--c-text-secondary); margin-bottom:20px;">Want to stand out even more? Explore our à la carte options below.</p>
+                <div style="display:flex; flex-direction:column; gap:10px;" id="aLaCarteOptions">
+                    <label id="alcTitleSettlement" data-hide="concierge" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:14px 16px; border:1px solid var(--c-accent); border-radius:10px; cursor:pointer; transition:all 0.2s; background:#f8f9ff; position:relative;" onchange="toggleALaCarte(this)">
+                        <span style="position:absolute; top:-9px; right:12px; background:var(--c-accent); color:white; font-size:10px; font-weight:600; padding:2px 8px; border-radius:8px;">Most added</span>
+                        <div style="display:flex; align-items:center; gap:10px; flex:1;"><input type="checkbox" style="accent-color:var(--c-accent); width:16px; height:16px;"><span style="font-size:14px; color:var(--c-primary);">🏛️ Title settlement fee underwritten by Old Republic</span></div>
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="font-size:14px; font-weight:600; color:var(--c-primary);">$99</span><button type="button" class="alc-info-btn" onclick="event.preventDefault();toggleALaCarteInfo(this)">+</button></div>
+                        <div class="alc-info" style="display:none;">You're not dreaming — others charge hundreds or even thousands 😉<br><br><div style="display:flex; flex-direction:column; gap:6px; margin:8px 0;"><div style="display:flex; align-items:center; gap:8px;"><span style="color:var(--c-success);">✓</span> Title search and clearance</div><div style="display:flex; align-items:center; gap:8px;"><span style="color:var(--c-success);">✓</span> Escrow and secure fund transfer</div><div style="display:flex; align-items:center; gap:8px;"><span style="color:var(--c-success);">✓</span> Closing coordination and document preparation</div></div><br><div style="display:flex; align-items:center; gap:8px; padding:8px 12px; background:var(--c-bg-light); border-radius:8px; margin-bottom:8px;"><span style="font-size:12px; color:var(--c-text-secondary);">Underwritten by</span><span style="font-size:13px; font-weight:700; color:var(--c-primary);">Old Republic</span></div><br><span style="font-size:12px; color:var(--c-warning); font-weight:500;">⚠️ This price is only available now. If added later, the price will be $399.</span><br><br><span style="font-size:11px; color:var(--c-text-secondary); line-height:1.5;">Florida only. Covers Beycome Title settlement fees. Title insurance, inspections, appraisal, taxes, and documentary stamp taxes are separate. Title insurance, taxes, and doc stamps are state-regulated, so pricing is the same regardless of the provider you choose.</span></div>
+                    </label>
+                    <label id="alcPhotos" data-hide="enhanced,concierge" style="display:none; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:14px 16px; border:1px solid var(--c-border); border-radius:10px; cursor:pointer; transition:all 0.2s; background:var(--c-bg-white);" onchange="toggleALaCarte(this)">
+                        <div style="display:flex; align-items:center; gap:10px; flex:1;"><input type="checkbox" style="accent-color:var(--c-accent); width:16px; height:16px;"><span style="font-size:14px; color:var(--c-primary);">Add 25 Professional HD Photos</span></div>
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="font-size:14px; font-weight:600; color:var(--c-primary);">$189</span><button type="button" class="alc-info-btn" onclick="event.preventDefault();toggleALaCarteInfo(this)">+</button></div>
+                        <div class="alc-info" style="display:none;">Professional HDR photography session to showcase your property at its best. Includes 25 high-quality edited photos optimized for MLS and online listings.</div>
+                    </label>
+                    <label data-hide="concierge" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:14px 16px; border:1px solid var(--c-border); border-radius:10px; cursor:pointer; transition:all 0.2s; background:var(--c-bg-white); position:relative;" onchange="toggleALaCarte(this)">
+                        <span style="position:absolute; top:-9px; right:12px; background:var(--c-warning); color:white; font-size:10px; font-weight:600; padding:2px 8px; border-radius:8px;">Now or never</span>
+                        <div style="display:flex; align-items:center; gap:10px; flex:1;"><input type="checkbox" style="accent-color:var(--c-accent); width:16px; height:16px;"><span style="font-size:14px; color:var(--c-primary);">Access to Pro Support</span></div>
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="font-size:14px; font-weight:600; color:var(--c-primary);">$199</span><button type="button" class="alc-info-btn" onclick="event.preventDefault();toggleALaCarteInfo(this)">+</button></div>
+                        <div class="alc-info" style="display:none;">Going solo doesn't mean going alone. Get direct access to our seasoned real estate experts whenever you need guidance.<br><br><span style="font-size:12px; color:var(--c-warning); font-weight:500;">⚠️ Note: This option is only available at this step and cannot be added later. For full phone support and full contract assistance, choose our Concierge package.</span></div>
+                    </label>
+                    <label data-hide="concierge" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:14px 16px; border:1px solid var(--c-border); border-radius:10px; cursor:pointer; transition:all 0.2s; background:var(--c-bg-white);" onchange="toggleALaCarte(this)">
+                        <div style="display:flex; align-items:center; gap:10px; flex:1;"><input type="checkbox" style="accent-color:var(--c-accent); width:16px; height:16px;"><span style="font-size:14px; color:var(--c-primary);">Comparative Market Analysis (CMA)</span></div>
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="font-size:14px; font-weight:600; color:var(--c-primary);">$65</span><button type="button" class="alc-info-btn" onclick="event.preventDefault();toggleALaCarteInfo(this)">+</button></div>
+                        <div class="alc-info" style="display:none;">Don't guess your price — own it. A full CMA with comparable sales, market trends, and expert insights so you list with confidence. Delivered in as little as 4 hours, up to 2 business days.</div>
+                    </label>
+                    <label data-hide="concierge" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:14px 16px; border:1px solid var(--c-border); border-radius:10px; cursor:pointer; transition:all 0.2s; background:var(--c-bg-white);" onchange="toggleALaCarte(this)">
+                        <div style="display:flex; align-items:center; gap:10px; flex:1;"><input type="checkbox" style="accent-color:var(--c-accent); width:16px; height:16px;"><span style="font-size:14px; color:var(--c-primary);">Double your MLS reach</span></div>
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="font-size:14px; font-weight:600; color:var(--c-primary);">$79</span><button type="button" class="alc-info-btn" onclick="event.preventDefault();toggleALaCarteInfo(this)">+</button></div>
+                        <div class="alc-info" style="display:none;">Near a county or state line? Don't leave buyers on the table. Adding a second MLS means more agents see your listing and more doors open — your property still shows once on portals, but your reach doubles behind the scenes.</div>
+                    </label>
+                    <label style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:14px 16px; border:1px solid var(--c-border); border-radius:10px; cursor:pointer; transition:all 0.2s; background:var(--c-bg-white);" onchange="toggleALaCarte(this)">
+                        <div style="display:flex; align-items:center; gap:10px; flex:1;"><input type="checkbox" style="accent-color:var(--c-accent); width:16px; height:16px;"><span style="font-size:14px; color:var(--c-primary);">Home Warranty powered by Armadillo</span></div>
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="font-size:14px; font-weight:600; color:var(--c-primary);">$19</span><button type="button" class="alc-info-btn" onclick="event.preventDefault();toggleALaCarteInfo(this)">+</button></div>
+                        <div class="alc-info" style="display:none;">A $19 no-brainer. Protect your HVAC, plumbing, electrical, and water heater with up to $1,500 in coverage while listed. Your buyer gets 12 months of coverage at closing too. Result? 16% faster closings and 1% more on your sale price.</div>
+                    </label>
+                    <label data-hide="concierge" data-physical="true" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:14px 16px; border:1px solid var(--c-border); border-radius:10px; cursor:pointer; transition:all 0.2s; background:var(--c-bg-white);" onchange="toggleALaCarte(this)">
+                        <div style="display:flex; align-items:center; gap:10px; flex:1;"><input type="checkbox" style="accent-color:var(--c-accent); width:16px; height:16px;"><span style="font-size:14px; color:var(--c-primary);">1x Pro Yard Sign</span></div>
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="font-size:14px; font-weight:600; color:var(--c-primary);">$35</span><button type="button" class="alc-info-btn" onclick="event.preventDefault();toggleALaCarteInfo(this)">+</button></div>
+                        <div class="alc-info" style="display:none;">Stand out from the street. A premium 24x32" yard sign featuring your personalized QR code — buyers scan, browse, and reach out instantly. Shipping is on us.</div>
+                    </label>
+                    <label data-hide="concierge" data-physical="true" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:14px 16px; border:1px solid var(--c-border); border-radius:10px; cursor:pointer; transition:all 0.2s; background:var(--c-bg-white);" onchange="toggleALaCarte(this)">
+                        <div style="display:flex; align-items:center; gap:10px; flex:1;"><input type="checkbox" style="accent-color:var(--c-accent); width:16px; height:16px;"><span style="font-size:14px; color:var(--c-primary);">1x Open House Signage Kit</span></div>
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="font-size:14px; font-weight:600; color:var(--c-primary);">$45</span><button type="button" class="alc-info-btn" onclick="event.preventDefault();toggleALaCarteInfo(this)">+</button></div>
+                        <div class="alc-info" style="display:none;">Make your Open House impossible to miss. We provide everything you need: 2 directional arrow signs to guide buyers in, 1 personalized yard sign (24x18"), and shipping is on us.</div>
+                    </label>
+                    <label data-hide="concierge" data-physical="true" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:14px 16px; border:1px solid var(--c-border); border-radius:10px; cursor:pointer; transition:all 0.2s; background:var(--c-bg-white);" onchange="toggleALaCarte(this)">
+                        <div style="display:flex; align-items:center; gap:10px; flex:1;"><input type="checkbox" style="accent-color:var(--c-accent); width:16px; height:16px;"><span style="font-size:14px; color:var(--c-primary);">1x Keylock Box</span></div>
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="font-size:14px; font-weight:600; color:var(--c-primary);">$30</span><button type="button" class="alc-info-btn" onclick="event.preventDefault();toggleALaCarteInfo(this)">+</button></div>
+                        <div class="alc-info" style="display:none;">Safe, simple, stress-free. A secure combination lockbox so authorized agents can access your property for showings — no need to be home. Shipping is on us.</div>
+                    </label>
+                    <label data-hide="concierge" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:14px 16px; border:1px solid var(--c-border); border-radius:10px; cursor:pointer; transition:all 0.2s; background:var(--c-bg-white);" onchange="toggleALaCarte(this)">
+                        <div style="display:flex; align-items:center; gap:10px; flex:1;"><input type="checkbox" style="accent-color:var(--c-accent); width:16px; height:16px;"><span style="font-size:14px; color:var(--c-primary);">beycome Spotlight Listing</span></div>
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="font-size:14px; font-weight:600; color:var(--c-primary);">$29</span><button type="button" class="alc-info-btn" onclick="event.preventDefault();toggleALaCarteInfo(this)">+</button></div>
+                        <div class="alc-info" style="display:none;">Boost your listing's visibility with premium placement on beycome.com, appearing first in search results for your area.</div>
+                    </label>
+                </div>
+                <div style="background:var(--c-bg-light); border-radius:12px; padding:20px; margin-top:20px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+                        <span style="font-size:14px; font-weight:500; color:var(--c-text-secondary);">Total (true flat fee)</span>
+                        <span style="font-size:24px; font-weight:700; color:var(--c-primary);">$<span id="orderTotal">399</span></span>
+                    </div>
+                    <div style="height:1px; background:var(--c-border); margin-bottom:12px;"></div>
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+                        <span style="font-size:13px; color:var(--c-text-secondary);">Traditional 6% commission would cost</span>
+                        <span style="font-size:14px; font-weight:600; color:var(--c-error); text-decoration:line-through;" id="commissionCost">$0</span>
+                    </div>
+                    <div style="display:flex; align-items:center; justify-content:space-between;">
+                        <span style="font-size:14px; font-weight:600; color:var(--c-success-dark);">💰 Your estimated savings</span>
+                        <span style="font-size:16px; font-weight:700; color:var(--c-success-dark);" id="totalSavings">$0</span>
+                    </div>
+                    <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--c-border);">
+                        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                            <div style="flex:1; min-width:200px;">
+                                <span style="font-size:14px; font-weight:600; color:var(--c-primary);">🏠 Also buying? Get up to an extra 2% cash back!</span>
+                                <div style="font-size:12px; color:var(--c-text-secondary); margin-top:2px;">Most sellers also buy — save on both 😉</div>
+                            </div>
+                            <div style="display:flex; gap:8px;">
+                                <button class="btn" id="buyYesBtn" onclick="selectBuyIntent(true)" style="min-width:72px;">Yes! 🙋</button>
+                                <button class="btn" id="buyNoBtn" onclick="selectBuyIntent(false)" style="min-width:72px;">Not now</button>
+                            </div>
+                        </div>
+                        <div id="buyPromo" style="display:none; margin-top:16px; background:linear-gradient(135deg, #f8f9ff 0%, #fff 100%); border:1px solid var(--c-accent); border-radius:12px; padding:20px; animation:alcFadeIn 0.3s ease;">
+                            <div style="font-size:15px; font-weight:700; color:var(--c-primary); margin-bottom:10px;">💰 Save Thousands When You Sell and Buy Together!</div>
+                            <p style="font-size:13px; color:var(--c-primary); line-height:1.6; margin-bottom:12px;">Why leave money behind? Buy your next home with us and get money back — <strong>up to 2% of the purchase price</strong>. Use it for closing costs, take it as cash, or lower your interest rate.</p>
+                            <div style="background:var(--c-bg-light); border-radius:8px; padding:14px; margin-bottom:16px;">
+                                <div style="font-size:13px; font-weight:600; color:var(--c-primary); margin-bottom:6px;">How it works:</div>
+                                <p style="font-size:13px; color:var(--c-text-secondary); line-height:1.6; margin:0;">Most buyer agents earn about 3% commission and keep it all. We do it differently. We keep a simple 1% flat fee and give the rest (typically 2%) back to you.</p>
+                            </div>
+                            <p style="font-size:14px; font-weight:600; color:var(--c-primary); margin-bottom:16px; text-align:center;">Yes… it can feel like getting paid to buy your future home. 🏡</p>
+                            <button class="btn btn-p" style="width:100%; border-radius:10px; height:44px; font-size:14px; font-weight:600;" onclick="showMobileToast('📅 We\'ll reach out to schedule your consultation!')">Book Your Consultation Today</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="font-size:12px; color:var(--c-text-secondary); line-height:1.5; margin-bottom:12px;">By creating this listing on beycome.com, I agree that I am the owner or have authority to act on behalf of the property owner. <a href="https://www.beycome.com/terms-and-conditions" target="_blank" style="color:var(--c-accent); text-decoration:none; font-weight:500;">Rules and Terms of Use</a>.</p>
+            <div style="display:flex; gap:12px; margin-top:0; margin-bottom:40px;">
+                <button class="btn btn-s btn-lg" style="flex:1; height:52px; font-size:16px; border-radius:12px;" onclick="saveAndExit()">Save & exit</button>
+                <button class="btn btn-p btn-lg" style="flex:2; height:52px; font-size:16px; border-radius:12px;" onclick="submitPropertyForm()">Continue with payment</button>
+            </div>
+                </div>
+                <div style="width:320px; flex-shrink:0; position:relative;">
+                    <div style="position:sticky; top:100px;">
+                    <div style="background:var(--c-bg-white); border:1px solid var(--c-border); border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+
+                        <div id="propertyMapContainer" style="height:250px; background:var(--c-bg-light);">
+                            <div id="propertyMap" style="width:100%; height:100%;"></div>
+                        </div>
+                        <div style="padding:12px 16px;">
+                            <p style="font-size:12px; color:var(--c-text-secondary); margin:0;">📌 Not quite right? Drag the pin to adjust</p>
+                        </div>
+                    </div>
+                    </div>
+                    <div id="packageIncludesRight" style="position:absolute; left:0; right:0; background:var(--c-bg-white); border:1px solid var(--c-border); border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); display:none; overflow-y:auto;">
+                        <div style="font-size:14px; font-weight:600; color:var(--c-primary); margin-bottom:12px;">Includes<span id="packageIncludesSubtitleRight" style="font-weight:500; color:var(--c-accent); margin-left:6px;"></span></div>
+                        <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--c-primary); line-height:1.5;" id="packageIncludesListRight"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAB2PT13bM9cLKGhlROjVnU_sJTQeCQk90&callback=initMapCallback" async defer></script>
     </div>
 
     <script>
+        const products = {
+          packages: [
+            { id: 'basic', name: 'Basic', price: 99 },
+            { id: 'enhanced', name: 'Enhanced', price: 399 },
+            { id: 'concierge', name: 'Concierge', price: 999 },
+          ],
+          alacarte: [
+            { id: 'title', name: 'Title Settlement', price: 99, hideFor: ['concierge'], badge: 'Most added', physical: false, nowOrNever: false },
+            { id: 'photos', name: '25 Professional HD Photos', price: 189, hideFor: ['enhanced', 'concierge'], badge: null, physical: false, nowOrNever: false },
+            { id: 'support', name: 'Access to Pro Support', price: 199, hideFor: ['concierge'], badge: 'Now or never', physical: false, nowOrNever: true },
+            { id: 'cma', name: 'Comparative Market Analysis', price: 65, hideFor: ['concierge'], badge: null, physical: false, nowOrNever: false },
+            { id: 'dual-mls', name: 'Double your MLS reach', price: 79, hideFor: ['concierge'], badge: null, physical: false, nowOrNever: false },
+            { id: 'warranty', name: 'Home Warranty', price: 19, hideFor: [], badge: null, physical: false, nowOrNever: false },
+            { id: 'sign', name: '1x Pro Yard Sign', price: 35, hideFor: ['concierge'], badge: null, physical: true, nowOrNever: false },
+            { id: 'openhouse', name: '1x Open House Signage Kit', price: 45, hideFor: ['concierge'], badge: null, physical: true, nowOrNever: false },
+            { id: 'lockbox', name: '1x Keylock Box', price: 30, hideFor: ['concierge'], badge: null, physical: true, nowOrNever: false },
+            { id: 'spotlight', name: 'beycome Spotlight Listing', price: 29, hideFor: ['concierge'], badge: null, physical: false, nowOrNever: false },
+          ]
+        };
+        function getAvailableAlacarte(packageId) { return products.alacarte.filter(a => !a.hideFor.includes(packageId)); }
+        function getTotal(packageId, selectedAlacarteIds = []) {
+          const pkg = products.packages.find(p => p.id === packageId);
+          if (!pkg) return 0;
+          const extras = products.alacarte.filter(a => selectedAlacarteIds.includes(a.id)).filter(a => !a.hideFor.includes(packageId));
+          return pkg.price + extras.reduce((sum, a) => sum + a.price, 0);
+        }
+        function hasPhysicalItems(packageId, selectedAlacarteIds = []) {
+          const isPhysicalPkg = packageId === 'enhanced' || packageId === 'concierge';
+          const hasPhysicalAlc = products.alacarte.some(a => a.physical && selectedAlacarteIds.includes(a.id) && !a.hideFor.includes(packageId));
+          return isPhysicalPkg || hasPhysicalAlc;
+        }
+        function getSelectedAlcIds() {
+          const labels = document.querySelectorAll('#aLaCarteOptions > label');
+          const ids = [];
+          labels.forEach((l, i) => { if (products.alacarte[i] && l.style.display !== 'none' && l.querySelector('input[type="checkbox"]')?.checked) ids.push(products.alacarte[i].id); });
+          return ids;
+        }
         const messagesData={inbox:[{id:1,sender:'John Smith',email:'john.smith@email.com',phone:'(305) 555-1234',subject:'Question about 1505 N Jean Baptiste Pointe du Sable Lake Shore Dr',time:'2 hours ago',status:'new',unread:true,thread:[{type:'incoming',text:"Hi, I'm very interested in your property at 1505 N Jean Baptiste Pointe du Sable Lake Shore Dr. Is the price negotiable?",sender:'John Smith',time:'2 hours ago',documents:[]}]},{id:2,sender:'Sarah Johnson',email:'sarah.johnson@email.com',phone:'(305) 555-5678',subject:'Visit confirmation for 456 Ocean Drive',time:'Yesterday',status:'read',unread:false,thread:[{type:'incoming',text:"Hi! I'd like to schedule a visit.",sender:'Sarah Johnson',time:'3 days ago',documents:[]},{type:'outgoing',text:"Hi Sarah! Yes, Thursday at 2:30 PM works perfectly.",sender:'You',time:'2 days ago',documents:[]},{type:'incoming',text:"Thank you for accepting my visit request!",sender:'Sarah Johnson',time:'Yesterday',documents:[]}]},{id:3,sender:'Michael Chen',email:'michael.chen@email.com',phone:'(305) 555-9012',subject:'Offer inquiry',time:'2 days ago',status:'new',unread:true,thread:[{type:'incoming',text:"Hello, I saw your listing and I'm interested in making an offer.",sender:'Michael Chen',time:'2 days ago',documents:[]}]},{id:4,sender:'Emily Davis',email:'emily.davis@email.com',phone:'(305) 555-3456',subject:'Property documents received',time:'3 days ago',status:'replied',unread:false,thread:[{type:'incoming',text:"Could you send me the property disclosure documents?",sender:'Emily Davis',time:'4 days ago',documents:[]},{type:'outgoing',text:"Of course! I've attached the documents.",sender:'You',time:'3 days ago',documents:[{name:'Property_Disclosure.pdf',size:'245 KB',type:'pdf'}]},{type:'incoming',text:"Thanks for sending the documents.",sender:'Emily Davis',time:'3 days ago',documents:[]}]}],sent:[]};
-        let selectedMessageId=null,currentVisitCard=null,currentBuyerName='',currentPropertyAddress='',pendingVisitsCount=2,pendingOffersCount=1,isComposingMessage=false,composingMessageTo='',isReplyingToMessage=false,replyingToMessageId=null,currentCancelOwnerName='',currentCancelPropertyAddress='',currentCancelCardId='',visitedPages={};
+        let selectedMessageId=null,currentVisitCard=null,pendingVisitsCount=2,pendingOffersCount=1,isComposingMessage=false,composingMessageTo='',isReplyingToMessage=false,replyingToMessageId=null,currentCancelCardId='',visitedPages={};
         let notificationsData=[{id:1,type:'offer',icon:'💰',title:'<strong>John Smith</strong> submitted an offer on <strong>123 Main Street</strong>',time:'2 hours ago',unread:true,link:'offers'},{id:2,type:'visit',icon:'📅',title:'<strong>Sarah Johnson</strong> requested a visit',time:'5 hours ago',unread:true,link:'visits'},{id:3,type:'message',icon:'💬',title:'<strong>Michael Chen</strong> sent you a message',time:'2 days ago',unread:true,link:'messages'},{id:4,type:'visit',icon:'✅',title:'Visit confirmed for <strong>789 Palm Avenue</strong>',time:'3 days ago',unread:true,link:'visits'}];
         let currentCalendarDate=new Date(2026,1,1),currentCalendarView='month',selectedEventData=null,selectedProperties=['all'],selectedPropertiesOffers=['all'],selectedPropertiesVisits=['all'],selectedPropertiesMessages=['all'],selectedPropertiesProperties=['all'],mobilePendingFiles=[],chatPendingFiles=[],currentMobileMessageId=null;
         let calendarEvents=[{id:1,type:'visit',status:'confirmed',title:'789 Palm Avenue, Coral Gables, FL',shortTitle:'789 Palm Avenue',date:new Date(2026,1,2,11,0),person:'David Miller',phone:'(305) 555-9012',email:'david.miller@email.com',property:'789 Palm Avenue'},{id:2,type:'visit',status:'pending',title:'1505 N Jean Baptiste Pointe du Sable Lake Shore Dr, Bonadelle Ranchos-Madera Ranchos, CA 33135',shortTitle:'1505 N Jean Baptiste...',date:new Date(2026,0,28,10,0),person:'John Smith',phone:'(305) 555-1234',email:'john.smith@email.com',property:'1505 N Jean Baptiste Pointe du Sable Lake Shore Dr'}];
-        let properties=[{id:'all',name:'All Properties'},{id:'1505 N Jean Baptiste Pointe du Sable Lake Shore Dr',name:'1505 N Jean Baptiste Pointe du Sable Lake Shore Dr, Bonadelle Ranchos-Madera Ranchos, CA 33135'},{id:'456 Ocean Drive',name:'456 Ocean Drive, Miami Beach, FL'},{id:'789 Palm Avenue',name:'789 Palm Avenue, Coral Gables, FL'}];
+        let properties=[{id:'all',name:'All Properties'},{id:'456 Ocean Drive',name:'456 Ocean Drive, Miami Beach, FL'}];
         function setGreeting(){const h=new Date().getHours();let g=h<12?'Good morning':h<17?'Good afternoon':'Good evening';let i=h<12?'☀️':h<17?'🌤️':'🌙';document.getElementById('navGreeting').innerHTML='<span style="font-size: 20px; line-height: 1;">'+i+'</span> '+g+', John Doe';}setGreeting();
         function closeAllDropdowns(){document.querySelectorAll('.menu, .dashboard-menu, .notifications-menu').forEach(m=>m.classList.remove('show'));document.body.style.overflow='';}
         function toggleMenu(menuId,e){e.stopPropagation();e.preventDefault();const m=document.getElementById(menuId);const isOpen=m.classList.contains('show');closeAllDropdowns();if(!isOpen){m.classList.add('show');if(window.innerWidth<=1024)document.body.style.overflow='hidden';if(menuId==='notificationsMenu')renderNotifications();if(menuId==='propertyFilterMenu')renderPropertyFilter();}}
@@ -1418,7 +1972,6 @@
         function closeModal(id){document.getElementById(id).classList.remove('show');}
         
         
-        function mobileNavTo(page,e){e.preventDefault();document.querySelectorAll('.mobile-bottom-nav-item').forEach(i=>i.classList.remove('active'));e.currentTarget.classList.add('active');showPage(page,e);}
         function updateMobileBadges(){const vb=document.getElementById('mobileVisitsBadge');if(vb){if(pendingVisitsCount>0){vb.textContent=pendingVisitsCount;vb.style.display='flex';}else vb.style.display='none';}const unread=messagesData.inbox.filter(m=>m.unread).length;const mb=document.getElementById('mobileMessagesBadge');if(mb){if(unread>0){mb.textContent=unread;mb.style.display='flex';}else mb.style.display='none';}}
         
         
@@ -1430,18 +1983,17 @@
         function selectFilter(s,t,c,e){e.stopPropagation();document.querySelectorAll('#filterDropdownMenu .menu-item').forEach(i=>i.classList.remove('active'));e.target.closest('.menu-item').classList.add('active');document.getElementById('filterDropdownMenu').classList.remove('show');const rc=document.querySelectorAll('#visitsReceived .visit-card'),rq=document.querySelectorAll('#visitsRequested .visit-card');let vc=0;if(s==='all'){document.getElementById('visitsReceived').style.display='block';document.getElementById('visitsRequested').style.display='block';rc.forEach(c=>{c.style.display='block';vc++;});rq.forEach(c=>{c.style.display='block';vc++;});}else if(s==='received'){document.getElementById('visitsReceived').style.display='block';document.getElementById('visitsRequested').style.display='none';rc.forEach(c=>{c.style.display='block';vc++;});}else if(s==='requested'){document.getElementById('visitsReceived').style.display='none';document.getElementById('visitsRequested').style.display='block';rq.forEach(c=>{c.style.display='block';vc++;});}document.getElementById('filterDropdownText').textContent=t;document.getElementById('filterDropdownCount').textContent=vc;}
         
         document.addEventListener('click',function(e){if(!e.target.closest('.filter-dropdown')&&!e.target.closest('.property-filter-dropdown')&&!e.target.closest('.dashboard-dropdown')&&!e.target.closest('.notifications-dropdown')&&!e.target.closest('.nav-item')&&!e.target.closest('.mobile-more-wrapper')&&!e.target.closest('.menu')){closeAllDropdowns();}if(!e.target.closest('.info-bubble')){document.querySelectorAll('.info-bubble').forEach(b=>b.classList.remove('active'));}});
-        function showPage(page,e){if(e)e.preventDefault();        ['offersPage','propertiesPage','visitsPage','messagesPage','calendarPage','accountPage','contractsPage','addPropertyPage'].forEach(p=>document.getElementById(p).style.display='none');document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));document.getElementById(page+'Page').style.display='block';if(e&&e.target)e.target.classList.add('active');document.querySelectorAll('.mobile-bottom-nav-item').forEach(i=>{i.classList.remove('active');if(i.getAttribute('onclick')&&i.getAttribute('onclick').includes("'"+page+"'"))i.classList.add('active');});if(page==='calendar'){currentCalendarDate=new Date(2026,1,1);renderCalendar();}showPageContextMessage(page);}
+        function showPage(page,e){if(e)e.preventDefault();        ['offersPage','propertiesPage','visitsPage','messagesPage','calendarPage','accountPage','contractsPage'].forEach(p=>document.getElementById(p).style.display='none');document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));document.getElementById(page+'Page').style.display='block';if(e&&e.target)e.target.classList.add('active');document.querySelectorAll('.mobile-bottom-nav-item').forEach(i=>{i.classList.remove('active');if(i.getAttribute('onclick')&&i.getAttribute('onclick').includes("'"+page+"'"))i.classList.add('active');});if(page==='calendar'){currentCalendarDate=new Date(2026,1,1);renderCalendar();}showPageContextMessage(page);}
         function showPageContextMessage(page,subTab){if(!isDesktopView())return;const pk=page+(subTab?'-'+subTab:'');if(visitedPages[pk])return;visitedPages[pk]=true;let msg='';if(page==='visits'){if(pendingVisitsCount>0)msg='👋 You have <strong>'+pendingVisitsCount+' visit request'+(pendingVisitsCount>1?'s':'')+' waiting</strong>! Would you like me to help you respond to them?<div style="margin-top: 12px;"><button class="btn btn-p" onclick="this.parentElement.parentElement.style.display=\'none\'; document.getElementById(\'visit1\')?.scrollIntoView({behavior:\'smooth\'})">Let\'s do it</button></div>';else msg='✨ All caught up on visits!';}else if(page==='offers'){if(pendingOffersCount>0)msg='💰 You have <strong>'+pendingOffersCount+' pending offer</strong> that expires soon! Want me to explain your options?<div style="margin-top: 12px;"><button class="btn btn-p" onclick="this.parentElement.parentElement.style.display=\'none\'">Show me my options</button></div>';else msg='✨ No pending offers right now.';}else if(page==='properties')msg='🏠 Here are your listings. Need help adding a new property or updating an existing one? Just ask!';else if(page==='messages'){const unread=messagesData.inbox.filter(m=>m.unread).length;if(unread>0)msg='💬 You have <strong>'+unread+' unread message'+(unread>1?'s':'')+'</strong>! I can help you draft quick responses. Just click on a message.';else msg='✨ All messages read!';}else if(page==='calendar')msg='📅 Your calendar shows all visits, deadlines, and milestones. Want me to add an important date?';else if(page==='contracts')msg='📋 Here you\'ll find all the legal forms you need for your state. Not sure which one? Just ask me!';else if(page==='account')msg='⚙️ Manage your profile and preferences here. Need help with anything?';if(msg)setTimeout(()=>addChatMessage(msg),500);}
         function addChatMessage(msg,isUser=false){const cm=document.getElementById('chatMessages');const d=document.createElement('div');d.className='chat-message '+(isUser?'user':'bot');d.innerHTML='<div><div class="message-bubble">'+msg+'</div></div>';cm.appendChild(d);cm.scrollTop=cm.scrollHeight;}
         function sendChatMessage(){const i=document.getElementById('chatInput');const msg=i.value.trim();if(!msg&&chatPendingFiles.length===0)return;addChatMessage(msg||'📎 Sent '+chatPendingFiles.length+' attachment(s)',true);i.value='';if(isComposingMessage)handleComposedMessage(msg);else if(isReplyingToMessage&&replyingToMessageId)handleReplyToMessage(msg);else{chatPendingFiles=[];setTimeout(()=>addChatMessage("I can help with that! What would you like to do?"),800);}}
-        function handleReplyToMessage(text){const m=messagesData.inbox.find(x=>x.id===replyingToMessageId);if(!m)return;m.thread.push({type:'outgoing',text:text||'Sent attachment(s)',sender:'You',time:'Just now',documents:[...chatPendingFiles]});m.status='replied';chatPendingFiles=[];setTimeout(()=>{addChatMessage('✅ Your reply has been sent to <strong>'+m.sender+'</strong>!');document.getElementById('chatInput').placeholder='Ask Artur anything…';isReplyingToMessage=false;replyingToMessageId=null;},600);renderInboxMessages();addActivity('reply','Replied to '+m.sender,text);}
+        function handleReplyToMessage(text){const m=messagesData.inbox.find(x=>x.id===replyingToMessageId);if(!m)return;m.thread.push({type:'outgoing',text:text||'Sent attachment(s)',sender:'You',time:'Just now',documents:[...chatPendingFiles]});m.status='replied';chatPendingFiles=[];setTimeout(()=>{addChatMessage('✅ Your reply has been sent to <strong>'+m.sender+'</strong>!');document.getElementById('chatInput').placeholder='Ask Artur anything…';isReplyingToMessage=false;replyingToMessageId=null;},600);renderInboxMessages();}
         function handleChatKeypress(e){if(e.key==='Enter')sendChatMessage();}
         function openMobileChat(){document.querySelector('.chat-widget').classList.add('mobile-open');}
         function closeMobileChat(){document.querySelector('.chat-widget').classList.remove('mobile-open');}
         function handleMobileNavChatKeypress(e){if(e.key==='Enter')sendMobileNavChat();}
         function sendMobileNavChat(){const input=document.getElementById('mobileNavChatInput');const text=input.value.trim();if(!text)return;input.value='';showMobileToast('Message sent to Artur!');}
         
-        function closeMobileDropup(){const m=document.getElementById('mobileDropupMenu');if(m)m.classList.remove('show');}
         function showMessageModal(name,address,email,phone,title){if(isDesktopView()){addChatMessage('Contact '+name,true);setTimeout(()=>{let ci='📋 <strong>'+name+'</strong><br>';if(phone)ci+='📞 '+phone+'<br>';if(email)ci+='✉️ '+email;const cm=document.getElementById('chatMessages');const d=document.createElement('div');d.className='chat-message bot';d.innerHTML='<div><div class="message-bubble">'+ci+'<br><br>Would you like to send a message?</div><div style="display: flex; gap: 8px; margin-top: 12px;"><button class="btn" onclick="closeMessageChat(this)">Cancel</button><button class="btn btn-success" onclick="openMessageFromChat(this,\''+name+'\',\''+address+'\',\''+email+'\',\''+phone+'\',\''+title+'\')">Send a Message</button></div></div>';cm.appendChild(d);cm.scrollTop=cm.scrollHeight;},600);}else{document.getElementById('messageModalTitle').textContent=title||'Message to';document.getElementById('messageModalAddress').textContent=address;document.getElementById('messageModalName').textContent=name;document.getElementById('messageModalPhone').textContent=phone||'';document.getElementById('messageModalPhoneRow').href=phone?'tel:'+phone:'#';document.getElementById('messageModalPhoneRow').style.display=phone?'flex':'none';document.getElementById('messageModalEmail').textContent=email||'';document.getElementById('messageModalEmailRow').href=email?'mailto:'+email:'#';document.getElementById('messageModalEmailRow').style.display=email?'flex':'none';document.getElementById('messageModalDivider').style.display=(phone&&email)?'inline':'none';document.getElementById('messageText').value='';document.getElementById('messageModal').classList.add('show');}}
         function closeMessageChat(btn){btn.parentElement.style.display='none';addChatMessage('Cancel',true);isComposingMessage=false;composingMessageTo='';document.getElementById('chatInput').placeholder='Ask Artur anything…';setTimeout(()=>addChatMessage('No problem!'),600);}
         function openMessageFromChat(btn,name,address,email,phone,title){btn.parentElement.style.display='none';addChatMessage('Send a Message',true);isComposingMessage=true;composingMessageTo=name;setTimeout(()=>{addChatMessage('✍️ What would you like to say to <strong>'+name+'</strong>?');document.getElementById('chatInput').placeholder='Type your message to '+name+'...';document.getElementById('chatInput').focus();},600);}
@@ -1449,18 +2001,149 @@
         function editMessage(btn){btn.parentElement.style.display='none';addChatMessage('Edit',true);isComposingMessage=true;setTimeout(()=>{addChatMessage('✍️ Type your new message below.');document.getElementById('chatInput').placeholder='Type your message to '+composingMessageTo+'...';document.getElementById('chatInput').focus();},600);}
         function sendFinalMessage(btn,encodedMsg){btn.parentElement.style.display='none';const msg=decodeURIComponent(encodedMsg);addChatMessage('Send',true);setTimeout(()=>{addChatMessage('✅ Done! Your message has been sent to <strong>'+composingMessageTo+'</strong>!');addSentMessageToData(composingMessageTo,msg);composingMessageTo='';},600);}
         function sendContactMessage(){const msg=document.getElementById('messageText').value.trim();const name=document.getElementById('messageModalName').textContent;closeModal('messageModal');if(isDesktopView()){addChatMessage('Send message to '+name,true);setTimeout(()=>addChatMessage('✉️ Your message has been <strong>sent</strong>!'),600);}else{document.getElementById('successTitle').textContent='Message Sent!';document.getElementById('successMessage').textContent='Your message has been delivered.';document.getElementById('successModal').classList.add('show');}if(msg)addSentMessageToData(name,msg);}
-        function addNewProperty(){     window.location.href = 'submit-property'; }{document.getElementById('submitPropertyPage').style.display='block';document.body.style.overflow='hidden';}
-        function closeSubmitProperty(e){e.preventDefault();document.getElementById('submitPropertyPage').style.display='none';document.body.style.overflow='';}
-        function handleListProperty(){const addr=document.getElementById('submitPropertyAddress').value.trim();if(!addr){showMobileToast('Please enter a property address');return;}showMobileToast('🏠 Starting listing for: '+addr);}
+        function addNewProperty(){document.getElementById('submitPropertyPage').style.display='block';document.body.style.overflow='hidden';}
+        function closeSubmitProperty(e){e.preventDefault();window.location.hash='/your-listing';}
+        function stepValue(id,delta){const el=document.getElementById(id);let v=parseInt(el.textContent)||0;v=Math.max(0,Math.min(20,v+delta));el.textContent=v;updateStepperBtns(id);}
+        function clampStepper(id){const el=document.getElementById(id);let v=parseInt(el.textContent.replace(/\D/g,''))||0;v=Math.max(0,Math.min(20,v));el.textContent=v;updateStepperBtns(id);}
+        function stepperKeydown(e,id){if(e.key==='Enter'){e.preventDefault();e.target.blur();}if(!/[\d]/.test(e.key)&&!['Backspace','Delete','ArrowLeft','ArrowRight','Tab'].includes(e.key)){e.preventDefault();}}
+        function updateStepperBtns(id){const el=document.getElementById(id);const v=parseInt(el.textContent)||0;const mi=document.getElementById(id+'_minus');const pl=document.getElementById(id+'_plus');if(mi)mi.classList.toggle('disabled',v<=0);if(pl)pl.classList.toggle('disabled',v>=20);}
+        function toggleNoUnit(){const cb=document.getElementById('noUnitCheckbox');const inp=document.getElementById('submitUnitNumber');const mark=document.getElementById('unitRequiredMark');if(cb.checked){inp.value='';inp.disabled=true;inp.style.opacity='0.4';mark.style.display='none';}else{inp.disabled=false;inp.style.opacity='1';mark.style.display='inline';}}
+        function formatDecimalInput(el){let v=el.value.replace(/[^0-9.]/g,'');const parts=v.split('.');if(parts.length>2)v=parts[0]+'.'+parts.slice(1).join('');const dp=v.indexOf('.');let whole=dp>=0?v.substring(0,dp):v;const dec=dp>=0?v.substring(dp):'';whole=whole.replace(/^0+(?=\d)/,'');whole=whole.replace(/\B(?=(\d{3})+(?!\d))/g,',');el.value=whole+dec;}
+        function calculateSavings(){const priceEl=document.getElementById('submitPrice');const savingsEl=document.getElementById('savingsAmount');const price=parseFloat(priceEl.value.replace(/,/g,''))||0;const savings=price*0.06;savingsEl.textContent=savings.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});}
+        function submitPropertyForm(){
+            // Clear previous errors
+            document.querySelectorAll('#submitStep2 .field-error').forEach(e=>e.remove());
+            document.querySelectorAll('#submitStep2 .input-error').forEach(e=>e.classList.remove('input-error'));
+
+            const errors=[];
+            // Property type
+            const typeSelected=document.querySelector('.submit-prop-type.selected');
+            if(!typeSelected) errors.push({el:document.getElementById('propertyTypeGrid')});
+
+            const isLand=typeSelected&&typeSelected.textContent.includes('Lot/Land');
+            const hasUnit=typeSelected&&(typeSelected.textContent.includes('Apartment')||typeSelected.textContent.includes('Condo')||typeSelected.textContent.includes('Townhouse'));
+            const isAptCondo=typeSelected&&(typeSelected.textContent.includes('Apartment')||typeSelected.textContent.includes('Condo'));
+
+            // Unit number
+            if(hasUnit&&!document.getElementById('noUnitCheckbox').checked){
+                const unit=document.getElementById('submitUnitNumber').value.trim();
+                if(!unit) errors.push({el:document.getElementById('submitUnitNumber')});
+            }
+
+            // Beds & Baths
+            if(!isLand){
+                const beds=parseInt(document.getElementById('submitBeds').textContent)||0;
+                const baths=parseInt(document.getElementById('submitBaths').textContent)||0;
+                if(beds===0) errors.push({el:document.getElementById('submitBeds').closest('.stepper-pill')});
+                if(baths===0) errors.push({el:document.getElementById('submitBaths').closest('.stepper-pill')});
+            }
+
+            // Living area
+            if(!isLand){
+                const la=document.getElementById('submitLivingArea').value.replace(/,/g,'').trim();
+                if(!la||la==='0') errors.push({el:document.getElementById('submitLivingArea')});
+            }
+
+            // Lot size
+            if(!isAptCondo){
+                const ls=document.getElementById('submitLotSize').value.replace(/,/g,'').trim();
+                if(!ls||ls==='0') errors.push({el:document.getElementById('submitLotSize')});
+            }
+
+            // Price
+            const price=document.getElementById('submitPrice').value.replace(/,/g,'').trim();
+            if(!price||price==='0') errors.push({el:document.getElementById('submitPrice')});
+
+            // Description
+            const desc=document.getElementById('submitDescription').value.trim();
+            if(!desc) errors.push({el:document.getElementById('submitDescription')});
+
+            // Legal: name
+            const ownerName=document.getElementById('submitOwnerName').value.trim();
+            if(!ownerName) errors.push({el:document.getElementById('submitOwnerName')});
+
+            // Legal: email
+            const ownerEmail=document.getElementById('submitOwnerEmail').value.trim();
+            if(!ownerEmail) errors.push({el:document.getElementById('submitOwnerEmail')});
+            else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ownerEmail)) errors.push({el:document.getElementById('submitOwnerEmail')});
+
+            // Legal: phone
+            const ownerPhone=document.getElementById('submitOwnerPhone').value.replace(/\D/g,'');
+            if(!ownerPhone||ownerPhone.length<10) errors.push({el:document.getElementById('submitOwnerPhone')});
+
+            // Secondary owner
+            if(document.getElementById('secondaryOwnerCheckbox').checked){
+                const sn=document.getElementById('submitSecondaryName').value.trim();
+                if(!sn) errors.push({el:document.getElementById('submitSecondaryName')});
+                const se=document.getElementById('submitSecondaryEmail').value.trim();
+                if(!se) errors.push({el:document.getElementById('submitSecondaryEmail')});
+                else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(se)) errors.push({el:document.getElementById('submitSecondaryEmail')});
+            }
+
+            // Signing authority
+            if(document.getElementById('signingAuthorityCheckbox').checked){
+                const cap=document.getElementById('signingCapacity').value;
+                if(!cap) errors.push({el:document.getElementById('signingCapacity')});
+                const ent=document.getElementById('signingEntityName').value.trim();
+                if(!ent) errors.push({el:document.getElementById('signingEntityName')});
+                if(signingDocs.length===0){showMobileToast('⚠️ Please upload at least one signing authority document');errors.push({el:document.getElementById('signingDocInput').parentElement});}
+            }
+
+            if(errors.length>0){
+                errors.forEach(err=>{
+                    if(err.el.classList.contains('input')||err.el.tagName==='INPUT'||err.el.tagName==='TEXTAREA'||err.el.classList.contains('stepper-pill')){
+                        err.el.classList.add('input-error');
+                    }
+                });
+                errors[0].el.scrollIntoView({behavior:'smooth',block:'center'});
+                return;
+            }
+
+            showMobileToast('✅ Property submitted!');
+            setTimeout(()=>{window.location.hash='/your-listing';},1500);
+        }
+        function selectMls(text,val,e){e.stopPropagation();document.querySelectorAll('#mlsDropdownMenu .menu-item').forEach(i=>i.classList.remove('active'));e.target.closest('.menu-item').classList.add('active');document.getElementById('mlsSelectedText').textContent=text;document.getElementById('mlsDropdownMenu').classList.remove('show');}
+        function selectMlsInline(text,e){e.stopPropagation();document.querySelectorAll('#mlsInlineMenu .menu-item').forEach(i=>i.classList.remove('active'));e.target.closest('.menu-item').classList.add('active');document.getElementById('mlsInlineText').textContent=text;document.getElementById('mlsInlineMenu').classList.remove('show');}
+        function toggleTitleFromUpsell(el){const titleLabel=document.getElementById('alcTitleSettlement');if(!titleLabel||titleLabel.style.display==='none')return;const cb=titleLabel.querySelector('input[type="checkbox"]');if(!cb)return;cb.checked=!cb.checked;toggleALaCarte(titleLabel);if(cb.checked){el.textContent='✓ Title Settlement added';el.style.color='var(--c-success-dark)';el.style.fontWeight='600';}else{el.textContent='+ Add Title Settlement · $99';el.style.color='';el.style.fontWeight='';} titleLabel.scrollIntoView({behavior:'smooth',block:'center'});}
+        function toggleALaCarte(el){el.classList.toggle('checked',el.querySelector('input[type="checkbox"]').checked);updateShippingVisibility();updateOrderTotal();}
+        function selectBuyIntent(yes){document.getElementById('buyYesBtn').classList.toggle('btn-p',yes);document.getElementById('buyNoBtn').classList.toggle('btn-p',!yes);document.getElementById('buyPromo').style.display=yes?'block':'none';}
+        function updateOrderTotal(){const pkg=document.querySelector('input[name="packageForm"]:checked');const pkgVal=pkg?pkg.value:'basic';const ids=getSelectedAlcIds();const total=getTotal(pkgVal,ids);animateNumber('orderTotal',total);const price=parseFloat((document.getElementById('submitPrice').value||'0').replace(/,/g,''))||0;const commission=Math.round(price*0.06);const savings=Math.max(0,commission-total);animateNumber('commissionCost',commission);animateNumber('totalSavings',savings);}
+        let animFrames={};
+        function animateNumber(elId,target){if(animFrames[elId])cancelAnimationFrame(animFrames[elId]);const el=document.getElementById(elId);if(!el)return;const current=parseInt(el.textContent.replace(/,/g,''))||0;if(current===target){el.textContent=target.toLocaleString('en-US');return;}const start=performance.now();const duration=400;function tick(now){const p=Math.min((now-start)/duration,1);const ease=1-Math.pow(1-p,3);const val=Math.round(current+(target-current)*ease);el.textContent=val.toLocaleString('en-US');if(p<1)animFrames[elId]=requestAnimationFrame(tick);else delete animFrames[elId];}animFrames[elId]=requestAnimationFrame(tick);}
+        function updateShippingVisibility(){const pkg=document.querySelector('input[name="packageForm"]:checked');const pkgVal=pkg?pkg.value:'basic';const selectedIds=getSelectedAlcIds();const section=document.getElementById('shippingAddressSection');if(hasPhysicalItems(pkgVal,selectedIds)){section.style.display='block';}else{section.style.display='none';const cb=document.getElementById('shippingAddressCheckbox');if(cb)cb.checked=false;const field=document.getElementById('shippingAddressField');if(field)field.style.display='none';}}
+        function toggleALaCarteInfo(btn){event.stopPropagation();const label=btn.closest('label');const info=label.querySelector('.alc-info');const isOpen=info.style.display!=='none';info.style.display=isOpen?'none':'block';btn.classList.toggle('open',!isOpen);}
+        function selectLotUnit(unit){document.getElementById('sqftTab').classList.toggle('active',unit==='sqft');document.getElementById('acresTab').classList.toggle('active',unit==='acres');}
+        function selectPropertyType(btn){document.querySelectorAll('.submit-prop-type').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');const t=btn.textContent.trim();const label=t.replace(/^[^\w]+/,'').toLowerCase();document.getElementById('propertyTypeLabel').textContent=label;const isLand=t.includes('Lot/Land');const isAptCondo=t.includes('Apartment')||t.includes('Condo');const hasUnit=t.includes('Apartment')||t.includes('Condo')||t.includes('Townhouse');document.getElementById('bedsRow').style.display=isLand?'none':'flex';document.getElementById('fieldLivingArea').style.display=isLand?'none':'';document.getElementById('fieldLotSize').style.display=isAptCondo?'none':'';document.getElementById('fieldUnitNumber').style.display=hasUnit?'block':'none';if(isLand){selectLotUnit('acres');document.getElementById('sqftTab').style.display='none';document.getElementById('acresTab').style.pointerEvents='none';}else{document.getElementById('sqftTab').style.display='';document.getElementById('acresTab').style.pointerEvents='';}}
+        function selectListingType(type,btn){document.getElementById('saleTab').classList.toggle('active',type==='sale');document.getElementById('rentTab2').classList.toggle('active',type==='rent');}
+        function toggleSecondaryOwner(){const fields=document.getElementById('secondaryOwnerFields');const cb=document.getElementById('secondaryOwnerCheckbox');fields.style.display=cb.checked?'block':'none';}
+        function toggleShippingAddress(){const field=document.getElementById('shippingAddressField');const cb=document.getElementById('shippingAddressCheckbox');field.style.display=cb.checked?'block':'none';}
+        function saveAndExit(){showMobileToast('💾 Progress saved!');setTimeout(()=>{window.location.hash='/your-listing';},1200);}
+        function toggleSigningAuthority(){const section=document.getElementById('signingAuthoritySection');const cb=document.getElementById('signingAuthorityCheckbox');section.style.display=cb.checked?'block':'none';}
+        let signingDocs=[];
+        function handleSigningDocUpload(e){const files=e.target.files;for(let i=0;i<files.length;i++){if(files[i].size>10*1024*1024){showMobileToast('⚠️ '+files[i].name+' exceeds 10MB limit');continue;}signingDocs.push({name:files[i].name,size:formatFileSize(files[i].size),type:files[i].name.split('.').pop().toLowerCase()});}e.target.value='';renderSigningDocs();}
+        function renderSigningDocs(){const c=document.getElementById('signingDocList');if(signingDocs.length===0){c.innerHTML='';return;}c.innerHTML=signingDocs.map((f,i)=>{const it=f.type==='pdf'?'pdf':(f.type==='doc'||f.type==='docx'?'doc':'img');const ix=f.type==='pdf'?'PDF':(f.type==='doc'||f.type==='docx'?'DOC':'IMG');return '<div style="display:flex; align-items:center; gap:10px; padding:10px 12px; background:var(--c-bg-white); border:1px solid var(--c-border); border-radius:8px; margin-top:6px;"><div class="document-icon '+it+'" style="width:32px; height:32px; font-size:9px;">'+ix+'</div><div style="flex:1; min-width:0;"><div style="font-size:13px; font-weight:500; color:var(--c-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">'+f.name+'</div><div style="font-size:11px; color:var(--c-text-secondary);">'+f.size+'</div></div><button onclick="removeSigningDoc('+i+')" style="width:28px; height:28px; border:none; background:transparent; cursor:pointer; color:var(--c-text-secondary); display:flex; align-items:center; justify-content:center; border-radius:50; flex-shrink:0;" onmouseover="this.style.color=\'var(--c-error)\'" onmouseout="this.style.color=\'var(--c-text-secondary)\'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>';}).join('');}
+        function removeSigningDoc(i){signingDocs.splice(i,1);renderSigningDocs();}
+        function selectPackageForm(el){document.querySelectorAll('#packageOptionsForm > label').forEach(l=>{l.classList.remove('selected');});el.classList.add('selected');el.querySelector('input').checked=true;const pkg=el.querySelector('input').value;document.querySelectorAll('#aLaCarteOptions > label').forEach((lbl,i)=>{if(!products.alacarte[i])return;const item=products.alacarte[i];if(item.hideFor.includes(pkg)){lbl.style.display='none';const cb=lbl.querySelector('input[type="checkbox"]');if(cb)cb.checked=false;lbl.style.borderColor='var(--c-border)';lbl.style.background='var(--c-bg-white)';}else{lbl.style.display='flex';}});const pkgIncludes={basic:['Listing on your local MLS','Syndication to 100+ top real estate sites','Maximum photos allowed by the MLS','Direct online offers & messaging dashboard','Free, unlimited updates and changes','Free, unlimited open house scheduler','Free ShowingTime℠ (when available)','Free Home Visit Manager tool','24-month MLS listing','Cancel anytime for free','$0 due at closing — no hidden fees, ever','Free access to all legal forms/disclosures','Call, chat, and email support (6 days a week in English & Spanish)'],enhanced:['<strong>25 HDR Professional Photos</strong>','<strong>1x Key lock box</strong>','<strong>1x personalized yard sign + open house package</strong>','<strong>Customizable flyers and brochure</strong>','<strong>Virtual tour YouTube© video</strong>','<strong>Printable promotional items</strong>','<strong>Craigslist© easy click & share Ad</strong>','<strong>Digital advertising suitable for social media sharing</strong>','<strong>Featured on beycome.com</strong>','<strong>$0 due at closing — no hidden fees, ever</strong>'],concierge:['<strong>Dedicated 7/7 experienced personnel</strong>','<strong>Dedicated 7/7 closing coordinator</strong>','<strong>Syndication to 100+ top real estate sites</strong>','<strong>Negotiation, offer reviews, and paperwork support</strong>','<strong>Open house and visit schedule</strong>','<strong>Home valuation guidance and pricing strategy</strong>','<strong>Dedicated Closing coordinator</strong>','<strong>Complete Comparative Market Analysis (CMA)</strong>','<strong>Professional HDR pictures</strong>','<strong>Immersive 3D home tour (where available)</strong>','<strong>Drone photography (where available)</strong>']};const includes=pkgIncludes[pkg]||pkgIncludes.basic;const box=document.getElementById('packageIncludes');const list=document.getElementById('packageIncludesList');const html=includes.map(i=>'<div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--c-success);flex-shrink:0;">✓</span><span>'+i+'</span></div>').join('');
+        const subtitle=pkg==='enhanced'?'Everything on Basic +':pkg==='concierge'?'Everything on Enhanced +':'';
+        const tsc=document.getElementById('titleSettlementCard');if(tsc)tsc.style.display=pkg==='concierge'?'block':'none';
+        document.getElementById('packageIncludesSubtitle').textContent=subtitle;
+        document.getElementById('packageIncludesSubtitleRight').textContent=subtitle;list.innerHTML=html;box.style.display='block';const boxR=document.getElementById('packageIncludesRight');const listR=document.getElementById('packageIncludesListRight');listR.innerHTML=html;boxR.style.display='block';const pkgSection=document.getElementById('packageOptionsForm');const rightCol=boxR.parentElement;if(pkgSection&&rightCol){const pkgTop=pkgSection.offsetTop-rightCol.offsetTop;boxR.style.top=pkgTop+'px';}updateShippingVisibility();updateOrderTotal();document.querySelectorAll('.pkg-upsell').forEach(u=>{const titleLabel=document.getElementById('alcTitleSettlement');const isChecked=titleLabel&&titleLabel.style.display!=='none'&&titleLabel.querySelector('input[type="checkbox"]')?.checked;if(isChecked){u.textContent='✓ Title Settlement added';u.style.color='var(--c-success-dark)';u.style.fontWeight='600';}else{u.textContent='Add Title/Escrow · $99';u.style.color='';u.style.fontWeight='';}});}
+        function handleListProperty(){const addr=document.getElementById('submitPropertyAddress').value.trim();if(!addr){showMobileToast('Please enter a property address');return;}document.getElementById('submitStep1').style.display='none';document.getElementById('submitStep2').style.display='block';document.getElementById('step2PropertyAddress').textContent=addr;document.getElementById('legalHeaderAddress').textContent=addr;initPropertyMap(addr);}
+        function animateCounters(){document.querySelectorAll('.submit-stat-number[data-target]').forEach(el=>{const target=parseFloat(el.dataset.target);const prefix=el.dataset.prefix||'';const suffix=el.dataset.suffix||'';const fmt=el.dataset.format;const duration=1800;const startTime=performance.now();const easeOutQuart=t=>1-Math.pow(1-t,4);function update(now){const elapsed=now-startTime;const progress=Math.min(elapsed/duration,1);const eased=easeOutQuart(progress);const current=eased*target;if(fmt==='number'){el.textContent=Math.round(current).toLocaleString('en-US');}else if(fmt==='countdown'){const start=parseFloat(el.dataset.start)||999;const val=Math.round(start-(eased*(start-target)));el.textContent=prefix+val+suffix;}else{el.textContent=prefix+Math.round(current)+suffix;}if(progress<1)requestAnimationFrame(update);}requestAnimationFrame(update);});}
+        const statsObserver=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){animateCounters();statsObserver.unobserve(e.target);}});},{threshold:0.5});
+        document.querySelectorAll('.submit-stats').forEach(el=>statsObserver.observe(el));
+        let propertyMap=null,propertyMarker=null,geocoder=null;
+        function initMapCallback(){geocoder=new google.maps.Geocoder();}
+        function initPropertyMap(addr){if(!geocoder){setTimeout(()=>initPropertyMap(addr),100);return;}geocoder.geocode({address:addr},function(results,status){if(status==='OK'){const loc=results[0].geometry.location;if(!propertyMap){propertyMap=new google.maps.Map(document.getElementById('propertyMap'),{center:loc,zoom:17,mapTypeControl:false,streetViewControl:false,fullscreenControl:false});propertyMarker=new google.maps.Marker({position:loc,map:propertyMap,draggable:true,title:'Drag to correct location'});propertyMarker.addListener('dragend',function(){const pos=propertyMarker.getPosition();console.log('New position:',pos.lat(),pos.lng());});}else{propertyMap.setCenter(loc);propertyMarker.setPosition(loc);}}else{console.log('Geocode failed:',status);}});}
         function addSentMessageToData(to,msg){const now=new Date();const ts=now.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true});messagesData.sent.unshift({id:Date.now(),to,subject:'Message to '+to,message:msg,time:ts});updateMessageFilterCount();}
-        function showDeclineVisitModal(btn,buyerName,propertyAddress){currentVisitCard=btn.closest('.visit-card');currentBuyerName=buyerName;currentPropertyAddress=propertyAddress;if(isDesktopView()){addChatMessage('Decline visit',true);setTimeout(()=>{const cm=document.getElementById('chatMessages');const d=document.createElement('div');d.className='chat-message bot';d.innerHTML='<div><div class="message-bubble">Just checking 😄 This will decline the visit and notify the buyer.</div><div style="display: flex; gap: 8px; margin-top: 12px;"><button class="btn" onclick="cancelDeclineChat(this)">Keep it</button><button class="btn btn-accent" onclick="rescheduleVisitChat(this)">Reschedule</button><button class="btn btn-danger" onclick="confirmDeclineVisitChat(this)">Decline it</button></div></div>';cm.appendChild(d);cm.scrollTop=cm.scrollHeight;},600);}else document.getElementById('declineVisitModal').classList.add('show');}
+        function showDeclineVisitModal(btn,buyerName,propertyAddress){currentVisitCard=btn.closest('.visit-card');if(isDesktopView()){addChatMessage('Decline visit',true);setTimeout(()=>{const cm=document.getElementById('chatMessages');const d=document.createElement('div');d.className='chat-message bot';d.innerHTML='<div><div class="message-bubble">Just checking 😄 This will decline the visit and notify the buyer.</div><div style="display: flex; gap: 8px; margin-top: 12px;"><button class="btn" onclick="cancelDeclineChat(this)">Keep it</button><button class="btn btn-accent" onclick="rescheduleVisitChat(this)">Reschedule</button><button class="btn btn-danger" onclick="confirmDeclineVisitChat(this)">Decline it</button></div></div>';cm.appendChild(d);cm.scrollTop=cm.scrollHeight;},600);}else document.getElementById('declineVisitModal').classList.add('show');}
         function cancelDeclineChat(btn){btn.parentElement.style.display='none';addChatMessage('Cancel',true);setTimeout(()=>addChatMessage('No problem! The visit request is still pending.'),600);}
         function rescheduleVisitChat(btn){btn.parentElement.style.display='none';addChatMessage('Reschedule',true);setTimeout(()=>addChatMessage('📅 Done! Reschedule request sent.<br><br>📧 We\'ll automatically send a reschedule request to the lead and an email to you to confirm it. From that email, you\'ll also be able to keep a record for your files.'),600);updateVisitCardStatus(currentVisitCard,'rescheduling');updateVisitBadge();}
         function confirmDeclineVisitChat(btn){btn.parentElement.style.display='none';addChatMessage('Decline it',true);setTimeout(()=>addChatMessage('Done! The visit has been declined.<br><br>📧 We\'ll automatically send a decline message to the lead. Keep pushing!'),600);updateVisitCardStatus(currentVisitCard,'declined');updateVisitBadge();}
         function confirmDeclineVisit(){closeModal('declineVisitModal');if(isDesktopView()){addChatMessage('Decline it',true);setTimeout(()=>addChatMessage('👍 Done! The visit has been declined.<br><br>📧 We\'ll automatically send a decline message to the lead. Keep pushing!'),600);}else{document.getElementById('successTitle').textContent='Done!';document.getElementById('successMessage').innerHTML='The visit has been declined.<br><br>📧 We\'ll automatically send a decline message to the lead. Keep pushing!';document.getElementById('successModal').classList.add('show');}updateVisitCardStatus(currentVisitCard,'declined');updateVisitBadge();}
         function rescheduleVisit(){closeModal('declineVisitModal');if(isDesktopView()){addChatMessage('Reschedule',true);setTimeout(()=>addChatMessage('📅 Done! Reschedule request sent.<br><br>📧 We\'ll automatically send a reschedule request to the lead and an email to you to confirm it. From that email, you\'ll also be able to keep a record for your files.'),600);}else{document.getElementById('successTitle').textContent='Reschedule Request Sent';document.getElementById('successMessage').innerHTML='📧 We\'ll automatically send a reschedule request to the lead and an email to you to confirm it. From that email, you\'ll also be able to keep a record for your files.';document.getElementById('successModal').classList.add('show');}updateVisitCardStatus(currentVisitCard,'rescheduling');updateVisitBadge();}
         function acceptVisit(btn,buyerName,propertyAddress){const card=btn.closest('.visit-card');if(isDesktopView()){addChatMessage('Accept visit',true);setTimeout(()=>addChatMessage('📅 Well done! We\'ll automatically send a message to the lead and an email to you to confirm the visit. From that email, you\'ll also be able to add it to your personal calendar.'),600);}else{document.getElementById('successIcon').textContent='👍';document.getElementById('successTitle').textContent='Well done!';document.getElementById('successMessage').innerHTML='📅 We\'ll automatically send a message to the lead and an email to you to confirm the visit. From that email, you\'ll also be able to add it to your personal calendar.';document.getElementById('successModal').classList.add('show');}updateVisitCardStatus(card,'accepted');updateVisitBadge();}
-        function showCancelVisitModal(ownerName,propertyAddress,cardId){currentCancelOwnerName=ownerName;currentCancelPropertyAddress=propertyAddress;currentCancelCardId=cardId;const card=document.getElementById(cardId);let dt='';if(card){const mr=card.querySelector('.visit-meta-row strong');if(mr)dt=mr.textContent;}if(isDesktopView()){addChatMessage('Cancel visit',true);setTimeout(()=>{const cm=document.getElementById('chatMessages');const d=document.createElement('div');d.className='chat-message bot';d.innerHTML='<div><div class="message-bubble">Hold on 👀 This will cancel the visit at <strong>'+propertyAddress+'</strong>'+(dt?' on <strong>'+dt+'</strong>':'')+' and we\'ll notify <strong>'+ownerName+'</strong>.</div><div style="display: flex; gap: 8px; margin-top: 12px;"><button class="btn" onclick="keepVisitChat(this)">Keep it</button><button class="btn btn-accent" onclick="rescheduleRequestedVisitChat(this)">Reschedule</button><button class="btn btn-danger" onclick="confirmCancelVisitChat(this)">Cancel it</button></div></div>';cm.appendChild(d);cm.scrollTop=cm.scrollHeight;},600);}else{document.getElementById('cancelVisitModalText').innerHTML='This will cancel the visit at <strong>'+propertyAddress+'</strong>'+(dt?' on <strong>'+dt+'</strong>':'')+' and we\'ll notify <strong>'+ownerName+'</strong>.';document.getElementById('cancelVisitModal').classList.add('show');}}
+        function showCancelVisitModal(ownerName,propertyAddress,cardId){currentCancelCardId=cardId;const card=document.getElementById(cardId);let dt='';if(card){const mr=card.querySelector('.visit-meta-row strong');if(mr)dt=mr.textContent;}if(isDesktopView()){addChatMessage('Cancel visit',true);setTimeout(()=>{const cm=document.getElementById('chatMessages');const d=document.createElement('div');d.className='chat-message bot';d.innerHTML='<div><div class="message-bubble">Hold on 👀 This will cancel the visit at <strong>'+propertyAddress+'</strong>'+(dt?' on <strong>'+dt+'</strong>':'')+' and we\'ll notify <strong>'+ownerName+'</strong>.</div><div style="display: flex; gap: 8px; margin-top: 12px;"><button class="btn" onclick="keepVisitChat(this)">Keep it</button><button class="btn btn-accent" onclick="rescheduleRequestedVisitChat(this)">Reschedule</button><button class="btn btn-danger" onclick="confirmCancelVisitChat(this)">Cancel it</button></div></div>';cm.appendChild(d);cm.scrollTop=cm.scrollHeight;},600);}else{document.getElementById('cancelVisitModalText').innerHTML='This will cancel the visit at <strong>'+propertyAddress+'</strong>'+(dt?' on <strong>'+dt+'</strong>':'')+' and we\'ll notify <strong>'+ownerName+'</strong>.';document.getElementById('cancelVisitModal').classList.add('show');}}
         function keepVisitChat(btn){btn.parentElement.style.display='none';addChatMessage('Keep Visit',true);setTimeout(()=>addChatMessage('No problem! Your visit is still scheduled.'),600);}
         function rescheduleRequestedVisitChat(btn){btn.parentElement.style.display='none';addChatMessage('Reschedule',true);setTimeout(()=>addChatMessage('📅 Done! Reschedule request sent.<br><br>📧 We\'ll automatically send a reschedule request to the lead and an email to you to confirm it. From that email, you\'ll also be able to keep a record for your files.'),600);}
         function confirmCancelVisitChat(btn){btn.parentElement.style.display='none';addChatMessage('Cancel Visit',true);setTimeout(()=>addChatMessage('😔 We\'ll automatically send your cancellation request to the seller.'),600);updateRequestedVisitStatus(currentCancelCardId,'cancelled');}
@@ -1494,7 +2177,6 @@
         
         function showComposeModal(){document.getElementById('composeTo').value='';document.getElementById('composeSubject').value='';document.getElementById('composeMessage').value='';document.getElementById('composeModal').classList.add('show');}
         function sendNewMessage(){const to=document.getElementById('composeTo').value.trim();const subj=document.getElementById('composeSubject').value.trim();const msg=document.getElementById('composeMessage').value.trim();if(!to||!msg){alert('Please fill in recipient and message.');return;}const ts=new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true});messagesData.sent.unshift({id:Date.now(),to,subject:subj||'(No subject)',message:msg,time:ts});closeModal('composeModal');updateMessageFilterCount();if(isDesktopView())addChatMessage('📤 Your message to <strong>'+to+'</strong> has been sent!');else{document.getElementById('successTitle').textContent='Message Sent!';document.getElementById('successMessage').textContent='Your message has been delivered.';document.getElementById('successModal').classList.add('show');}}
-        function renderSentMessages(){const c=document.getElementById('sentList');if(messagesData.sent.length===0){c.innerHTML='<p style="color: var(--c-text-secondary); text-align: center; padding: 40px; grid-column: 1 / -1;">No messages have been sent yet.</p>';return;}c.innerHTML=messagesData.sent.map(m=>'<div class="visit-card"><div class="visit-card-content"><div class="visit-info"><h3>'+m.subject+'</h3><div class="visit-meta-row"><span><strong>'+m.time+'</strong></span><span>to <strong>'+m.to+'</strong></span></div></div></div></div>').join('');}
         function renderInboxMessages(){const sel=selectedPropertiesMessages;if(currentMessageFilter==='sent'){document.getElementById('inboxList').innerHTML=messagesData.sent.length>0?messagesData.sent.map(m=>'<div class="visit-card"><div class="visit-card-content"><div class="visit-info"><h3>'+m.subject+'</h3><p class="msg-preview">'+(m.message?m.message.substring(0,80)+(m.message.length>80?'...':''):'')+'</p><div class="visit-meta-row"><span><strong>'+m.time+'</strong></span><span>to <strong>'+m.to+'</strong></span></div></div></div></div>').join(''):'<p class="empty-state">No messages have been sent yet.</p>';return;}document.getElementById('inboxList').innerHTML=messagesData.inbox.filter(m=>{if(sel.includes('all'))return true;return sel.some(p=>m.subject.includes(p));}).filter(m=>{if(currentMessageFilter==='all')return true;if(currentMessageFilter==='unread')return m.unread;if(currentMessageFilter==='read')return !m.unread;return true;}).sort((a,b)=>(b.unread?1:0)-(a.unread?1:0)).map(m=>{const preview=m.thread.length>0?m.thread[m.thread.length-1].text.substring(0,80)+(m.thread[m.thread.length-1].text.length>80?'...':''):'';return '<div class="visit-card '+(m.unread?'unread':'')+'" data-id="'+m.id+'" onclick="selectInboxMessage('+m.id+')"><div class="visit-card-content"><div class="visit-info"><h3>'+m.subject+(m.unread?' <span class="status-badge new">Unread</span>':'')+'</h3><p class="msg-preview">'+preview+'</p><div class="visit-meta-row"><span><strong>'+m.time+'</strong></span><span>from <strong>'+m.sender+'</strong></span><button class="contact-icon-btn" onclick="event.stopPropagation(); showMessageModal(\''+m.sender+'\', \''+m.subject+'\', \''+m.email+'\', \''+m.phone+'\', \'Reply to\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></button></div></div><div class="visit-actions"><button class="btn" onclick="event.stopPropagation(); selectInboxMessage('+m.id+')">View Message</button></div></div></div>';}).join('')||'<p class="empty-state">No messages found.</p>';}
         function updateMessagesBadge(){const unread=messagesData.inbox.filter(m=>m.unread).length;const b=document.getElementById('messagesBadge');if(unread>0){b.textContent=unread;b.style.display='flex';}else b.style.display='none';updateMobileBadges();}
         function renderCalendar(){const y=currentCalendarDate.getFullYear();const mo=currentCalendarDate.getMonth();const mn=['January','February','March','April','May','June','July','August','September','October','November','December'];document.getElementById('calendarTitle').textContent=mn[mo]+' '+y;if(currentCalendarView==='month')renderMonthView(y,mo);else renderWeekView(y,mo);}
@@ -1516,7 +2198,7 @@
         function renderPagePropertyFilter(page){const sel=page==='offers'?selectedPropertiesOffers:(page==='visits'?selectedPropertiesVisits:(page==='properties'?selectedPropertiesProperties:selectedPropertiesMessages));document.getElementById(page+'PropertyFilterMenu').innerHTML=properties.map(p=>'<button class="menu-item '+(sel.includes(p.id)?'active':'')+'" onclick="selectPageProperty(\''+page+'\',\''+p.id+'\',event)">'+(p.id==='all'?p.name:p.name.split(',')[0])+'</button>').join('');}
         function selectPageProperty(page,pid,e){e.stopPropagation();let sel=page==='offers'?selectedPropertiesOffers:(page==='visits'?selectedPropertiesVisits:(page==='properties'?selectedPropertiesProperties:selectedPropertiesMessages));if(pid==='all')sel=['all'];else{if(sel.includes('all'))sel=[pid];else if(sel.includes(pid)){sel=sel.filter(p=>p!==pid);if(sel.length===0)sel=['all'];}else sel.push(pid);}if(page==='offers')selectedPropertiesOffers=sel;else if(page==='visits')selectedPropertiesVisits=sel;else if(page==='properties')selectedPropertiesProperties=sel;else selectedPropertiesMessages=sel;updatePagePropertyFilterButton(page);renderPagePropertyFilter(page);applyPagePropertyFilter(page);}
         function updatePagePropertyFilterButton(page){const sel=page==='offers'?selectedPropertiesOffers:(page==='visits'?selectedPropertiesVisits:(page==='properties'?selectedPropertiesProperties:selectedPropertiesMessages));let text='All Properties';if(!sel.includes('all')){text=sel.length===1?sel[0].split(',')[0]:sel.length+' Properties';}document.getElementById(page+'PropertyFilterText').textContent=text;}
-        function applyPagePropertyFilter(page){if(page==='offers'){const sel=selectedPropertiesOffers;document.querySelectorAll('#offersReceived .visit-card, #offersSent .visit-card').forEach(card=>{const title=card.querySelector('h3')?.textContent||'';const show=sel.includes('all')||sel.some(p=>title.includes(p));card.style.display=show?'block':'none';});}else if(page==='visits'){const sel=selectedPropertiesVisits;document.querySelectorAll('#visitsReceived .visit-card, #visitsRequested .visit-card').forEach(card=>{const title=card.querySelector('h3')?.textContent||'';const show=sel.includes('all')||sel.some(p=>title.includes(p));card.style.display=show?'block':'none';});}else if(page==='properties'){const sel=selectedPropertiesProperties;document.querySelectorAll('#propertyGrid .property-card').forEach(card=>{const title=card.querySelector('h3')?.textContent||'';const show=sel.includes('all')||sel.some(p=>title.includes(p));card.style.display=show?'block':'none';});const addCard=document.querySelector('#propertyGrid .add-property-card');if(addCard)addCard.style.display='block';}else if(page==='messages'){renderInboxMessages();}}
+        function applyPagePropertyFilter(page){if(page==='offers'){const sel=selectedPropertiesOffers;document.querySelectorAll('#offersReceived .visit-card, #offersSent .visit-card').forEach(card=>{const title=card.querySelector('h3')?.textContent||'';const show=sel.includes('all')||sel.some(p=>title.includes(p));card.style.display=show?'block':'none';});}else if(page==='visits'){const sel=selectedPropertiesVisits;document.querySelectorAll('#visitsReceived .visit-card, #visitsRequested .visit-card').forEach(card=>{const title=card.querySelector('h3')?.textContent||'';const show=sel.includes('all')||sel.some(p=>title.includes(p));card.style.display=show?'block':'none';});        }else if(page==='properties'){const sel=selectedPropertiesProperties;document.querySelectorAll('#propertyGrid .property-card').forEach(card=>{const title=card.querySelector('h3')?.textContent||'';const show=sel.includes('all')||sel.some(p=>title.includes(p));card.style.display=show?'block':'none';});}else if(page==='messages'){renderInboxMessages();}}
         function initPropertyFilters(){const hasMultiple=properties.length>2;['offers','visits','messages','calendar','properties'].forEach(page=>{const el=document.getElementById(page+'PropertyFilter');if(el)el.style.display=hasMultiple?'block':'none';});}
         function deleteProperty(id,name){const card=document.querySelector('[data-property-id="'+id+'"]');if(card){card.remove();properties=properties.filter(p=>!p.id.includes(name));initPropertyFilters();if(isDesktopView())addChatMessage('🗑️ Property <strong>'+name+'</strong> has been deleted.');}}
         function updatePropertyFilterButton(){let text='All Properties';if(!selectedProperties.includes('all')){text=selectedProperties.length===1?selectedProperties[0].split(',')[0]:selectedProperties.length+' Properties';}document.getElementById('propertyFilterText').textContent=text;}
@@ -1524,11 +2206,11 @@
         function closeEventPopover(){document.getElementById('eventPopover').style.display='none';selectedEventData=null;}
         function messageFromCalendar(){if(!selectedEventData)return;closeEventPopover();showMessageModal(selectedEventData.person,selectedEventData.title,selectedEventData.email,selectedEventData.phone,'Visit at');}
         function addToExternalCalendar(){if(!selectedEventData)return;const e=selectedEventData;const title=encodeURIComponent('Visit: '+e.title);window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text='+title,'_blank');showMobileToast('📅 Opening Google Calendar...');}
-        function openAddEventModal(){document.getElementById('addEventType').value='visit';document.getElementById('addEventTitle').value='';document.getElementById('addEventContact').value='';document.getElementById('addEventPhone').value='';document.getElementById('addEventEmail').value='';const td=new Date();document.getElementById('addEventDate').value=td.getFullYear()+'-'+String(td.getMonth()+1).padStart(2,'0')+'-'+String(td.getDate()).padStart(2,'0');updateAddEventForm();document.getElementById('addEventModal').classList.add('show');}
-        function updateAddEventForm(){}
-        function saveNewEvent(){const type=document.getElementById('addEventType').value;const prop=document.getElementById('addEventProperty').value;const title=document.getElementById('addEventTitle').value.trim();const dateVal=document.getElementById('addEventDate').value;const timeVal=document.getElementById('addEventTime').value;const contact=document.getElementById('addEventContact').value.trim();if(!title||!dateVal||!timeVal){showMobileToast('Please fill in title, date and time');return;}const[y,m,d]=dateVal.split('-').map(Number);const[h,mi]=timeVal.split(':').map(Number);const ed=new Date(y,m-1,d,h,mi);calendarEvents.push({id:Date.now(),type:type==='other'?'milestone':type,status:'upcoming',title:title+' - '+prop,shortTitle:title,date:ed,person:contact,phone:document.getElementById('addEventPhone').value,email:document.getElementById('addEventEmail').value,property:prop});closeModal('addEventModal');renderCalendar();showMobileToast('✅ Event added to calendar');if(isDesktopView())addChatMessage('✅ I\'ve added <strong>'+title+'</strong> to your calendar for <strong>'+formatDate(ed)+'</strong>.');}
+        function openAddEventModal(){document.getElementById('addEventType').value='visit';document.getElementById('addEventTitle').value='';document.getElementById('addEventContact').value='';document.getElementById('addEventPhone').value='';document.getElementById('addEventEmail').value='';const td=new Date();document.getElementById('addEventDate').value=td.getFullYear()+'-'+String(td.getMonth()+1).padStart(2,'0')+'-'+String(td.getDate()).padStart(2,'0');document.getElementById('addEventModal').classList.add('show');}
+        function updateAddEventForm(){}        function saveNewEvent(){const type=document.getElementById('addEventType').value;const prop=document.getElementById('addEventProperty').value;const title=document.getElementById('addEventTitle').value.trim();const dateVal=document.getElementById('addEventDate').value;const timeVal=document.getElementById('addEventTime').value;const contact=document.getElementById('addEventContact').value.trim();if(!title||!dateVal||!timeVal){showMobileToast('Please fill in title, date and time');return;}const[y,m,d]=dateVal.split('-').map(Number);const[h,mi]=timeVal.split(':').map(Number);const ed=new Date(y,m-1,d,h,mi);calendarEvents.push({id:Date.now(),type:type==='other'?'milestone':type,status:'upcoming',title:title+' - '+prop,shortTitle:title,date:ed,person:contact,phone:document.getElementById('addEventPhone').value,email:document.getElementById('addEventEmail').value,property:prop});closeModal('addEventModal');renderCalendar();showMobileToast('✅ Event added to calendar');if(isDesktopView())addChatMessage('✅ I\'ve added <strong>'+title+'</strong> to your calendar for <strong>'+formatDate(ed)+'</strong>.');}
         document.addEventListener('click',function(e){if(!e.target.closest('.event-popover')&&!e.target.closest('.calendar-event')&&!e.target.closest('.week-event'))closeEventPopover();});
         document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('show');}));
+        (function(){const rows=[['MLS listing','✓','✓','✓'],['Syndication to 100+ sites','✓','✓','✓'],['Maximum MLS photos','✓','✓','✓'],['Online offers & messaging','✓','✓','✓'],['Unlimited updates & changes','✓','✓','✓'],['Open house scheduler','✓','✓','✓'],['ShowingTime℠','✓','✓','✓'],['All legal forms & disclosures','✓','✓','✓'],['24-month listing','✓','✓','✓'],['Cancel anytime for free','✓','✓','✓'],['$0 due at closing','✓','✓','✓'],['Support (6 days/week)','✓','✓','✓'],['25 HDR professional photos','—','✓','✓'],['Key lock box','—','✓','✓'],['Yard sign + open house kit','—','✓','✓'],['Flyers & brochure','—','✓','✓'],['Virtual tour video','—','✓','✓'],['Social media ad materials','—','✓','✓'],['beycome Spotlight Listing','—','✓','✓'],['Dedicated 7/7 personnel','—','—','✓'],['Closing coordinator','—','—','✓'],['Negotiation & offer review','—','—','✓'],['Pricing strategy & CMA','—','—','✓'],['3D home tour','—','—','✓'],['Drone photography','—','—','✓'],['Title Settlement','Add-on $99','Add-on $99','✓ Included']];const tb=document.getElementById('compareTableBody');rows.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML='<td style="padding:10px 12px 10px 0; border-bottom:1px solid #f0f0f0; color:var(--c-primary); font-weight:500;">'+r[0]+'</td>'+[r[1],r[2],r[3]].map((v,i)=>{const bg=i===1?'background:#f8f9ff;':'';const color=v==='✓'?'color:var(--c-success); font-size:16px; font-weight:700;':v==='—'?'color:#d0d0d0; font-size:16px;':'color:var(--c-primary); font-size:11px; font-weight:500;';return '<td style="text-align:center; padding:10px 8px; border-bottom:1px solid #f0f0f0; '+bg+'"><span style="'+color+'">'+v+'</span></td>';}).join('');tb.appendChild(tr);});})();
         function saveProfile(){const primary=document.getElementById('primaryPhone');const secondary=document.getElementById('secondaryPhone');const primaryValid=validatePhone(primary);const secondaryValid=secondary.value.length===0||validatePhone(secondary);if(!primaryValid||!secondaryValid){return;}document.getElementById('successTitle').textContent='Profile Saved';document.getElementById('successMessage').textContent='Your changes have been saved successfully.';document.getElementById('successModal').classList.add('show');document.getElementById('phoneUpdateOption').style.display='none';}
         function downloadInvoice(id){showMobileToast('🖨️ Printing '+id+'...');}
         function saveNotifications(){document.getElementById('successTitle').textContent='Preferences Saved';document.getElementById('successMessage').textContent='Your notification preferences have been updated.';document.getElementById('successModal').classList.add('show');}
@@ -1540,7 +2222,66 @@
 
         function formatPhoneNumber(input){let val=input.value.replace(/\D/g,'');if(val.length>10)val=val.substring(0,10);let formatted='';if(val.length>0)formatted='('+val.substring(0,3);if(val.length>=3)formatted+=') ';if(val.length>3)formatted+=val.substring(3,6);if(val.length>=6)formatted+='-'+val.substring(6,10);input.value=formatted;validatePhone(input);}
         function validatePhone(input){const errId=input.id+'Error';const errEl=document.getElementById(errId);if(!errEl)return true;const val=input.value.replace(/\D/g,'');errEl.textContent='';input.style.borderColor='';if(val.length===0)return true;if(val.length<10){errEl.textContent='Phone number must be 10 digits';input.style.borderColor='var(--c-error)';return false;}if(/^(\d)\1{9}$/.test(val)){errEl.textContent='Invalid phone number';input.style.borderColor='var(--c-error)';return false;}if(/^(0000000000|1234567890|0123456789)$/.test(val)){errEl.textContent='Invalid phone number';input.style.borderColor='var(--c-error)';return false;}const areaCode=val.substring(0,3);if(areaCode==='000'||areaCode==='111'||areaCode==='555'){errEl.textContent='Invalid area code';input.style.borderColor='var(--c-error)';return false;}input.style.borderColor='var(--c-success)';return true;}
-        window.addEventListener('load',function(){renderInboxMessages();updateMessagesBadge();updateMobileBadges();updateNotificationsBadge();initPropertyFilters();setTimeout(()=>{addChatMessage('👋 Hi John! I\'m <strong>Artur</strong>, your personal real estate assistant. I\'m here to guide you through every step of selling your property.<br><br>I can help you with:<br>• Reviewing and responding to offers<br>• Managing visit requests<br>• Understanding contracts<br>• Answering any questions<br><br>Just type below or click on anything you need help with!');},800);visitedPages['offers']=false;setTimeout(()=>showPageContextMessage('offers'),2500);});
+        window.addEventListener('load',function(){document.querySelectorAll('#aLaCarteOptions > label').forEach(l=>{l.classList.add('alc-item');Array.from(l.querySelectorAll(':scope > div')).forEach(d=>{if(d.classList.contains('alc-info'))return;if(d.querySelector('input[type="checkbox"]')){d.classList.add('alc-left');const n=d.querySelector('span');if(n)n.classList.add('alc-name');}else if(d.querySelector('.alc-info-btn')){d.classList.add('alc-right');const p=d.querySelector('span');if(p)p.classList.add('alc-price');}});Array.from(l.children).forEach(c=>{if(c.tagName==='SPAN')c.classList.add('alc-badge',c.textContent.includes('never')?'urgent':'popular');});});renderInboxMessages();updateMessagesBadge();updateMobileBadges();updateNotificationsBadge();initPropertyFilters();setTimeout(()=>{addChatMessage('👋 Hi John! I\'m <strong>Artur</strong>, your personal real estate assistant. I\'m here to guide you through every step of selling your property.<br><br>I can help you with:<br>• Reviewing and responding to offers<br>• Managing visit requests<br>• Understanding contracts<br>• Answering any questions<br><br>Just type below or click on anything you need help with!');},800);visitedPages['offers']=false;setTimeout(()=>showPageContextMessage('offers'),2500);});
+
+        // === Hash Router ===
+        (function(){
+            const routeMap={'/your-listing':'properties','/offers':'offers','/requested-show':'visits','/your-messages':'messages','/calendar':'calendar','/contract':'contracts','/profile':'account','/submit-property':'addProperty'};
+            const pageToRoute={};Object.entries(routeMap).forEach(([k,v])=>pageToRoute[v]=k);
+            let routing=false;
+            const _showPage=showPage;
+            showPage=function(page,e){
+                if(e)e.preventDefault();
+                _showPage(page,e);
+                const route=pageToRoute[page];
+                if(route){routing=true;window.location.hash=route;}
+                updateActiveNav(route||'');
+                updateMobileActiveNav(page);
+            };
+            function updateActiveNav(route){
+                document.querySelectorAll('.nav-link').forEach(l=>{l.classList.remove('active');if(l.getAttribute('href')===route)l.classList.add('active');});
+            }
+            function updateMobileActiveNav(page){
+                const mobileMap={'properties':0,'offers':1,'visits':2,'messages':3};
+                document.querySelectorAll('.mobile-bottom-nav-items > .mobile-bottom-nav-item, .mobile-bottom-nav-items > .mobile-more-wrapper .mobile-bottom-nav-item').forEach(i=>i.classList.remove('active'));
+                const idx=mobileMap[page];
+                if(idx!==undefined){const items=document.querySelectorAll('.mobile-bottom-nav-items > .mobile-bottom-nav-item');if(items[idx])items[idx].classList.add('active');}
+            }
+            function handleHash(){
+                if(routing){routing=false;return;}
+                const hash=window.location.hash.slice(1);
+                const page=routeMap[hash];
+                // Hide submit property page when navigating away
+                document.getElementById('submitPropertyPage').style.display='none';
+                document.body.style.overflow='';
+                if(page==='addProperty'){
+                    document.getElementById('submitPropertyPage').style.display='block';
+                    document.body.style.overflow='hidden';
+                }else if(page){
+                    _showPage(page);
+                    updateActiveNav(hash);
+                    updateMobileActiveNav(page);
+                    if(page==='calendar'){currentCalendarDate=new Date(2026,1,1);renderCalendar();}
+                    if(page==='messages')renderInboxMessages();
+                    showPageContextMessage(page);
+                }
+            }
+            document.addEventListener('click',function(e){
+                const a=e.target.closest('a');
+                if(a){const href=a.getAttribute('href');if(href&&routeMap[href]){e.preventDefault();e.stopPropagation();window.location.hash=href;}}
+            },true);
+            document.querySelectorAll('[onclick]').forEach(el=>{
+                const oc=el.getAttribute('onclick')||'';
+                const m=oc.match(/window\.location\.href\s*=\s*'([^']+)'/);
+                if(m&&routeMap[m[1]]){
+                    const path=m[1];const hasClose=oc.includes('closeAllDropdowns');
+                    el.removeAttribute('onclick');
+                    el.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();window.location.hash=path;if(hasClose)closeAllDropdowns();});
+                }
+            });
+            window.addEventListener('hashchange',handleHash);
+            if(window.location.hash&&routeMap[window.location.hash.slice(1)]){handleHash();}else{window.location.hash='/submit-property';}
+        })();
     </script>
 </body>
 </html>
