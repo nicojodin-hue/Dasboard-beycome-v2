@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beycome Dashboard 2026 — Offers</title>
+<style>
+/* ========== VARIABLES ========== */
+:root {
+  --c-primary:#152330;--c-accent:#7d8ff7;--c-accent-hover:#6a7de8;--c-text-secondary:#636366;
+  --c-border:#e0e0e0;--c-bg:#FBFBFB;--c-bg-light:#f5f5f5;--c-bg-white:white;
+  --c-success:#81c797;--c-success-dark:#5a9e6f;--c-success-bg:#e8f5ec;
+  --c-error:#f75353;--c-error-bg:#fef2f2;
+  --c-warning:#d97706;--c-warning-bg:#fef3e2;--c-pending:#d9a03d;
+  --c-accent-bg:#e5eaff;--c-accent-dark:#5a6fd6;
+  --c-pink:#ec4899;--c-pink-dark:#be185d;--c-pink-bg:#fdf2f8;
+}
+
+/* ========== RESET ========== */
+*{margin:0;padding:0;box-sizing:border-box}
+button,input,textarea,select{font-family:inherit}
+html{overflow-y:scroll}
+html,body{overscroll-behavior:none}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--c-bg);min-height:100vh;min-width:320px}
+
+/* ========== SHARED: HEADER ========== */
+.main-header{background:var(--c-bg);padding:20px 0 24px;position:fixed;top:0;left:0;right:0;z-index:101}
+.main-header-container{max-width:1400px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+.main-header-left{display:flex;gap:24px;align-items:center;padding-left:16px}
+.main-header-left a{font-size:14px;font-weight:500;color:var(--c-primary);text-decoration:none}
+.main-header-left a:hover{color:var(--c-accent)}
+.main-header-center{display:flex;justify-content:center}
+.logo{font-size:26px;font-weight:500;color:var(--c-primary);text-decoration:none;text-transform:lowercase}
+.main-header-right{display:flex;justify-content:flex-end}
+
+/* ========== SHARED: ICON BUTTONS ========== */
+.icon-btn,.notifications-btn,.contact-icon-btn,.chat-close-mobile{width:37px;height:37px;border-radius:50%;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--c-text-secondary);transition:all 0.2s}
+.icon-btn:hover,.notifications-btn:hover,.contact-icon-btn:hover,.chat-close-mobile:hover{background:var(--c-bg-light);color:var(--c-accent)}
+
+/* ========== SHARED: BUTTONS ========== */
+.btn{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid var(--c-border);background:var(--c-bg-white);transition:all 0.2s;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:37px}
+.btn:hover{border-color:var(--c-accent);color:var(--c-accent)}
+.btn-p{background:var(--c-accent);color:white;border-color:var(--c-accent)}
+.btn-p:hover{background:var(--c-accent-hover);border-color:var(--c-accent-hover);color:white}
+.btn-s{background:var(--c-bg-white);color:var(--c-text-secondary);border-color:var(--c-text-secondary)}
+.btn-s:hover{background:var(--c-bg-light)}
+.btn-success{background:var(--c-success);color:white;border:none}
+.btn-success:hover{background:#6eb585;border-color:transparent;color:white}
+.btn-danger{border-color:var(--c-error);color:var(--c-error)}
+.btn-accent{border-color:var(--c-accent);color:var(--c-accent)}
+.btn-lg{padding:10px 20px;font-size:14px;font-weight:600;border-radius:12px}
+
+/* ========== SHARED: INPUTS ========== */
+.input{padding:8px 12px;border:1px solid var(--c-border);border-radius:8px;font-size:14px;outline:none;width:100%;height:37px}
+.input:focus{border-color:var(--c-accent)}
+
+/* ========== SHARED: BADGES ========== */
+.notifications-badge,.nav-badge{background:#b3261e;color:white;font-size:10px;font-weight:600;min-width:16px;height:16px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;padding:0 4px}
+.notifications-badge{position:absolute;top:4px;right:4px}
+.nav-badge{position:relative;top:-1px;margin-left:4px}
+.status-badge{font-size:10px;padding:4px 8px;border-radius:20px;font-weight:500}
+.status-badge.pending{background:var(--c-warning-bg);color:var(--c-pending)}
+.status-badge.accepted{background:var(--c-success-bg);color:var(--c-success-dark)}
+.status-badge.new{background:var(--c-accent-bg);color:var(--c-accent-dark)}
+
+/* ========== SHARED: NOTIFICATIONS DROPDOWN ========== */
+.notifications-dropdown{position:relative;margin-right:8px}
+.notifications-btn{position:relative}
+.notifications-btn:hover svg{animation:bell-ring .5s ease-in-out}
+.notifications-btn.has-unread svg{animation:bell-swing 2s ease-in-out infinite}
+.notifications-btn.has-unread:hover svg{animation:bell-ring .5s ease-in-out}
+@keyframes bell-ring{0%{transform:rotate(0)}15%{transform:rotate(14deg)}30%{transform:rotate(-12deg)}45%{transform:rotate(10deg)}60%{transform:rotate(-8deg)}75%{transform:rotate(4deg)}90%{transform:rotate(-2deg)}100%{transform:rotate(0)}}
+@keyframes bell-swing{0%,80%,100%{transform:rotate(0)}85%{transform:rotate(6deg)}95%{transform:rotate(-6deg)}}
+.notifications-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--c-bg-white);border:1px solid var(--c-border);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.15);width:360px;max-height:480px;z-index:1100;overflow:hidden}
+.notifications-menu.show{display:block}
+.notifications-header{display:flex;align-items:center;justify-content:space-between;padding:20px;border-bottom:1px solid var(--c-border)}
+.notifications-header h3{font-size:16px;font-weight:600;color:var(--c-primary);margin:0}
+.mark-all-read-btn{font-size:13px;font-weight:500;color:var(--c-accent);background:transparent;border:none;cursor:pointer;padding:4px 8px;border-radius:6px}
+.mark-all-read-btn:hover{background:var(--c-bg-light)}
+.notifications-list{max-height:340px;overflow-y:auto}
+.notification-item{display:flex;gap:12px;padding:16px 20px;cursor:pointer;border-bottom:1px solid #f0f0f0;transition:background .2s}
+.notification-item:hover{background:#f9f9f9}
+.notification-item.unread{background:#f5f8ff}
+.notification-item.unread:hover{background:#eef2ff}
+.notification-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.notification-icon.offer{background:var(--c-warning-bg)}
+.notification-icon.visit{background:var(--c-success-bg)}
+.notification-icon.message{background:var(--c-accent-bg)}
+.notification-content{flex:1;min-width:0}
+.notification-title{font-size:13px;font-weight:500;color:var(--c-primary);margin-bottom:2px;line-height:1.4}
+.notification-title strong{font-weight:600}
+.notification-meta{font-size:12px;color:var(--c-text-secondary);display:flex;align-items:center;gap:8px}
+.notification-dot{width:8px;height:8px;background:var(--c-accent);border-radius:50%;flex-shrink:0}
+.notifications-footer{padding:16px 20px;border-top:1px solid var(--c-border);text-align:center}
+.notifications-footer a{font-size:13px;font-weight:500;color:var(--c-accent);text-decoration:none}
+@media(max-width:480px){.notifications-menu{width:calc(100vw - 32px);right:-60px}}
+
+/* ========== SHARED: DASHBOARD DROPDOWN ========== */
+.dashboard-dropdown{position:relative}
+.dashboard-btn{font-size:14px;font-weight:500;color:var(--c-primary);padding:8px 16px;border-radius:8px;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;height:37px}
+.dashboard-btn:hover{color:var(--c-accent)}
+.dashboard-btn .dashboard-text{display:inline}
+.hamburger-icon{display:none}
+.dashboard-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--c-bg-white);border:1px solid var(--c-border);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.15);min-width:200px;padding:8px;z-index:1100}
+.dashboard-menu.show{display:block}
+.dashboard-menu-item{display:flex;align-items:center;gap:12px;padding:12px 16px;color:var(--c-primary);text-decoration:none;font-size:14px;font-weight:500;border-radius:8px}
+.dashboard-menu-item svg{flex-shrink:0}
+.dashboard-menu-item:hover{color:var(--c-accent);background:var(--c-bg-light)}
+.desktop-only{display:flex}
+.mobile-only{display:none !important}
+@media(max-width:1024px){
+  .desktop-only{display:none !important}
+  .mobile-only{display:flex !important}
+  .dashboard-btn{padding:8px}
+  .dashboard-btn .dashboard-text{display:none}
+  .dashboard-btn .hamburger-icon{display:block}
+  .dashboard-btn .arrow-icon{display:none}
+}
+
+/* ========== SHARED: TOP NAV ========== */
+.top-nav{background:var(--c-bg);position:fixed;top:68px;left:0;right:0;z-index:100;border-bottom:1px solid var(--c-border)}
+.nav-greeting-section{max-width:1400px;margin:0 auto;padding:16px 20px}
+.nav-greeting{font-size:20px;font-weight:700;color:var(--c-primary);display:flex;align-items:center;gap:8px;padding-left:16px;line-height:1}
+.nav-container{max-width:1400px;margin:0 auto;display:flex;align-items:center;padding:0 20px;gap:24px}
+.nav-menu{display:flex;gap:4px;list-style:none;align-items:center;padding-bottom:4px}
+.nav-link{display:flex;align-items:center;gap:6px;padding:8px 16px;color:var(--c-primary);text-decoration:none;font-size:14px;font-weight:500;border-radius:8px;white-space:nowrap;position:relative}
+.nav-link:hover{color:var(--c-accent)}
+.nav-link.active{color:var(--c-accent)}
+
+/* ========== SHARED: MENUS ========== */
+.menu{display:none;position:absolute;top:calc(100% + 8px);background:var(--c-bg-white);border:1px solid var(--c-border);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.15);min-width:180px;padding:8px;z-index:1100;overflow:hidden}
+.menu.show{display:block}
+.menu.up{top:auto;bottom:100%;margin-bottom:8px}
+.menu.right{right:0}
+.menu-item{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border:none;background:transparent;font-size:14px;font-weight:500;color:var(--c-primary);cursor:pointer;border-radius:8px;text-align:left;font-family:inherit;text-decoration:none}
+.menu-item:hover{background:var(--c-bg-light);color:var(--c-accent)}
+.menu-item.active{background:#f5f8ff}
+.menu-item svg{flex-shrink:0}
+
+/* ========== SHARED: LAYOUT ========== */
+.main-layout{display:flex;max-width:1400px;margin:0 auto;padding:0 20px;padding-right:420px;padding-top:170px;min-height:calc(100vh - 180px);position:relative}
+.content-area{flex:1;min-width:0;padding-top:12px;margin-left:16px;width:100%}
+.page-content{padding:0 0 20px;width:100%}
+@media(max-width:1024px){.main-layout{padding-right:20px;padding-top:170px}}
+@media(max-width:768px){.main-layout{padding-bottom:160px;padding-top:130px}}
+
+/* ========== SHARED: CHAT WIDGET ========== */
+.chat-widget{width:380px;flex-shrink:0;display:flex;flex-direction:column;position:fixed;top:95px;right:20px;height:calc(100vh - 120px);max-height:700px;z-index:102}
+.chat-header{display:flex;align-items:center;justify-content:space-between;padding:20px;background:var(--c-bg-white);border-bottom:1px solid var(--c-border);border-radius:12px 12px 0 0}
+.chat-header h3{font-size:14px;font-weight:600;color:var(--c-primary);margin:0}
+.chat-online-dot{width:8px;height:8px;background:var(--c-success);border-radius:50%;display:inline-block;margin-left:8px;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.5}}
+.chat-messages{flex:1;padding:20px;overflow-y:auto;background:var(--c-bg-white)}
+.chat-message{margin-bottom:16px;display:flex;width:100%}
+.chat-message.bot{justify-content:flex-start}
+.chat-message.bot>div{width:100%}
+.chat-message.user{justify-content:flex-end}
+.chat-message.user>div{width:auto;max-width:85%}
+.message-bubble{padding:8px 12px;border-radius:12px;font-size:14px;line-height:1.5}
+.chat-message.bot .message-bubble{background:transparent;color:var(--c-primary)}
+.chat-message.user .message-bubble{background:#e8e8e8;color:var(--c-primary)}
+.chat-input-container{padding:20px;background:var(--c-bg-white);border-top:1px solid var(--c-border);border-radius:0 0 12px 12px}
+.chat-input-wrapper{display:flex;align-items:center;position:relative}
+.chat-input{flex:1;padding:12px 80px 12px 16px;border:1px solid var(--c-border);border-radius:20px;font-size:14px;outline:none}
+.chat-input:focus{border-color:var(--c-accent)}
+.chat-send-btn{position:absolute;right:6px;width:30px;height:30px;background:var(--c-primary);border:none;border-radius:50%;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.chat-mic-btn{position:absolute;right:42px;width:30px;height:30px;background:transparent;border:none;color:var(--c-text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.chat-mic-btn:hover{background:var(--c-bg-light)}
+.chat-close-mobile{display:none;position:absolute;top:16px;right:16px;width:32px;height:32px}
+.chat-disclaimer{font-size:10px;color:var(--c-text-secondary);text-align:center;margin-top:8px}
+.chat-widget,.visit-card{background:var(--c-bg-white);border-radius:12px;border:1px solid var(--c-border);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+@media(max-width:1024px){
+  .chat-close-mobile{display:flex;align-items:center;justify-content:center}
+  .chat-widget{display:none}
+  .chat-widget.mobile-open{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;max-height:100%;border-radius:0;z-index:1000}
+}
+
+/* ========== SHARED: MOBILE BOTTOM NAV ========== */
+.mobile-bottom-nav{display:none;position:fixed;bottom:12px;left:50%;transform:translateX(-50%);width:388px;background:var(--c-bg-white);border:1px solid var(--c-border);border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.1);z-index:200;padding:10px 0;padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+.mobile-bottom-nav-chat{padding:12px 14px 10px;border-bottom:1px solid var(--c-border)}
+.mobile-nav-chat-wrapper{display:flex;align-items:center;position:relative}
+.mobile-nav-chat-input{flex:1;padding:14px 110px 14px 16px;border:1px solid var(--c-border);border-radius:24px;font-size:15px;outline:none;font-family:inherit}
+.mobile-nav-chat-input:focus{border-color:var(--c-accent)}
+.mobile-nav-chat-input::placeholder{color:var(--c-text-secondary)}
+.mobile-nav-chat-send{position:absolute;right:6px;width:36px;height:36px;background:var(--c-primary);border:none;border-radius:50%;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mobile-nav-chat-mic{position:absolute;right:46px;width:36px;height:36px;background:transparent;border:none;color:var(--c-text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.mobile-nav-chat-attach{position:absolute;right:86px;width:36px;height:36px;background:transparent;border:none;color:var(--c-text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.mobile-more-wrapper{position:relative}
+.mobile-bottom-nav-items{display:flex;justify-content:space-around;align-items:center;padding:4px 6px 0}
+.mobile-bottom-nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 8px;color:var(--c-primary);position:relative;border-radius:10px;min-width:56px;min-height:44px;cursor:pointer}
+.mobile-bottom-nav-item.active{color:var(--c-accent)}
+.mobile-bottom-nav-item.active .mobile-bottom-nav-icon{color:var(--c-accent)}
+.mobile-bottom-nav-icon{width:48px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:16px;position:relative;transition:color .2s}
+.mobile-bottom-nav-icon svg{width:20px;height:20px}
+.mobile-bottom-nav-item:hover .mobile-bottom-nav-icon{color:var(--c-accent)}
+.mobile-bottom-nav-badge{position:absolute;top:-2px;right:6px;background:#b3261e;color:white;font-size:10px;font-weight:600;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.mobile-bottom-nav-label{font-size:11px;font-weight:500}
+@media(max-width:768px){
+  .mobile-bottom-nav{display:block}
+  .nav-menu{display:none}
+  .nav-container{justify-content:flex-start;height:0;padding:0}
+  .main-header-left{display:none !important}
+  .main-header-container{grid-template-columns:1fr auto}
+  .main-header-right{order:2}
+  .main-header-center{order:1;justify-content:flex-start;padding-left:16px}
+}
+
+/* ========== SHARED: MODALS ========== */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(21,35,48,.6);z-index:1200;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal{background:var(--c-bg-white);border-radius:12px;max-width:480px;width:calc(100% - 32px);max-height:90vh;overflow-y:auto;padding:20px;margin:16px;border:1px solid var(--c-border)}
+.modal h2{font-size:14px;font-weight:700;color:var(--c-primary);margin-bottom:12px}
+.modal p{font-size:14px;color:var(--c-primary);line-height:1.5;margin-bottom:16px}
+.modal-actions{display:flex;gap:12px}
+.modal-btn{flex:1;min-width:fit-content;white-space:nowrap}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:14px;color:var(--c-primary);font-weight:500;margin-bottom:8px}
+.form-group textarea{width:70%;padding:12px;border:1px solid var(--c-border);border-radius:8px;font-size:14px;outline:none;resize:vertical;min-height:80px}
+.form-group textarea:focus{border-color:var(--c-accent)}
+@media(max-width:480px){.modal-actions{flex-direction:column}.modal-btn{width:100%;flex:none}}
+.success-message{text-align:center;padding:24px}
+.success-icon{font-size:64px;margin-bottom:16px;animation:bounce .6s ease-in-out}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
+/* ========== SHARED: TOAST ========== */
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--c-primary);color:white;padding:12px 24px;border-radius:24px;font-size:14px;font-weight:500;z-index:9999}
+
+/* ========== SHARED: FILTER / TABS ========== */
+.visit-tabs{display:flex;gap:16px;margin-bottom:20px;align-items:center;width:100%;position:relative;flex-wrap:wrap}
+.filter-dropdown{position:relative;flex-shrink:0}
+.filter-btn{display:flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid var(--c-border);background:var(--c-bg-white);border-radius:20px;font-size:14px;font-weight:500;color:var(--c-primary);cursor:pointer;min-width:120px;justify-content:space-between;height:37px;white-space:nowrap}
+.filter-btn:hover{border-color:var(--c-accent);color:var(--c-accent)}
+.filter-count{font-size:14px;font-weight:500;color:var(--c-text-secondary);min-width:16px;text-align:center;display:inline-block}
+
+/* ========== PAGE: OFFERS ========== */
+.visit-card{padding:20px;width:100%;box-sizing:border-box;min-height:90px;margin-bottom:12px}
+.visit-card-content{display:flex;justify-content:space-between;align-items:center;gap:20px;width:100%}
+.visit-info{flex:1;min-width:200px}
+.visit-info h3{font-size:14px;font-weight:400;color:var(--c-primary);margin-bottom:0;line-height:1.4}
+.visit-meta-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--c-text-secondary);flex-wrap:wrap}
+.visit-actions{display:flex;gap:8px;flex-wrap:wrap}
+.address-main{font-weight:600;color:var(--c-primary);display:block;line-height:1.3;font-size:15px}
+.address-secondary{font-weight:400;color:var(--c-text-secondary);font-size:13px;display:block;margin-top:0;line-height:1.3;margin-bottom:6px}
+.offers-content{display:block;width:100%}
+.offers-content .visit-card{display:block;width:100%}
+@media(max-width:768px){.visit-card-content{flex-direction:column;align-items:flex-start}.visit-actions{width:100%;justify-content:flex-start}}
+@media(max-width:480px){.visit-meta-row{flex-direction:column;align-items:flex-start;gap:4px}}
+</style>
+</head>
+<body>
+
+<!-- ========== SHARED: SVG ICONS ========== -->
+<svg style="display:none">
+  <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></symbol>
+  <symbol id="i-attach" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="i-house" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+  <symbol id="i-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></symbol>
+  <symbol id="i-chev-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></symbol>
+  <symbol id="i-chev-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></symbol>
+</svg>
+
+<!-- ========== HEADER ========== -->
+<header class="main-header">
+  <div class="main-header-container">
+    <div class="main-header-left"><a href="#">Sell</a><a href="#">Buy</a><a href="#">Title services</a></div>
+    <div class="main-header-center"><a href="#" class="logo">beycome</a></div>
+    <div class="main-header-right">
+      <div class="notifications-dropdown">
+        <button class="notifications-btn" onclick="toggleMenu('notificationsMenu',event)">
+          <svg width="20" height="20"><use href="#i-bell"/></svg>
+          <span class="notifications-badge" id="notifBadge">4</span>
+        </button>
+        <div class="notifications-menu" id="notificationsMenu">
+          <div class="notifications-header"><h3>Notifications</h3><button class="mark-all-read-btn" onclick="markAllRead(event)">Mark all read</button></div>
+          <div class="notifications-list" id="notifList"></div>
+          <div class="notifications-footer"><a href="#">View all activity</a></div>
+        </div>
+      </div>
+      <div class="dashboard-dropdown">
+        <button class="dashboard-btn" onclick="toggleMenu('dashboardMenu',event)">
+          <span class="dashboard-text">Dashboard</span>
+          <svg class="arrow-icon desktop-only" width="14" height="14"><use href="#i-chev-down"/></svg>
+          <svg class="hamburger-icon" width="22" height="22"><use href="#i-menu"/></svg>
+        </button>
+        <div class="dashboard-menu" id="dashboardMenu">
+          <a href="#" class="dashboard-menu-item desktop-only">My Account</a>
+          <a href="#" class="dashboard-menu-item mobile-only"><svg width="18" height="18"><use href="#i-grid"/></svg>Dashboard</a>
+          <a href="#" class="dashboard-menu-item desktop-only">Sign Out</a>
+          <a href="#" class="dashboard-menu-item mobile-only" style="color:var(--c-error)"><svg width="18" height="18"><use href="#i-logout"/></svg>Sign Out</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== TOP NAV ========== -->
+<nav class="top-nav">
+  <div class="nav-greeting-section"><span class="nav-greeting" id="navGreeting"></span></div>
+  <div class="nav-container">
+    <ul class="nav-menu">
+      <li><a href="#" class="nav-link">Dashboard</a></li>
+      <li><a href="#" class="nav-link">Properties</a></li>
+      <li><a href="#" class="nav-link active">Offers<span class="nav-badge">1</span></a></li>
+      <li><a href="#" class="nav-link">Showings<span class="nav-badge">2</span></a></li>
+      <li><a href="#" class="nav-link">Inbox<span class="nav-badge">3</span></a></li>
+      <li><a href="#" class="nav-link"><svg width="18" height="18" style="vertical-align:middle"><use href="#i-cal"/></svg></a></li>
+      <li style="position:relative"><a href="#" class="nav-link" onclick="toggleMenu('toolsMenu',event)">More<svg width="14" height="14" style="margin-left:4px"><use href="#i-chev-down"/></svg></a>
+        <div class="menu right" id="toolsMenu">
+          <a href="#" class="menu-item">Account</a>
+          <a href="#" class="menu-item">Contract Center</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ========== MAIN LAYOUT ========== -->
+<div class="main-layout">
+  <div class="content-area">
+
+    <!-- ======== PAGE: OFFERS ======== -->
+    <div class="page-content" id="offersPage">
+      <div class="visit-tabs">
+        <div class="filter-dropdown">
+          <button class="filter-btn" onclick="toggleMenu('offerFilterMenu',event)">
+            <span id="offerFilterText">All</span>
+            <span class="filter-count" id="offerFilterCount">3</span>
+            <svg width="14" height="14"><use href="#i-chev-down"/></svg>
+          </button>
+          <div class="menu" id="offerFilterMenu">
+            <button class="menu-item active" onclick="filterOffers('all','All',event)">All <span class="filter-count">3</span></button>
+            <button class="menu-item" onclick="filterOffers('pending','Pending',event)">Pending <span class="filter-count">1</span></button>
+            <button class="menu-item" onclick="filterOffers('received','Received',event)">Received <span class="filter-count">2</span></button>
+            <button class="menu-item" onclick="filterOffers('sent','Sent',event)">Sent <span class="filter-count">1</span></button>
+            <button class="menu-item" onclick="filterOffers('accepted','Accepted',event)">Accepted <span class="filter-count">1</span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Received Offers -->
+      <div class="offers-content" id="offersReceived">
+        <div class="visit-card" data-type="received" data-status="pending">
+          <div class="visit-card-content">
+            <div class="visit-info">
+              <h3><span class="address-main">1505 N Jean Baptiste Pointe du Sable Lake Shore Dr</span><span class="address-secondary">Bonadelle Ranchos-Madera Ranchos, CA 33135</span></h3>
+              <div class="visit-meta-row">
+                <span><strong>Jan 25, 2026</strong></span>
+                <span>from <strong>John Smith</strong></span>
+                <button class="contact-icon-btn" onclick="contactPerson('John Smith','john.smith@email.com','(305) 555-1234')"><svg width="16" height="16"><use href="#i-chat"/></svg></button>
+                <span class="status-badge pending">Pending</span>
+                <span class="status-badge" style="background:var(--c-warning-bg);color:var(--c-warning)">Expires in 48 hours</span>
+              </div>
+            </div>
+            <div class="visit-actions"><button class="btn" onclick="viewOffer(this)">View the offer</button></div>
+          </div>
+        </div>
+
+        <div class="visit-card" data-type="received" data-status="accepted">
+          <div class="visit-card-content">
+            <div class="visit-info">
+              <h3><span class="address-main">456 Ocean Drive</span><span class="address-secondary">Miami Beach, FL 33139</span></h3>
+              <div class="visit-meta-row">
+                <span><strong>Jan 20, 2026</strong></span>
+                <span>from <strong>Sarah Johnson</strong></span>
+                <button class="contact-icon-btn" onclick="contactPerson('Sarah Johnson','sarah.johnson@email.com','(305) 555-5678')"><svg width="16" height="16"><use href="#i-chat"/></svg></button>
+                <span class="status-badge accepted">Accepted</span>
+              </div>
+            </div>
+            <div class="visit-actions"><button class="btn">View the offer</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sent Offers -->
+      <div class="offers-content" id="offersSent">
+        <div class="visit-card" data-type="sent" data-status="pending">
+          <div class="visit-card-content">
+            <div class="visit-info">
+              <h3><span class="address-main">789 Palm Avenue</span><span class="address-secondary">Coral Gables, FL 33134</span></h3>
+              <div class="visit-meta-row">
+                <span><strong>Jan 25, 2026</strong></span>
+                <span>to <strong>David Miller</strong></span>
+                <button class="contact-icon-btn" onclick="contactPerson('David Miller','david.miller@email.com','(305) 555-9012')"><svg width="16" height="16"><use href="#i-chat"/></svg></button>
+                <span class="status-badge pending">Awaiting Response</span>
+              </div>
+            </div>
+            <div class="visit-actions"><button class="btn">View the offer</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ========== CHAT WIDGET ========== -->
+  <div class="chat-widget">
+    <div class="chat-header">
+      <h3>💬 Chat with Artur<span class="chat-online-dot"></span></h3>
+      <button class="chat-close-mobile" onclick="closeMobileChat()"><svg width="20" height="20"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input-container">
+      <div class="chat-input-wrapper">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Ask Artur anything…" onkeypress="if(event.key==='Enter')sendChat()">
+        <button class="chat-mic-btn"><svg width="16" height="16"><use href="#i-mic"/></svg></button>
+        <button class="chat-send-btn" onclick="sendChat()"><svg width="14" height="14"><use href="#i-send"/></svg></button>
+      </div>
+      <div class="chat-disclaimer">✨ Artur has helped <strong>18,500+</strong> homeowners close their sale<br>Beycome makes no warranties regarding content produced by Artur.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MOBILE BOTTOM NAV ========== -->
+<nav class="mobile-bottom-nav">
+  <div class="mobile-bottom-nav-chat">
+    <div class="mobile-nav-chat-wrapper">
+      <input type="text" class="mobile-nav-chat-input" placeholder="Ask Artur anything…" onkeypress="if(event.key==='Enter'){showToast('Message sent to Artur!');this.value=''}">
+      <button class="mobile-nav-chat-attach"><svg width="18" height="18"><use href="#i-attach"/></svg></button>
+      <button class="mobile-nav-chat-mic"><svg width="18" height="18"><use href="#i-mic"/></svg></button>
+      <button class="mobile-nav-chat-send" onclick="showToast('Message sent to Artur!')"><svg width="16" height="16"><use href="#i-send"/></svg></button>
+    </div>
+  </div>
+  <div class="mobile-bottom-nav-items">
+    <div class="mobile-bottom-nav-item"><div class="mobile-bottom-nav-icon"><svg width="22" height="22"><use href="#i-house"/></svg></div><span class="mobile-bottom-nav-label">Properties</span></div>
+    <div class="mobile-bottom-nav-item active"><div class="mobile-bottom-nav-icon"><svg width="22" height="22"><use href="#i-dollar"/></svg><span class="mobile-bottom-nav-badge">1</span></div><span class="mobile-bottom-nav-label">Offers</span></div>
+    <div class="mobile-bottom-nav-item"><div class="mobile-bottom-nav-icon"><svg width="22" height="22"><use href="#i-cal"/></svg><span class="mobile-bottom-nav-badge">2</span></div><span class="mobile-bottom-nav-label">Showings</span></div>
+    <div class="mobile-bottom-nav-item"><div class="mobile-bottom-nav-icon"><svg width="22" height="22"><use href="#i-chat"/></svg><span class="mobile-bottom-nav-badge">3</span></div><span class="mobile-bottom-nav-label">Inbox</span></div>
+    <div class="mobile-more-wrapper">
+      <div class="menu up right" id="mobileDropup">
+        <button class="menu-item" onclick="closeAllDropdowns()"><svg width="18" height="18"><use href="#i-cal"/></svg>Calendar</button>
+        <button class="menu-item" onclick="closeAllDropdowns()"><svg width="18" height="18"><use href="#i-doc"/></svg>Contracts</button>
+        <button class="menu-item" onclick="closeAllDropdowns()"><svg width="18" height="18"><use href="#i-user"/></svg>Account</button>
+      </div>
+      <div class="mobile-bottom-nav-item" onclick="toggleMenu('mobileDropup',event)"><div class="mobile-bottom-nav-icon"><svg width="22" height="22"><use href="#i-dots"/></svg></div><span class="mobile-bottom-nav-label">More</span></div>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== MODALS ========== -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <div class="success-message">
+      <div class="success-icon" id="successIcon">👍</div>
+      <h2 id="successTitle">Success!</h2>
+      <p id="successMessage">Done.</p>
+      <button class="btn btn-s btn-lg modal-btn" onclick="closeModal('successModal')" style="max-width:200px;margin:0 auto">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="messageModal">
+  <div class="modal">
+    <h2 id="msgModalTitle">Message</h2>
+    <div id="msgModalContact" style="margin-bottom:16px;font-size:13px;color:var(--c-text-secondary)"></div>
+    <div class="form-group"><textarea id="msgText" placeholder="Type your message here..."></textarea></div>
+    <div class="modal-actions">
+      <button class="btn btn-s btn-lg modal-btn" onclick="closeModal('messageModal')">Cancel</button>
+      <button class="btn btn-p btn-lg modal-btn" onclick="sendContactMsg()">Send Message</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ========== SHARED JS ========== */
+const isDesktop = () => window.innerWidth > 1024;
+
+// Greeting
+(function(){
+  const h = new Date().getHours();
+  const g = h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+  const i = h<12?'☀️':h<17?'🌤️':'🌙';
+  document.getElementById('navGreeting').innerHTML = `<span style="font-size:20px;line-height:1">${i}</span> ${g}, John Doe`;
+})();
+
+// Dropdown management
+function closeAllDropdowns(){document.querySelectorAll('.menu,.dashboard-menu,.notifications-menu').forEach(m=>m.classList.remove('show'));document.body.style.overflow=''}
+function toggleMenu(id,e){e.stopPropagation();e.preventDefault();const m=document.getElementById(id);const open=m.classList.contains('show');closeAllDropdowns();if(!open){m.classList.add('show');if(id==='notificationsMenu')renderNotifs()}}
+document.addEventListener('click',e=>{if(!e.target.closest('.filter-dropdown,.dashboard-dropdown,.notifications-dropdown,.nav-item,.mobile-more-wrapper,.menu'))closeAllDropdowns()});
+
+// Notifications
+let notifs=[
+  {id:1,type:'offer',icon:'💰',title:'<strong>John Smith</strong> submitted an offer on <strong>123 Main Street</strong>',time:'2 hours ago',unread:true},
+  {id:2,type:'visit',icon:'📅',title:'<strong>Sarah Johnson</strong> requested a visit',time:'5 hours ago',unread:true},
+  {id:3,type:'message',icon:'💬',title:'<strong>Michael Chen</strong> sent you a message',time:'2 days ago',unread:true},
+  {id:4,type:'visit',icon:'✅',title:'Visit confirmed for <strong>789 Palm Avenue</strong>',time:'3 days ago',unread:true}
+];
+function renderNotifs(){
+  document.getElementById('notifList').innerHTML=notifs.map(n=>
+    `<div class="notification-item ${n.unread?'unread':''}" onclick="notifs.find(x=>x.id===${n.id}).unread=false;updateNotifBadge();renderNotifs()">
+      <div class="notification-icon ${n.type}">${n.icon}</div>
+      <div class="notification-content"><div class="notification-title">${n.title}</div><div class="notification-meta">${n.unread?'<span class="notification-dot"></span>':''}<span>${n.time}</span></div></div>
+    </div>`).join('');
+}
+function markAllRead(e){e.stopPropagation();notifs.forEach(n=>n.unread=false);updateNotifBadge();renderNotifs()}
+function updateNotifBadge(){const c=notifs.filter(n=>n.unread).length;const b=document.getElementById('notifBadge');const btn=document.querySelector('.notifications-btn');if(c>0){b.textContent=c;b.style.display='flex';btn.classList.add('has-unread')}else{b.style.display='none';btn.classList.remove('has-unread')}}
+updateNotifBadge();
+
+// Chat
+function addChat(msg,isUser=false){
+  const c=document.getElementById('chatMessages');
+  const d=document.createElement('div');
+  d.className='chat-message '+(isUser?'user':'bot');
+  d.innerHTML=`<div><div class="message-bubble">${msg}</div></div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+function sendChat(){
+  const i=document.getElementById('chatInput');const t=i.value.trim();if(!t)return;
+  addChat(t,true);i.value='';
+  setTimeout(()=>addChat("I can help with that! What would you like to do?"),800);
+}
+function openMobileChat(){document.querySelector('.chat-widget').classList.add('mobile-open')}
+function closeMobileChat(){document.querySelector('.chat-widget').classList.remove('mobile-open')}
+
+// Toast
+function showToast(msg){
+  const t=document.createElement('div');t.className='toast';t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .3s';setTimeout(()=>t.remove(),300)},2000);
+}
+
+// Modals
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('show')}));
+
+// Contact
+function contactPerson(name,email,phone){
+  if(isDesktop()){
+    addChat(`Contact ${name}`,true);
+    setTimeout(()=>addChat(`📋 <strong>${name}</strong><br>📞 ${phone}<br>✉️ ${email}<br><br>Would you like to send a message?`),600);
+  }else{
+    document.getElementById('msgModalTitle').textContent='Message to '+name;
+    document.getElementById('msgModalContact').innerHTML=`From <strong>${name}</strong> · ${phone} · ${email}`;
+    document.getElementById('msgText').value='';
+    document.getElementById('messageModal').classList.add('show');
+  }
+}
+function sendContactMsg(){
+  closeModal('messageModal');
+  if(isDesktop())addChat('✉️ Your message has been <strong>sent</strong>!');
+  else{document.getElementById('successTitle').textContent='Message Sent!';document.getElementById('successMessage').textContent='Your message has been delivered.';document.getElementById('successModal').classList.add('show')}
+}
+
+/* ========== PAGE: OFFERS JS ========== */
+function filterOffers(filter,label,e){
+  e.stopPropagation();
+  document.querySelectorAll('#offerFilterMenu .menu-item').forEach(i=>i.classList.remove('active'));
+  e.target.closest('.menu-item').classList.add('active');
+  document.getElementById('offerFilterMenu').classList.remove('show');
+  document.getElementById('offerFilterText').textContent=label;
+
+  const rc=document.getElementById('offersReceived');
+  const sc=document.getElementById('offersSent');
+  let count=0;
+
+  if(filter==='all'){
+    rc.style.display='block';sc.style.display='block';
+    rc.querySelectorAll('.visit-card').forEach(c=>{c.style.display='block';count++});
+    sc.querySelectorAll('.visit-card').forEach(c=>{c.style.display='block';count++});
+  }else if(filter==='received'){
+    rc.style.display='block';sc.style.display='none';
+    rc.querySelectorAll('.visit-card').forEach(c=>{c.style.display='block';count++});
+  }else if(filter==='sent'){
+    rc.style.display='none';sc.style.display='block';
+    sc.querySelectorAll('.visit-card').forEach(c=>{c.style.display='block';count++});
+  }else if(filter==='pending'){
+    rc.style.display='block';sc.style.display='block';
+    document.querySelectorAll('#offersReceived .visit-card, #offersSent .visit-card').forEach(c=>{
+      const show=c.dataset.status==='pending';c.style.display=show?'block':'none';if(show)count++;
+    });
+  }else if(filter==='accepted'){
+    rc.style.display='block';sc.style.display='none';
+    rc.querySelectorAll('.visit-card').forEach(c=>{
+      const show=c.dataset.status==='accepted';c.style.display=show?'block':'none';if(show)count++;
+    });
+  }
+  document.getElementById('offerFilterCount').textContent=count;
+}
+
+function viewOffer(btn){
+  const title=btn.closest('.visit-card').querySelector('.address-main').textContent;
+  if(isDesktop()){
+    addChat(`📄 <strong>Viewing offer for ${title}</strong><br><br>I can help you:<br>• Understand the terms<br>• Compare to market value<br>• Draft a counter-offer<br>• Accept or decline<br><br>What would you like to do?<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="this.parentElement.style.display='none';addChat('Let me explain the key terms…')">Explain terms</button><button class="btn btn-p" onclick="this.parentElement.style.display='none';addChat('Great choice! Let me help you accept this offer…')">Accept offer</button></div>`);
+  }else openMobileChat();
+}
+
+// Init chat
+setTimeout(()=>addChat('👋 Hi John! I\'m <strong>Artur</strong>, your personal real estate assistant.<br><br>💰 You have <strong>1 pending offer</strong> that expires soon! Want me to explain your options?<div style="margin-top:12px"><button class="btn btn-p" onclick="this.parentElement.style.display=\'none\'">Show me my options</button></div>'),800);
+</script>
+</body>
+</html>
