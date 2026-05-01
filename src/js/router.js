@@ -48,7 +48,7 @@ export function initRouter(modules, callback) {
     if (window.location.hash) {
         const hashPath = window.location.hash.slice(1).split('?')[0];
         // Check for known routes or dynamic routes (offer detail, mls-form, submit-property, market-trends, title)
-        if (routeMap[hashPath] || hashPath.match(/^\/offers\/.+$/) || hashPath.match(/^\/mls-form\/.+$/) || hashPath.match(/^\/submit-property(\/.*)?$/) || hashPath.match(/^\/market-trends(\/.*)?$/) || hashPath === '/title' || hashPath === '/investor-report') {
+        if (routeMap[hashPath] || hashPath.match(/^\/offers\/.+$/) || hashPath.match(/^\/mls-form\/.+$/) || hashPath.match(/^\/submit-property(\/.*)?$/) || hashPath.match(/^\/market-trends(\/.*)?$/) || hashPath === '/title' || hashPath === '/investor-report' || hashPath === '/investor-report-q1' || hashPath === '/investor-reports') {
             handleHash();
         } else {
             window.location.hash = '/offers';
@@ -80,7 +80,7 @@ function handleHash() {
     const isTitleRoute = hash === '/title';
 
     // Check if it's an investor-report route
-    const isInvestorReportRoute = hash === '/investor-report';
+    const isInvestorReportRoute = hash === '/investor-report' || hash === '/investor-report-q1' || hash === '/investor-reports';
 
     // Hide investor-report page when navigating away
     const irContainer = document.getElementById('investor-report-container');
@@ -149,14 +149,23 @@ function handleHash() {
         return;
     }
 
-    // Handle investor-report route — full-screen standalone page
+    // Handle investor-report routes — full-screen standalone pages
     if (isInvestorReportRoute) {
         const irCont = document.getElementById('investor-report-container');
-        if (irCont && pageModules.investorReport) {
+        if (irCont) {
             showDashboardLayout(false);
             irCont.style.cssText = 'display:block; position:fixed; top:0; left:0; right:0; bottom:0; z-index:2000; background:var(--c-bg); overflow-y:auto;';
-            irCont.innerHTML = pageModules.investorReport.render();
-            pageModules.investorReport.init();
+
+            if (hash === '/investor-report-q1' && pageModules.investorReportQ1) {
+                irCont.innerHTML = pageModules.investorReportQ1.render();
+                pageModules.investorReportQ1.init();
+            } else if (hash === '/investor-reports' && pageModules.investorReports) {
+                irCont.innerHTML = pageModules.investorReports.render();
+                pageModules.investorReports.init();
+            } else if (pageModules.investorReport) {
+                irCont.innerHTML = pageModules.investorReport.render();
+                pageModules.investorReport.init();
+            }
         }
         return;
     }

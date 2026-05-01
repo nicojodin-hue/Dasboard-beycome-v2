@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beycome Blog — Real Estate Guides, Market Insights & FSBO Tips</title>
+    <link rel="stylesheet" href="style.css?v=2">
+    <style>
+    .bc-blog-subnav { display: none; }
+    .bc-blog-hero { padding: 64px 0 40px; text-align: center; background: #fff; }
+    .bc-blog-hero h1 { font-size: 63px; font-weight: 700; color: #152330; line-height: 1.1; margin-bottom: 24px; max-width: 672px; margin-left: auto; margin-right: auto; }
+    .bc-blog-hero p { font-size: 22px; color: #636366; line-height: 1.5; margin: 0 auto 32px; max-width: 600px; }
+    .bc-topic-sub { display: inline-block !important; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: hsla(230,86.1%,72%,1); background: hsla(230,86.1%,72%,0.1); border-radius: 20px; padding: 4px 14px; transition: background 0.2s, color 0.2s; line-height: 1.4; white-space: nowrap; text-decoration: none; }
+    .bc-topic-sub:hover { background: hsla(230,86.1%,72%,0.2); }
+    .bc-blog-strip-subcats { display: flex; flex-wrap: nowrap; gap: 8px; margin-bottom: 20px; overflow-x: auto; scrollbar-width: none; }
+    .bc-blog-strip-subcats::-webkit-scrollbar { display: none; }
+    .bc-aside-card-date { font-size: 11px; color: #636366; margin-top: 4px; opacity: 0.7; }
+    .bc-blog-aside-list { display: flex; flex-direction: column; height: 100%; }
+    .bc-blog-aside-list .bc-aside-card { flex: 1; }
+    .bc-blog-featured-grid { align-items: stretch !important; }
+    .bc-blog-strip-section--selling .bc-topic-sub { color: hsla(16,100%,48%,1); background: hsla(16,100%,73%,0.12); }
+    .bc-blog-strip-section--buying .bc-topic-sub { color: hsla(230,86%,50%,1); background: hsla(230,86%,72%,0.12); }
+    .bc-blog-strip-section--homeowner .bc-topic-sub { color: hsla(137,28%,32%,1); background: hsla(137,28%,49%,0.12); }
+    .bc-blog-strip-section--local .bc-topic-sub { color: hsla(330,82%,42%,1); background: hsla(330,82%,60%,0.12); }
+    .bc-footer-topics-section { padding: 40px 0 32px; background: #f9fafb; border-top: 1px solid #e0e0e0; }
+    .bc-footer-topics-label { font-size: 11px; font-weight: 700; color: #636366; letter-spacing: 0.08em; margin-bottom: 16px; }
+    .bc-footer-topics-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .bc-footer-topics--selling { color: hsla(16,100%,48%,1); background: hsla(16,100%,73%,0.12); }
+    .bc-footer-topics--buying { color: hsla(230,86%,50%,1); background: hsla(230,86%,72%,0.12); }
+    .bc-footer-topics--homeowner { color: hsla(137,28%,32%,1); background: hsla(137,28%,49%,0.12); }
+    .bc-footer-topics--local { color: hsla(330,82%,42%,1); background: hsla(330,82%,60%,0.12); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="bc-header">
+    <div class="bc-header-inner">
+        <nav class="bc-header-nav">
+            <a href="https://www.beycome.com/faq">FAQ</a>
+            <a href="#">Buying</a>
+            <a href="#">Selling</a>
+        </nav>
+        <a href="#" class="bc-header-logo">
+            <img src="logo-blog.png" alt="Beycome Blog" width="200" height="27">
+        </a>
+        <div class="bc-header-right">
+            <form class="bc-hsearch" id="bc-hsearch">
+                <input type="search" class="bc-hsearch-input" id="bc-hsearch-input" placeholder="FSBO, mortgage, closing costs...">
+                <button type="button" class="bc-hsearch-btn" id="bc-hsearch-btn" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<!-- BLOG SUBNAV -->
+<nav class="bc-blog-subnav">
+    <div class="bc-container">
+        <div class="bc-blog-subnav-inner">
+            <div class="bc-blog-subnav-links">
+                <a href="#">Buying</a>
+                <a href="#">Selling</a>
+                <a href="#">FSBO</a>
+                <a href="#">Market</a>
+                <a href="#">Home Value</a>
+                <a href="https://www.beycome.com/faq">FAQ</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="bc-blog-hero">
+    <div class="bc-container">
+        <h1>Real estate,<br>decoded.</h1>
+        <p>Guides, market reads, and how-tos<br>for people buying, selling, or renting<br>— without paying a fortune in commissions.</p>
+    </div>
+</section>
+
+<!-- FEATURED + ASIDE -->
+<section class="bc-blog-featured-section">
+    <div class="bc-container">
+        <div class="bc-blog-featured-grid">
+
+            <!-- Big featured card -->
+            <a href="#" class="bc-featured-card">
+                <div class="bc-featured-card-img">
+                    <div class="bc-featured-card-img-placeholder"></div>
+                    <span class="bc-featured-badge">Featured</span>
+                </div>
+                <div class="bc-featured-card-body">
+                    <div class="bc-featured-card-meta"><span class="bc-featured-card-cat">MARKET</span> &middot; 8 MIN READ</div>
+                    <h2 class="bc-featured-card-title">The 2026 spring home selling guide</h2>
+                    <p class="bc-featured-card-excerpt">How to price, stage, and list without losing 6% to commissions.</p>
+                </div>
+            </a>
+
+            <!-- Aside cards -->
+            <div class="bc-blog-aside-list">
+                <a href="#" class="bc-aside-card">
+                    <div class="bc-aside-card-img bc-aside-card-img--1"></div>
+                    <div class="bc-aside-card-body">
+                        <div class="bc-aside-card-cat">BUYING</div>
+                        <div class="bc-aside-card-title">How to buy with no money down in 2026</div>
+                        <div class="bc-aside-card-date">Apr 10, 2026</div>
+                    </div>
+                </a>
+                <a href="#" class="bc-aside-card">
+                    <div class="bc-aside-card-img bc-aside-card-img--2"></div>
+                    <div class="bc-aside-card-body">
+                        <div class="bc-aside-card-cat">FSBO</div>
+                        <div class="bc-aside-card-title">Drafting an FSBO contract in Florida</div>
+                        <div class="bc-aside-card-date">Apr 5, 2026</div>
+                    </div>
+                </a>
+                <a href="#" class="bc-aside-card">
+                    <div class="bc-aside-card-img bc-aside-card-img--3"></div>
+                    <div class="bc-aside-card-body">
+                        <div class="bc-aside-card-cat">SELLING</div>
+                        <div class="bc-aside-card-title">When is the best time to sell for max ROI</div>
+                        <div class="bc-aside-card-date">Mar 28, 2026</div>
+                    </div>
+                </a>
+                <a href="#" class="bc-aside-card">
+                    <div class="bc-aside-card-img bc-aside-card-img--4"></div>
+                    <div class="bc-aside-card-body">
+                        <div class="bc-aside-card-cat">MORTGAGE</div>
+                        <div class="bc-aside-card-title">Should you lock your rate now or wait?</div>
+                        <div class="bc-aside-card-date">Mar 20, 2026</div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SELLING STRIP -->
+<section class="bc-blog-strip-section bc-blog-strip-section--selling">
+    <div class="bc-container">
+        <div class="bc-blog-strip-header">
+            <h2 class="bc-blog-strip-title">Selling a Home</h2>
+            <a href="#" class="bc-blog-strip-see-all">See all &rarr;</a>
+        </div>
+        <div class="bc-blog-strip-subcats">
+            <a href="#" class="bc-topic-sub">Preparing Your Home</a>
+            <a href="#" class="bc-topic-sub">Pricing Your Home</a>
+            <a href="#" class="bc-topic-sub">Flat Fee MLS</a>
+            <a href="#" class="bc-topic-sub">FSBO Contracts</a>
+            <a href="#" class="bc-topic-sub">Selling Process</a>
+            <a href="#" class="bc-topic-sub">Handling Negotiations</a>
+            <a href="#" class="bc-topic-sub">Finances of Selling</a>
+        </div>
+        <div class="bc-blog-strip-grid">
+            <a href="#" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--orange"></div>
+                    <span class="bc-blog-card-cat">Selling</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>6 min</span></div>
+                    <h3 class="bc-blog-card-title">Sell your Miami, FL home without a realtor</h3>
+                    <div class="bc-blog-card-date">Mar 11, 2026</div>
+                </div>
+            </a>
+            <a href="#" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--green"></div>
+                    <span class="bc-blog-card-cat">Selling</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>5 min</span></div>
+                    <h3 class="bc-blog-card-title">List your Savannah, GA home on the MLS</h3>
+                    <div class="bc-blog-card-date">Mar 11, 2026</div>
+                </div>
+            </a>
+            <a href="#" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--purple"></div>
+                    <span class="bc-blog-card-cat">Selling</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>7 min</span></div>
+                    <h3 class="bc-blog-card-title">How long it takes to sell a house, explained</h3>
+                    <div class="bc-blog-card-date">Dec 23, 2025</div>
+                </div>
+            </a>
+            <a href="https://www.beycome.com/blog/north-carolina-property-tax-id/" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--yellow"></div>
+                    <span class="bc-blog-card-cat">Selling</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>6 min</span></div>
+                    <h3 class="bc-blog-card-title">Property Tax Search by State</h3>
+                    <div class="bc-blog-card-date">Apr 21, 2026</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- BUYING STRIP -->
+<section class="bc-blog-strip-section bc-blog-strip-section--alt bc-blog-strip-section--buying">
+    <div class="bc-container">
+        <div class="bc-blog-strip-header">
+            <h2 class="bc-blog-strip-title">Buying a Home</h2>
+            <a href="#" class="bc-blog-strip-see-all">See all &rarr;</a>
+        </div>
+        <div class="bc-blog-strip-subcats">
+            <a href="#" class="bc-topic-sub">Buying Process</a>
+            <a href="#" class="bc-topic-sub">Finding a Home</a>
+            <a href="#" class="bc-topic-sub">Inspecting a Home</a>
+            <a href="#" class="bc-topic-sub">Making an Offer</a>
+            <a href="#" class="bc-topic-sub">Mortgage Basics</a>
+            <a href="#" class="bc-topic-sub">Moving Tips</a>
+            <a href="#" class="bc-topic-sub">Preparing to Buy</a>
+            <a href="#" class="bc-topic-sub">Where to Live</a>
+        </div>
+        <div class="bc-blog-strip-grid">
+            <a href="#" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--blue"></div>
+                    <span class="bc-blog-card-cat">Buying</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>9 min</span></div>
+                    <h3 class="bc-blog-card-title">Buying a home isn't just emotional — it's tactical too</h3>
+                    <div class="bc-blog-card-date">Dec 10, 2025</div>
+                </div>
+            </a>
+            <a href="#" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--red"></div>
+                    <span class="bc-blog-card-cat">Buying</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>4 min</span></div>
+                    <h3 class="bc-blog-card-title">How the beycome buyer rebate program works</h3>
+                    <div class="bc-blog-card-date">Mar 4, 2026</div>
+                </div>
+            </a>
+            <a href="#" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--yellow"></div>
+                    <span class="bc-blog-card-cat">Buying</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>8 min</span></div>
+                    <h3 class="bc-blog-card-title">Property taxes by state: what you'll pay</h3>
+                    <div class="bc-blog-card-date">Feb 14, 2026</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- HOMEOWNER STRIP -->
+<section class="bc-blog-strip-section bc-blog-strip-section--homeowner">
+    <div class="bc-container">
+        <div class="bc-blog-strip-header">
+            <h2 class="bc-blog-strip-title">Homeowner Guides</h2>
+            <a href="#" class="bc-blog-strip-see-all">See all &rarr;</a>
+        </div>
+        <div class="bc-blog-strip-subcats">
+            <a href="#" class="bc-topic-sub">Home Improvements</a>
+            <a href="#" class="bc-topic-sub">Landscaping</a>
+            <a href="#" class="bc-topic-sub">Lifestyle &amp; Design</a>
+            <a href="#" class="bc-topic-sub">Refinancing</a>
+            <a href="#" class="bc-topic-sub">Renting a Home</a>
+        </div>
+        <div class="bc-blog-strip-grid">
+            <a href="#" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--green"></div>
+                    <span class="bc-blog-card-cat">Homeowner</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>5 min</span></div>
+                    <h3 class="bc-blog-card-title">10 home improvements that actually add value</h3>
+                    <div class="bc-blog-card-date">Jan 5, 2026</div>
+                </div>
+            </a>
+            <a href="#" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--purple"></div>
+                    <span class="bc-blog-card-cat">Homeowner</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>6 min</span></div>
+                    <h3 class="bc-blog-card-title">Should you refinance in 2026?</h3>
+                    <div class="bc-blog-card-date">Mar 20, 2026</div>
+                </div>
+            </a>
+            <a href="#" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--orange"></div>
+                    <span class="bc-blog-card-cat">Homeowner</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>4 min</span></div>
+                    <h3 class="bc-blog-card-title">Landlord guide: renting out your home</h3>
+                    <div class="bc-blog-card-date">Jan 12, 2026</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- LOCAL INSIGHTS STRIP -->
+<section class="bc-blog-strip-section bc-blog-strip-section--alt bc-blog-strip-section--local">
+    <div class="bc-container">
+        <div class="bc-blog-strip-header">
+            <h2 class="bc-blog-strip-title">Local Insights</h2>
+            <a href="#" class="bc-blog-strip-see-all">See all &rarr;</a>
+        </div>
+        <div class="bc-blog-strip-subcats">
+            <a href="florida-real-estate-guide.html" class="bc-topic-sub">Florida</a>
+            <a href="georgia-real-estate-guide.html" class="bc-topic-sub">Georgia</a>
+            <a href="texas-real-estate-guide.html" class="bc-topic-sub">Texas</a>
+            <a href="north-carolina-real-estate-guide.html" class="bc-topic-sub">North Carolina</a>
+            <a href="#" class="bc-topic-sub">South Carolina</a>
+            <a href="#" class="bc-topic-sub">Ohio</a>
+            <a href="california-real-estate-guide.html" class="bc-topic-sub">California</a>
+        </div>
+        <div class="bc-blog-strip-grid">
+            <a href="florida-real-estate-guide.html" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--blue"></div>
+                    <span class="bc-blog-card-cat">Local</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>12 min</span></div>
+                    <h3 class="bc-blog-card-title">How to sell your Florida home without a realtor in 2026</h3>
+                    <div class="bc-blog-card-date">Apr 21, 2026</div>
+                </div>
+            </a>
+            <a href="texas-real-estate-guide.html" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--red"></div>
+                    <span class="bc-blog-card-cat">Local</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>12 min</span></div>
+                    <h3 class="bc-blog-card-title">Texas FSBO guide: sell without an agent and save $18,000+</h3>
+                    <div class="bc-blog-card-date">Apr 21, 2026</div>
+                </div>
+            </a>
+            <a href="georgia-real-estate-guide.html" class="bc-blog-card">
+                <div class="bc-blog-card-img">
+                    <div class="bc-blog-card-img-placeholder bc-ph--yellow"></div>
+                    <span class="bc-blog-card-cat">Local</span>
+                </div>
+                <div class="bc-blog-card-body">
+                    <div class="bc-blog-card-meta"><span><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>11 min</span></div>
+                    <h3 class="bc-blog-card-title">Georgia FSBO: how to sell without a realtor in 2026</h3>
+                    <div class="bc-blog-card-date">Apr 21, 2026</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="bc-blog-newsletter-section">
+    <div class="bc-container">
+        <div class="bc-blog-newsletter">
+            <div class="bc-blog-newsletter-text">
+                <div class="bc-blog-newsletter-title">Get the weekly brief</div>
+                <div class="bc-blog-newsletter-desc">Market reads and new guides, every Wednesday.</div>
+            </div>
+            <form class="bc-blog-newsletter-form">
+                <input type="email" placeholder="you@email.com">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- LOCATION TAGS -->
+<section class="bc-blog-location-section">
+    <div class="bc-container">
+        <div class="bc-blog-section-label">BY LOCATION</div>
+        <div class="bc-blog-location-tags">
+            <a href="florida-real-estate-guide.html" class="bc-location-tag">Florida</a>
+            <a href="georgia-real-estate-guide.html" class="bc-location-tag">Georgia</a>
+            <a href="texas-real-estate-guide.html" class="bc-location-tag">Texas</a>
+            <a href="california-real-estate-guide.html" class="bc-location-tag">California</a>
+            <a href="#" class="bc-location-tag">Illinois</a>
+            <a href="north-carolina-real-estate-guide.html" class="bc-location-tag">North Carolina</a>
+            <a href="#" class="bc-location-tag">Ohio</a>
+            <a href="#" class="bc-location-tag">Michigan</a>
+            <a href="#" class="bc-location-tag">Minnesota</a>
+            <a href="#" class="bc-location-tag">Tennessee</a>
+            <a href="#" class="bc-location-tag">Virginia</a>
+            <a href="#" class="bc-location-tag">Colorado</a>
+            <a href="#" class="bc-location-tag">Arizona</a>
+            <span class="bc-location-tag bc-location-tag--inactive">+ 5 more</span>
+        </div>
+    </div>
+</section>
+
+<!-- DISCOVER MORE TOPICS -->
+<section class="bc-footer-topics-section">
+    <div class="bc-container">
+        <div class="bc-footer-topics-label">DISCOVER MORE TOPICS</div>
+        <div class="bc-footer-topics-pills">
+            <a href="#" class="bc-topic-sub bc-footer-topics--selling">Preparing Your Home</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--selling">Pricing Your Home</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--selling">Flat Fee MLS</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--selling">FSBO Contracts</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--selling">Selling Process</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--selling">Handling Negotiations</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--selling">Finances of Selling</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--buying">Buying Process</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--buying">Finding a Home</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--buying">Inspecting a Home</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--buying">Making an Offer</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--buying">Mortgage Basics</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--buying">Moving Tips</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--buying">Preparing to Buy</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--buying">Where to Live</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--homeowner">Home Improvements</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--homeowner">Landscaping</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--homeowner">Lifestyle &amp; Design</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--homeowner">Refinancing</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--homeowner">Renting a Home</a>
+            <a href="florida-real-estate-guide.html" class="bc-topic-sub bc-footer-topics--local">Florida</a>
+            <a href="georgia-real-estate-guide.html" class="bc-topic-sub bc-footer-topics--local">Georgia</a>
+            <a href="texas-real-estate-guide.html" class="bc-topic-sub bc-footer-topics--local">Texas</a>
+            <a href="north-carolina-real-estate-guide.html" class="bc-topic-sub bc-footer-topics--local">North Carolina</a>
+            <a href="california-real-estate-guide.html" class="bc-topic-sub bc-footer-topics--local">California</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--local">South Carolina</a>
+            <a href="#" class="bc-topic-sub bc-footer-topics--local">Ohio</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bc-footer">
+    <div class="bc-footer-inner">
+        <div class="bc-footer-grid">
+            <div>
+                <h4>Features</h4>
+                <ul>
+                    <li><a href="https://www.beycome.com/flat-fee-mls/">Sell My Home</a></li>
+                    <li><a href="https://www.beycome.com/i-want-to-buy-a-home">Buy a Home</a></li>
+                    <li><a href="https://www.beycometitle.com/">Title</a></li>
+                    <li><a href="https://www.beycome.com/home-estimate">Property Price Estimator</a></li>
+                    <li><a href="https://www.beycome.com/calculators">Real Estate Calculators</a></li>
+                    <li><a href="https://www.beycome.com/yard-sign">Yard Sign</a></li>
+                    <li><a href="https://www.beycome.com/military-fsbo">Military FSBO</a></li>
+                    <li><a href="https://www.beycome.com/closed-homes">Closed Homes</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="https://www.beycome.com/contact">Contact</a></li>
+                    <li><a href="https://www.beycome.com/how-it-works">How It Works</a></li>
+                    <li><a href="https://www.beycome.com/glossary">Real Estate Glossary</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="https://www.beycome.com/faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="https://www.beycome.com/about">About Us</a></li>
+                    <li><a href="https://www.beycome.com/reviews">Reviews</a></li>
+                    <li><a href="https://www.beycome.com/press">Press</a></li>
+                    <li><a href="https://www.beycome.com/terms-and-conditions">Terms &amp; Conditions</a></li>
+                    <li><a href="https://www.beycome.com/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="https://www.beycome.com/dmca">DMCA</a></li>
+                    <li><a href="https://www.beycome.com/accessibility">Accessibility</a></li>
+                </ul>
+            </div>
+            <div class="bc-footer-contact">
+                <h4>Contact</h4>
+                <p>5701 Sunset Drive #224,<br>South Miami, FL 33143</p>
+                <p>Phone: <a href="tel:+18046565007">804-656-5007</a></p>
+                <p>Email: <a href="mailto:contact@beycome.com">contact@beycome.com</a></p>
+                <div class="bc-footer-hours">
+                    <p><strong>Hours:</strong></p>
+                    <p>Mon - Fri: 8:30am - 6:30pm EST</p>
+                    <p>Sat: 9am - 5pm EST</p>
+                </div>
+                <div class="bc-footer-actions">
+                    <a href="https://beycome.zohobookings.com/#/customer/beycome" target="_blank" rel="noopener" class="bc-footer-btn bc-footer-btn-call">Schedule a call</a>
+                    <a href="https://wa.me/18046565007" target="_blank" rel="noopener" class="bc-footer-btn bc-footer-btn-whatsapp">WhatsApp</a>
+                </div>
+                <div class="bc-footer-social">
+                    <p class="bc-footer-social-title">FOLLOW US</p>
+                    <div class="bc-footer-social-icons">
+                        <a href="https://www.facebook.com/beycomeUSA/" target="_blank" rel="nofollow noreferrer" aria-label="Facebook">f</a>
+                        <a href="https://www.instagram.com/beycome/" target="_blank" rel="nofollow noreferrer" aria-label="Instagram">in</a>
+                        <a href="https://linkedin.com/company/beycome" target="_blank" rel="nofollow noreferrer" aria-label="LinkedIn">li</a>
+                        <a href="https://x.com/beycome" target="_blank" rel="nofollow noreferrer" aria-label="X">X</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bc-footer-disclaimer">
+            <p><strong>Agreement to Terms and Privacy Policy:</strong> By using beycome.com, you agree to our <a href="https://www.beycome.com/terms-and-conditions" target="_blank">Terms and Conditions</a> and our <a href="https://www.beycome.com/privacy-policy" target="_blank">Privacy Policy</a>.</p>
+            <p class="bc-footer-copy">All rights reserved, Copyright 2026 beycome&trade; | Made with passion in the USA.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function () {
+    var form = document.getElementById('bc-hsearch');
+    var btn = document.getElementById('bc-hsearch-btn');
+    var input = document.getElementById('bc-hsearch-input');
+    if (!form || !btn || !input) return;
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!form.classList.contains('open')) {
+            form.classList.add('open');
+            setTimeout(function () { input.focus(); }, 150);
+        } else {
+            form.classList.remove('open');
+        }
+    });
+    document.addEventListener('click', function (e) {
+        if (form.classList.contains('open') && !form.contains(e.target)) {
+            form.classList.remove('open');
+        }
+    });
+})();
+</script>
+</body>
+</html>

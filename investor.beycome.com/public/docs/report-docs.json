@@ -1,0 +1,53 @@
+{
+    "fy-2025": {
+        "balance-sheet": {
+            "filename": "fy-2025_balance-sheet.pdf",
+            "size": 34012,
+            "uploaded": "2026-04-16 20:35:02"
+        },
+        "pl": {
+            "filename": "fy-2025_pl.pdf",
+            "size": 53110,
+            "uploaded": "2026-04-16 20:36:43"
+        },
+        "pl-title": {
+            "filename": "fy-2025_pl-title.pdf",
+            "size": 35465,
+            "uploaded": "2026-04-16 20:36:53"
+        }
+    },
+    "feb-2026": {
+        "pl-feb": {
+            "filename": "feb-2026_pl-feb.pdf",
+            "size": 33268,
+            "uploaded": "2026-04-17 17:23:02"
+        },
+        "balance-sheet": {
+            "filename": "feb-2026_balance-sheet.pdf",
+            "size": 33529,
+            "uploaded": "2026-04-17 17:19:01"
+        },
+        "pl-title": {
+            "filename": "feb-2026_pl-title.pdf",
+            "size": 33268,
+            "uploaded": "2026-04-17 17:23:35"
+        }
+    },
+    "q1-2026": {
+        "pl-title": {
+            "filename": "q1-2026_pl-title.pdf",
+            "size": 37711,
+            "uploaded": "2026-04-17 17:17:54"
+        },
+        "balance-sheet": {
+            "filename": "q1-2026_balance-sheet.pdf",
+            "size": 33529,
+            "uploaded": "2026-04-17 17:18:32"
+        },
+        "pl": {
+            "filename": "q1-2026_pl.pdf",
+            "size": 37711,
+            "uploaded": "2026-04-17 17:18:07"
+        }
+    }
+}

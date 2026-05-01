@@ -244,7 +244,7 @@ export function init() {
     const exitBtn = document.getElementById('ir-exit-btn');
     if (exitBtn) {
         exitBtn.addEventListener('click', () => {
-            window.location.hash = '/offers';
+            window.location.hash = '/investor-reports';
         });
     }
 }

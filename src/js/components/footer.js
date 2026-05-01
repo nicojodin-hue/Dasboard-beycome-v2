@@ -84,7 +84,7 @@ export function initFooter() {
         function submitInvestorPassword() {
             if (investorInput.value === 'beycome2026') {
                 investorModal.style.display = 'none';
-                window.location.hash = '/investor-report';
+                window.location.hash = '/investor-reports';
             } else {
                 investorError.style.display = 'block';
                 investorInput.value = '';

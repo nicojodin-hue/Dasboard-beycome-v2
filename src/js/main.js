@@ -40,6 +40,8 @@ import * as collectionPage from './pages/collection.js';
 import * as marketTrendsPage from './pages/market-trends.js';
 import * as titlePage from './pages/title.js';
 import * as investorReportPage from './pages/investor-report.js';
+import * as investorReportQ1Page from './pages/investor-report-q1.js';
+import * as investorReportsPage from './pages/investor-reports.js';
 
 // Router
 import { initRouter, navigateTo } from './router.js';
@@ -61,7 +63,9 @@ const pageModules = {
     collection: collectionPage,
     marketTrends: marketTrendsPage,
     title: titlePage,
-    investorReport: investorReportPage
+    investorReport: investorReportPage,
+    investorReportQ1: investorReportQ1Page,
+    investorReports: investorReportsPage
 };
 
 // Expose app globals for cross-component communication
