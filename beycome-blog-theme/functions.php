@@ -4,7 +4,7 @@
  */
 
 function beycome_blog_enqueue() {
-    wp_enqueue_style('beycome-blog-main', get_template_directory_uri() . '/assets/main.css', [], '1.7.47');
+    wp_enqueue_style('beycome-blog-main', get_template_directory_uri() . '/assets/main.css', [], '1.7.55');
 }
 add_action('wp_enqueue_scripts', 'beycome_blog_enqueue');
 
@@ -321,7 +321,7 @@ function beycome_blog_mid_cta($content) {
          . '<p class="bc-mid-cta-label">Buy smarter</p>'
          . '<p class="bc-mid-cta-title">Get up to 2% back at closing</p>'
          . '<p class="bc-mid-cta-desc">Buy any home with a Beycome agent and receive a rebate of up to 2% of the purchase price — paid to you at closing.</p>'
-         . '<a href="https://www.beycome.com/buy/" class="bc-mid-cta-btn bc-mid-cta-btn--buy">Buy a home &rarr;</a>'
+         . '<a href="https://www.beycome.com/i-want-to-buy-a-home" class="bc-mid-cta-btn bc-mid-cta-btn--buy">Buy a home &rarr;</a>'
          . '</div>'
          . '</div>';
 

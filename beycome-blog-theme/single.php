@@ -96,12 +96,21 @@ if ($cat) {
                         <div class="bc-savings-cta-actions">
                             <div class="bc-savings-cta-btns">
                                 <a href="https://www.beycome.com/flat-fee-mls/" class="bc-cta-btn">Sell your home for $99 &rarr;</a>
-                                <a href="https://www.beycome.com/buy/" class="bc-cta-btn bc-cta-btn--blue">Buy with up to 2% back &rarr;</a>
+                                <a href="https://www.beycome.com/i-want-to-buy-a-home" class="bc-cta-btn bc-cta-btn--blue">Buy with up to 2% back &rarr;</a>
                                 <a href="https://www.beycome.com/calculators/commission-calculator" class="bc-savings-calc-link">Calculate your savings &rarr;</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Post tags -->
+                <?php $bc_post_tags = get_the_tags(); if ($bc_post_tags) : ?>
+                <div class="bc-post-tags">
+                    <?php foreach ($bc_post_tags as $bc_tag) : ?>
+                    <a href="<?php echo esc_url(get_tag_link($bc_tag->term_id)); ?>" class="bc-post-tag"><?php echo esc_html($bc_tag->name); ?></a>
+                    <?php endforeach; ?>
+                </div>
+                <?php endif; ?>
 
                 <!-- Prev / Next in same category -->
                 <?php
@@ -282,56 +291,5 @@ if ($cat) {
     });
 })();
 </script>
-
-<?php
-// ── Browse by Location ───────────────────────────────────────────────────────
-$bc_all_tags       = get_tags(['hide_empty' => true, 'orderby' => 'name', 'order' => 'ASC']);
-$bc_posts_per_page = min((int) get_option('posts_per_page') ?: 10, 8);
-if ($bc_all_tags) :
-?>
-<section class="bc-location-tags-section">
-    <div class="bc-container">
-        <h2 class="bc-location-tags-title">Browse Real Estate by Location</h2>
-        <div class="bc-location-tags-grid">
-            <?php foreach ($bc_all_tags as $bc_tag) :
-                $bc_tag_url   = get_tag_link($bc_tag->term_id);
-                $bc_total_pgs = (int) ceil($bc_tag->count / $bc_posts_per_page);
-            ?>
-            <a href="<?php echo esc_url($bc_tag_url); ?>" class="bc-location-tag-pill"><?php echo esc_html($bc_tag->name); ?></a>
-            <?php for ($bc_p = 2; $bc_p <= $bc_total_pgs; $bc_p++) :
-                $bc_paged_url = trailingslashit($bc_tag_url) . 'page/' . $bc_p . '/';
-            ?>
-            <a href="<?php echo esc_url($bc_paged_url); ?>" class="bc-location-tag-pill bc-location-tag-pill--paged"><?php echo esc_html($bc_tag->name); ?> <span class="bc-tag-paged-num">&rsaquo; p.<?php echo $bc_p; ?></span></a>
-            <?php endfor;
-            endforeach; ?>
-        </div>
-    </div>
-</section>
-<?php endif; ?>
-
-<?php
-// ── Browse by Category (with paginated links) ────────────────────────────────
-$bc_all_cats = get_categories(['hide_empty' => true, 'orderby' => 'name', 'order' => 'ASC']);
-if ($bc_all_cats) :
-?>
-<section class="bc-location-tags-section" style="padding-top:0;border-top:none">
-    <div class="bc-container">
-        <h2 class="bc-location-tags-title">Browse by Category</h2>
-        <div class="bc-location-tags-grid">
-            <?php foreach ($bc_all_cats as $bc_cat) :
-                $bc_cat_url   = get_category_link($bc_cat->term_id);
-                $bc_total_pgs = (int) ceil($bc_cat->count / $bc_posts_per_page);
-            ?>
-            <a href="<?php echo esc_url($bc_cat_url); ?>" class="bc-location-tag-pill"><?php echo esc_html($bc_cat->name); ?></a>
-            <?php for ($bc_p = 2; $bc_p <= $bc_total_pgs; $bc_p++) :
-                $bc_paged_url = trailingslashit($bc_cat_url) . 'page/' . $bc_p . '/';
-            ?>
-            <a href="<?php echo esc_url($bc_paged_url); ?>" class="bc-location-tag-pill bc-location-tag-pill--paged"><?php echo esc_html($bc_cat->name); ?> <span class="bc-tag-paged-num">&rsaquo; p.<?php echo $bc_p; ?></span></a>
-            <?php endfor;
-            endforeach; ?>
-        </div>
-    </div>
-</section>
-<?php endif; ?>
 
 <?php get_footer(); ?>
