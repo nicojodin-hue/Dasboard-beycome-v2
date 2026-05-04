@@ -310,7 +310,7 @@
             padding-bottom: 4px;
             margin-bottom: 4px;
         }
-        .nf-brand.traditional { color: #000; font-size: 20px; text-transform: none; letter-spacing: 0; }
+        .nf-brand.traditional { color: #000; font-size: 24px; text-transform: none; letter-spacing: 0; }
         .nf-brand.beycome     { color: #000; }
 
         /* Beycome label accent */
@@ -413,10 +413,10 @@
         }
         .pg-compare-table td:not(:first-child) { text-align: center; font-weight: 700; }
         .pg-compare-table tr:last-child td { border-bottom: none; }
-        .pg-compare-table .row-label { font-size: 18px; color: #374151; }
-        .pg-compare-table .row-sub { font-size: 12px; color: rgba(21,35,48,0.5); margin-top: 2px; }
-        .pg-compare-table .val-bad  { color: var(--c-red); font-size: 18px; }
-        .pg-compare-table .val-good { color: var(--c-green); }
+        .pg-compare-table .row-label { font-size: 18px; color: #152330; font-weight: 700; }
+        .pg-compare-table .row-sub { font-size: 14px; color: #4a5056; margin-top: 2px; }
+        .pg-compare-table .val-bad  { color: var(--c-red); }
+        .pg-compare-table .val-good { color: var(--c-green); font-size: 18px; }
         .pg-compare-table .val-neu  { color: #152330; }
         .pg-compare-table .check { font-size: 18px; }
         .pg-compare-table .col-beycome { background: hsla(228,60%,59%,0.04); }
@@ -658,24 +658,23 @@
         <input type="text" id="pg-price" value="400,000" inputmode="numeric" autocomplete="off" oninput="onPriceInput(this)">
     </div>
 </div>
-
 <!-- LABELS -->
 <div id="pg-sell-labels" class="pg-labels-section">
     <div class="pg-labels-wrap">
 
         <!-- TRADITIONAL LABEL -->
         <div class="nf" id="label-traditional">
-            <div class="nf-brand traditional">Traditional Real Estate Agent</div>
+            <div class="nf-brand traditional">Traditional</div>
             <div class="nf-title">Real Estate<br>Cost Facts</div>
             <hr class="nf-rule-thin">
             <div class="nf-serving">
-                Based on <span id="trad-serving-price">$400,000</span> <span id="trad-serving-role">sale price</span>
+                Based on <span id="trad-serving-price">$400,000</span> <span id="trad-serving-role">sale</span>, assuming 3% seller agent commission
             </div>
             <hr class="nf-rule-max">
             <div class="nf-cal-row">
                 <div>
-                    <div class="nf-cal-label">Total commission</div>
-                    <div class="nf-cal-label" id="trad-pct-display">6% of price</div>
+                    <div class="nf-cal-label">Commission</div>
+                    <div class="nf-cal-label" id="trad-pct-display">3% of price</div>
                 </div>
                 <div style="text-align:right">
                     <div class="nf-cal-num" id="trad-total">$24,000</div>
@@ -688,39 +687,30 @@
 
             <div class="nf-row bold-row nf-row-red">
                 <div class="nf-row-left">
-                    <span class="nf-row-name">Total fees paid &nbsp;</span>
-                    <span class="nf-row-amount" id="trad-fees-amt">$24,000</span>
+                    <span class="nf-row-name">Total fees paid</span>
                 </div>
-                <span class="nf-row-dv" id="trad-fees-pct">6%</span>
             </div>
             <div class="nf-row sub">
                 <div class="nf-row-left">
-                    <span class="nf-row-name" id="trad-row1-label">Listing agent fee &nbsp;</span>
+                    <span class="nf-row-name" id="trad-row1-label">Listing agent commission &nbsp;</span>
                     <span class="nf-row-amount" id="trad-listing-amt">$12,000</span>
                 </div>
                 <span class="nf-row-dv" id="trad-listing-pct">3%</span>
             </div>
             <div class="nf-row sub">
                 <div class="nf-row-left">
-                    <span class="nf-row-name" id="trad-row2-label">Buyer's agent fee &nbsp;</span>
+                    <span class="nf-row-name" id="trad-row2-label">Buyer's agent commission &nbsp;</span>
                     <span class="nf-row-amount" id="trad-buyers-amt">$12,000</span>
                 </div>
                 <span class="nf-row-dv" id="trad-buyers-pct">3%</span>
             </div>
 
-            <div class="nf-row bold-row" id="trad-rebate-row">
-                <div class="nf-row-left">
-                    <span class="nf-row-name">Rebate back to you &nbsp;</span>
-                    <span class="nf-row-amount">$0</span>
-                </div>
-                <span class="nf-row-dv">0%</span>
-            </div>
             <div class="nf-row bold-row">
                 <div class="nf-row-left">
                     <span class="nf-row-name" id="trad-net-label">Net cost to you &nbsp;</span>
                     <span class="nf-row-amount" id="trad-net-amt">$24,000</span>
                 </div>
-                <span class="nf-row-dv" id="trad-net-pct">6%</span>
+                <span class="nf-row-dv" id="trad-net-pct">6%*</span>
             </div>
 
             <hr class="nf-rule-med">
@@ -735,13 +725,13 @@
                 <div class="nf-row-left">
                     <span class="nf-row-name">Price transparency</span>
                 </div>
-                <span><span class="nf-badge nf-badge-bad">Low</span></span>
+                <span><span class="nf-badge nf-badge-bad">Medium</span></span>
             </div>
             <div class="nf-row">
                 <div class="nf-row-left">
                     <span class="nf-row-name">Commission negotiable</span>
                 </div>
-                <span><span class="nf-badge nf-badge-neu">Sometimes</span></span>
+                <span><span class="nf-badge nf-badge-neu">Has to be</span></span>
             </div>
             <div class="nf-row">
                 <div class="nf-row-left">
@@ -751,7 +741,7 @@
             </div>
 
             <hr class="nf-rule-thick">
-            <div class="nf-footnote">*3% listing agent + 3% buyer's agent — national average. Actual rates vary. Commission is typically deducted from seller proceeds at closing.</div>
+            <div class="nf-footnote">*Assuming 3% listing agent + 3% buyer's agent. Actual rates vary and are negotiable. Commission is typically deducted from seller proceeds at closing.</div>
         </div>
 
         <!-- BEYCOME LABEL -->
@@ -760,7 +750,7 @@
             <div class="nf-title">Real Estate<br>Cost Facts</div>
             <hr class="nf-rule-thin">
             <div class="nf-serving">
-                Based on <span id="byc-serving-price">$400,000</span> <span id="byc-serving-role">sale price</span>
+                Based on <span id="byc-serving-price">$400,000</span> <span id="byc-serving-role">sale</span>, assuming 3% seller agent commission
             </div>
             <hr class="nf-rule-max">
             <div class="nf-cal-row">
@@ -770,7 +760,7 @@
                 </div>
                 <div style="text-align:right">
                     <div class="nf-cal-num" id="byc-total">$399</div>
-                    <div class="nf-cal-note">flat fee to list</div>
+                    <div class="nf-cal-note">flat fee to list**</div>
                 </div>
             </div>
             <hr class="nf-rule-thick">
@@ -779,10 +769,8 @@
 
             <div class="nf-row bold-row nf-row-green">
                 <div class="nf-row-left">
-                    <span class="nf-row-name">Total fees paid &nbsp;</span>
-                    <span class="nf-row-amount" id="byc-fees-amt">$399</span>
+                    <span class="nf-row-name">Total fees paid</span>
                 </div>
-                <span class="nf-row-dv" id="byc-fees-pct">&lt;0.1%</span>
             </div>
             <div class="nf-row sub">
                 <div class="nf-row-left">
@@ -793,19 +781,11 @@
             </div>
             <div class="nf-row sub">
                 <div class="nf-row-left">
-                    <span class="nf-row-name" id="byc-row2-label">Buyer's agent (your offer) &nbsp;</span>
-                    <span class="nf-row-amount" id="byc-buyers-amt">$0</span>
+                    <span class="nf-row-name" id="byc-row2-label">Buyer's agent (your choice/offer) &nbsp;</span>
                 </div>
                 <span class="nf-row-dv" id="byc-buyers-pct">You set it</span>
             </div>
 
-            <div class="nf-row bold-row nf-row-green" id="byc-rebate-row">
-                <div class="nf-row-left">
-                    <span class="nf-row-name" id="byc-rebate-label">Rebate back to you &nbsp;</span>
-                    <span class="nf-row-amount" id="byc-rebate-amt">$0</span>
-                </div>
-                <span class="nf-row-dv" id="byc-rebate-pct">0%</span>
-            </div>
             <div class="nf-row bold-row nf-row-green">
                 <div class="nf-row-left">
                     <span class="nf-row-name" id="byc-net-label">Net cost to you &nbsp;</span>
@@ -842,7 +822,7 @@
             </div>
 
             <hr class="nf-rule-thick">
-            <div class="nf-footnote" id="byc-footnote">*Flat-fee MLS listing. Seller chooses their own buyer's agent commission — you're not locked into 3%. Beycome handles the paperwork and MLS submission.</div>
+            <div class="nf-footnote" id="byc-footnote">**Flat-fee MLS listing. Beycome offers 3 packages all flat fee: $99, $399 or $999. Seller chooses their own buyer's agent commission.</div>
         </div>
 
     </div>
@@ -861,11 +841,11 @@
 
         <!-- TRADITIONAL BUYER LABEL -->
         <div class="nf" id="buy-label-traditional">
-            <div class="nf-brand traditional">Traditional Real Estate Agent</div>
+            <div class="nf-brand traditional">Traditional</div>
             <div class="nf-title">Real Estate<br>Cost Facts</div>
             <hr class="nf-rule-thin">
             <div class="nf-serving">
-                Based on <span id="bt-serving-price">$400,000</span> purchase price
+                Based on <span id="bt-serving-price">$400,000</span> sale, assuming 3% buyer agent commission
             </div>
             <hr class="nf-rule-max">
             <div class="nf-cal-row">
@@ -891,7 +871,7 @@
             </div>
             <div class="nf-row sub">
                 <div class="nf-row-left">
-                    <span class="nf-row-name">Commission offered by seller &nbsp;</span>
+                    <span class="nf-row-name">Commission offered to Agent* &nbsp;</span>
                     <span class="nf-row-amount" id="bt-listing-amt">$12,000</span>
                 </div>
                 <span class="nf-row-dv" id="bt-listing-pct">3%</span>
@@ -916,7 +896,7 @@
             </div>
             <div class="nf-row">
                 <div class="nf-row-left"><span class="nf-row-name">Commission negotiable</span></div>
-                <span><span class="nf-badge nf-badge-neu">Sometimes</span></span>
+                <span><span class="nf-badge nf-badge-neu">Has to be</span></span>
             </div>
 
             <hr class="nf-rule-thick">
@@ -929,13 +909,13 @@
             <div class="nf-title">Real Estate<br>Cost Facts</div>
             <hr class="nf-rule-thin">
             <div class="nf-serving">
-                Based on <span id="bb-serving-price">$400,000</span> purchase price
+                Based on <span id="bb-serving-price">$400,000</span> sale, assuming 3% buyer agent commission
             </div>
             <hr class="nf-rule-max">
             <div class="nf-cal-row">
                 <div>
                     <div class="nf-cal-label">Cash back to you</div>
-                    <div class="nf-cal-label" id="bb-pct-display">at closing (2% rebate)</div>
+                    <div class="nf-cal-label" id="bb-pct-display">(2% rebate**)</div>
                 </div>
                 <div style="text-align:right">
                     <div class="nf-cal-num" id="bb-total" style="color:var(--c-green)">+$8,000</div>
@@ -951,7 +931,7 @@
                     <span class="nf-row-name">Cash back to you &nbsp;</span>
                     <span class="nf-row-amount" id="bb-rebate-amt">$8,000</span>
                 </div>
-                <span class="nf-row-dv" id="bb-rebate-pct">2% back</span>
+                <span class="nf-row-dv" id="bb-rebate-pct">2%</span>
             </div>
             <div class="nf-row sub">
                 <div class="nf-row-left">
@@ -983,7 +963,7 @@
             </div>
 
             <hr class="nf-rule-thick">
-            <div class="nf-footnote">*Beycome charges 1% as buyer's agent fee. Any seller-offered commission above 1% is credited back to you as cash or closing cost credit. Subject to lender approval. Min. fee: $1,499 or 1%, whichever is greater.</div>
+            <div class="nf-footnote">**Beycome charges 1% as buyer's agent fee. Any seller-offered commission above 1% is credited back to you as cash or closing cost credit. Subject to lender approval. Min. fee: $1,499 or 1%, whichever is greater.</div>
         </div>
 
     </div>
@@ -1051,8 +1031,8 @@
                 <thead>
                     <tr>
                         <th style="width:40%">Feature</th>
-                        <th>Traditional Agent</th>
-                        <th class="pg-th-beycome"><img src="../logos/logo-beycome.svg" alt="Beycome" style="height:20px;display:block;margin:0 auto"></th>
+                        <th>Traditional</th>
+                        <th class="pg-th-beycome"><img src="../logos/logo-beycome.svg" alt="Beycome" style="height:26px;display:block;margin:0 auto"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1091,7 +1071,7 @@
                     <tr>
                         <td>
                             <div class="row-label">MLS listing</div>
-                            <div class="row-sub">Syndicated to Zillow, Realtor.com, Redfin</div>
+                            <div class="row-sub">Syndicated to Zillow, Realtor.com, Redfin etc</div>
                         </td>
                         <td><span class="check val-good">✓</span></td>
                         <td class="col-beycome"><span class="check val-good">✓</span></td>
@@ -1153,8 +1133,8 @@
                 <thead>
                     <tr>
                         <th style="width:40%">Feature</th>
-                        <th>Traditional Agent</th>
-                        <th class="pg-th-beycome"><img src="../logos/logo-beycome.svg" alt="Beycome" style="height:20px;display:block;margin:0 auto"></th>
+                        <th>Traditional</th>
+                        <th class="pg-th-beycome"><img src="../logos/logo-beycome.svg" alt="Beycome" style="height:26px;display:block;margin:0 auto"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1533,11 +1513,11 @@ function updateSell(price) {
 
     // Traditional
     document.getElementById('trad-serving-price').textContent = priceLabel;
-    document.getElementById('trad-serving-role').textContent  = 'sale price';
-    document.getElementById('trad-pct-display').textContent   = '6% of price';
-    document.getElementById('trad-total').textContent         = fmt(tradTotal);
+    document.getElementById('trad-serving-role').textContent  = 'sale';
+    document.getElementById('trad-pct-display').textContent   = '3% of price';
+    document.getElementById('trad-total').textContent         = fmt(tradListing);
     document.getElementById('trad-fees-amt').textContent      = fmt(tradTotal);
-    document.getElementById('trad-fees-pct').textContent      = fmtPct(tradListingPct + tradBuyersPct);
+    document.getElementById('trad-fees-pct').textContent      = fmtPct(tradListingPct + tradBuyersPct) + '*';
     document.getElementById('trad-row1-label').textContent    = 'Listing agent fee ';
     document.getElementById('trad-listing-amt').textContent   = fmt(tradListing);
     document.getElementById('trad-listing-pct').textContent   = fmtPct(tradListingPct);
@@ -1546,11 +1526,11 @@ function updateSell(price) {
     document.getElementById('trad-buyers-pct').textContent    = fmtPct(tradBuyersPct);
     document.getElementById('trad-net-label').textContent     = 'Net cost to you ';
     document.getElementById('trad-net-amt').textContent       = fmt(tradTotal);
-    document.getElementById('trad-net-pct').textContent       = fmtPct(tradListingPct + tradBuyersPct);
+    document.getElementById('trad-net-pct').textContent       = fmtPct(tradListingPct + tradBuyersPct) + '*';
 
     // Beycome
     document.getElementById('byc-serving-price').textContent = priceLabel;
-    document.getElementById('byc-serving-role').textContent  = 'sale price';
+    document.getElementById('byc-serving-role').textContent  = 'sale';
     document.getElementById('byc-pct-display').textContent   = '<0.1% of price';
     document.getElementById('byc-total').textContent         = '$399';
     document.getElementById('byc-fees-amt').textContent      = '$399';
@@ -1558,8 +1538,7 @@ function updateSell(price) {
     document.getElementById('byc-row1-label').textContent    = 'Flat fee listing ';
     document.getElementById('byc-listing-amt').textContent   = '$399';
     document.getElementById('byc-listing-pct').textContent   = '<0.1%';
-    document.getElementById('byc-row2-label').textContent    = "Buyer's agent (you set) ";
-    document.getElementById('byc-buyers-amt').textContent    = 'your choice';
+    document.getElementById('byc-row2-label').textContent    = "Buyer's agent (your choice/offer) ";
     document.getElementById('byc-buyers-pct').textContent    = 'flexible';
     document.getElementById('byc-rebate-label').textContent  = 'Rebate back to you ';
     document.getElementById('byc-rebate-amt').textContent    = '$0';
@@ -1567,7 +1546,7 @@ function updateSell(price) {
     document.getElementById('byc-net-label').textContent     = 'Net cost to you ';
     document.getElementById('byc-net-amt').textContent       = '$399';
     document.getElementById('byc-net-pct').textContent       = '<0.1%';
-    document.getElementById('byc-footnote').textContent      = '*Flat-fee MLS listing. Seller chooses their own buyer\'s agent commission — you\'re not locked into 3%. Beycome handles paperwork and MLS submission.';
+    document.getElementById('byc-footnote').textContent      = '**Flat-fee MLS listing. Beycome offers 3 packages all flat fee: $99, $399 or $999. Seller chooses their own buyer\'s agent commission.';
 
     // Savings callout
     document.getElementById('savings-label').textContent  = 'As a seller, you will save a minimum of';
@@ -1595,10 +1574,10 @@ function updateBuy(price) {
 
     // Beycome buyer label
     document.getElementById('bb-serving-price').textContent = priceLabel;
-    document.getElementById('bb-pct-display').textContent   = 'at closing (' + fmtPct(rebatePct) + ' rebate)';
+    document.getElementById('bb-pct-display').textContent   = '(' + fmtPct(rebatePct) + ' rebate*)';
     document.getElementById('bb-total').textContent         = '+' + fmt(rebateAmt);
     document.getElementById('bb-rebate-amt').textContent    = fmt(rebateAmt);
-    document.getElementById('bb-rebate-pct').textContent    = fmtPct(rebatePct) + ' back';
+    document.getElementById('bb-rebate-pct').textContent    = fmtPct(rebatePct);
     document.getElementById('bb-listing-amt').textContent   = fmt(commissionAmt);
     document.getElementById('bb-listing-pct').textContent   = fmtPct(commissionPct);
     document.getElementById('bb-fees-amt').textContent      = fmt(bycFeeAmt);
