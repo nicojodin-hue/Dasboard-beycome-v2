@@ -4,7 +4,7 @@
  */
 
 function beycome_faq_enqueue() {
-    wp_enqueue_style('beycome-faq-main', get_template_directory_uri() . '/assets/main.css', [], '3.1.1');
+    wp_enqueue_style('beycome-faq-main', get_template_directory_uri() . '/assets/main.css', [], '3.1.2');
 }
 add_action('wp_enqueue_scripts', 'beycome_faq_enqueue');
 
