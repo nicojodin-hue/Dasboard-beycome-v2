@@ -1,3 +1,31 @@
+<?php
+$bc_footer_topics = [
+    'selling-a-home'   => ['Preparing Your Home' => 'preparing-your-home', 'Pricing Your Home' => 'pricing-your-home', 'Flat Fee MLS' => 'flat-fee-mls', 'FSBO Contracts' => 'fsbo-contracts', 'Selling Process' => 'selling-process', 'Handling Negotiations' => 'handling-negotiations', 'Finances of Selling' => 'finances-of-selling'],
+    'buying-a-home'    => ['Buying Process' => 'buying-process', 'Finding a Home' => 'finding-a-home', 'Inspecting a Home' => 'inspecting-a-home', 'Making an Offer' => 'making-an-offer', 'Mortgage Basics' => 'mortgage-basics', 'Moving Tips' => 'moving-tips', 'Preparing to Buy' => 'preparing-to-buy', 'Where to Live' => 'where-to-live'],
+    'homeowner-guides' => ['Home Improvements' => 'home-improvements', 'Landscaping' => 'landscaping', 'Lifestyle & Design' => 'lifestyle-design', 'Refinancing' => 'refinancing', 'Renting a Home' => 'renting-a-home'],
+];
+$bc_footer_modifiers = [
+    'selling-a-home'   => 'bc-footer-topics--selling',
+    'buying-a-home'    => 'bc-footer-topics--buying',
+    'homeowner-guides' => 'bc-footer-topics--homeowner',
+];
+?>
+<section class="bc-footer-topics-section">
+    <div class="bc-container">
+        <div class="bc-footer-topics-label">Dive into more topics</div>
+        <div class="bc-footer-topics-pills">
+            <?php foreach ($bc_footer_topics as $parent_slug => $subcats) :
+                $modifier = $bc_footer_modifiers[$parent_slug] ?? '';
+                foreach ($subcats as $label => $slug) :
+                    $t = get_term_by('slug', $slug, 'category');
+                    if (!$t || $t->count === 0) continue;
+            ?>
+            <a href="<?php echo esc_url(get_category_link($t->term_id)); ?>" class="bc-topic-sub <?php echo esc_attr($modifier); ?>"><?php echo esc_html($label); ?></a>
+            <?php endforeach; endforeach; ?>
+        </div>
+    </div>
+</section>
+
 <style>
 .bc-footer{background:#1b1b1b;color:#fff;font-size:16px;padding:80px 0 32px}
 .bc-footer-inner{max-width:1280px;margin:0 auto;padding:0 16px}
@@ -50,8 +78,8 @@
         <div class="bc-footer-col">
             <div class="bc-footer-col-title">Resources</div>
             <ul>
-                <li><a href="https://www.beycome.com/blog/">Blog</a></li>
-                <li><a href="<?php echo esc_url(home_url('/')); ?>">FAQ</a></li>
+                <li><a href="<?php echo esc_url(home_url('/')); ?>">Blog</a></li>
+                <li><a href="https://www.beycome.com/faq/">FAQ</a></li>
                 <li><a href="https://www.beycome.com/how-it-works/">How It Works</a></li>
                 <li><a href="https://www.beycome.com/real-estate-glossary/">Real Estate Glossary</a></li>
             </ul>
