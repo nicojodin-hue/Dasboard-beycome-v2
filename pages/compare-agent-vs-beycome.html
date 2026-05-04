@@ -540,20 +540,31 @@
         .bc-footer-contact-item { margin-bottom: 16px; font-size: 16px; color: var(--color-white, #fff); line-height: 1.55; }
         .bc-footer-contact-item a { color: var(--color-white, #fff); text-decoration: none; }
         .bc-footer-contact-item a:hover { opacity: 0.85; }
-        .bc-footer-follow-title { font-size: 16px; font-weight: 700; letter-spacing: normal; text-transform: uppercase; color: #ffffffa6; margin: 32px 0 16px; }
-        .bc-footer-socials { display: flex; gap: 4px; align-items: center; }
-        .bc-footer-socials a { color: var(--color-white, #fff); text-decoration: none; display: inline-flex; width: 40px; height: 40px; align-items: center; }
-        .bc-footer-socials a:hover { opacity: 0.85; }
         .bc-footer-cta-btns { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; padding-top: 16px; }
         .bc-footer-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 10px; font-size: 16px; font-weight: 600; text-decoration: none; min-width: 160px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); transition: opacity 0.15s; white-space: nowrap; color: var(--color-white, #fff); }
         .bc-footer-btn:hover { opacity: 0.92; }
         .bc-footer-btn-schedule { background: rgb(245, 154, 119); }
         .bc-footer-btn-whatsapp { background: rgb(44, 207, 99); }
-        .bc-footer-divider { margin: 0 0 32px; border: none; border-top: 1px solid #374151; }
+        /* Lemonade-style bottom bar */
+        .bc-footer-bar { display: flex; align-items: center; gap: 20px; padding: 20px 0; flex-wrap: wrap; }
+        .bc-footer-bar-socials { display: flex; gap: 2px; align-items: center; }
+        .bc-footer-bar-socials a { color: #ffffffa6; text-decoration: none; display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; transition: color 0.15s; }
+        .bc-footer-bar-socials a:hover { color: #fff; }
+        .bc-footer-bar-sep { width: 1px; height: 20px; background: #374151; flex-shrink: 0; }
+        .bc-footer-bar-contact { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .bc-footer-bar-contact a { color: #ffffffa6; text-decoration: none; font-size: 15px; transition: color 0.15s; }
+        .bc-footer-bar-contact a:hover { color: #fff; }
+        /* Bottom legal row */
+        .bc-footer-divider { margin: 0 0 20px; border: none; border-top: 1px solid #2a2a2a; }
+        .bc-footer-bottom-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .bc-footer-bottom-row-address { font-size: 13px; color: #ffffffa6; }
+        .bc-footer-bottom-row-sep { color: #374151; }
+        .bc-footer-bottom-row-links { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .bc-footer-bottom-row-links a { font-size: 13px; color: #ffffffa6; text-decoration: none; transition: color 0.15s; }
+        .bc-footer-bottom-row-links a:hover { color: #fff; }
         .bc-footer-legal { font-size: 10px; color: #ffffffa6; line-height: 1.65; }
-        .bc-footer-legal p { margin-bottom: 16px; }
+        .bc-footer-legal p { margin-bottom: 12px; }
         .bc-footer-legal a { color: #7d8ff7; text-decoration: underline; }
-        .bc-footer-copyright { margin: 16px 0 0; font-size: 16px; color: var(--color-white, #fff); }
 
         @media (max-width: 760px) {
             /* Hero */
@@ -1398,41 +1409,55 @@
                     WhatsApp
                 </a>
             </div>
-            <div class="bc-footer-follow-title">Follow Us</div>
-            <div class="bc-footer-socials">
-                <a href="https://www.facebook.com/beycomeUSA/" target="_blank" rel="noopener noreferrer" aria-label="Beycome on Facebook">
-                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.51,6.68v-1.56c0-.81.06-1.25,1.19-1.25h2.09V.75h-3c-2.91,0-3.58,1.55-3.58,4.09v1.84h-2.21v3.12h2.21v9.05h3.29v-9.05h2.99l.32-3.12h-3.3Z" fill="white"/></svg>
-                </a>
-                <a href="https://www.instagram.com/beycome/" target="_blank" rel="noopener noreferrer" aria-label="Beycome on Instagram">
-                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.1115 0.753906H5.00447C3.68082 0.755758 2.4119 1.2824 1.47594 2.21837C0.539968 3.15434 0.0133264 4.42325 0.0114746 5.74691L0.0114746 13.8539C0.0133264 15.1776 0.539968 16.4465 1.47594 17.3824C2.4119 18.3184 3.68082 18.8451 5.00447 18.8469H13.1115C14.4353 18.8453 15.7045 18.3188 16.6407 17.3828C17.5768 16.4468 18.1036 15.1777 18.1055 13.8539V5.74691C18.1036 4.42308 17.5768 3.15401 16.6407 2.21801C15.7045 1.28202 14.4353 0.755494 13.1115 0.753906V0.753906ZM16.4995 13.8539C16.4984 14.7521 16.1411 15.6133 15.506 16.2484C14.8708 16.8836 14.0097 17.2408 13.1115 17.2419H5.00447C4.10625 17.2408 3.24511 16.8836 2.60997 16.2484C1.97482 15.6133 1.61753 14.7521 1.61647 13.8539V5.74691C1.61753 4.84868 1.97482 3.98754 2.60997 3.3524C3.24511 2.71725 4.10625 2.35996 5.00447 2.35891H13.1115C14.0097 2.35996 14.8708 2.71725 15.506 3.3524C16.1411 3.98754 16.4984 4.84868 16.4995 5.74691V13.8539Z" fill="white"/><path d="M9.05845 5.14258C8.13719 5.14258 7.23661 5.41577 6.47061 5.92759C5.7046 6.43942 5.10758 7.1669 4.75502 8.01804C4.40247 8.86917 4.31023 9.80575 4.48996 10.7093C4.66969 11.6129 5.11332 12.4428 5.76475 13.0943C6.41618 13.7457 7.24616 14.1893 8.14972 14.3691C9.05329 14.5488 9.98985 14.4566 10.841 14.104C11.6921 13.7515 12.4196 13.1544 12.9314 12.3884C13.4433 11.6224 13.7165 10.7218 13.7165 9.80058C13.7151 8.5656 13.224 7.38159 12.3507 6.50834C11.4774 5.63508 10.2934 5.1439 9.05845 5.14258ZM9.05845 12.8546C8.45443 12.8546 7.86397 12.6755 7.36174 12.3399C6.85951 12.0043 6.46807 11.5273 6.23692 10.9693C6.00577 10.4112 5.94529 9.79719 6.06313 9.20477C6.18097 8.61235 6.47184 8.06818 6.89895 7.64107C7.32606 7.21396 7.87023 6.9231 8.46265 6.80526C9.05506 6.68742 9.66912 6.7479 10.2272 6.97905C10.7852 7.2102 11.2622 7.60164 11.5978 8.10387C11.9333 8.60609 12.1125 9.19655 12.1125 9.80058C12.1114 10.6102 11.7893 11.3864 11.2168 11.9589C10.6443 12.5314 9.8681 12.8535 9.05845 12.8546Z" fill="white"/><path d="M13.9165 3.77734C13.6439 3.77736 13.3798 3.87187 13.1692 4.04477C12.9585 4.21768 12.8143 4.45828 12.7612 4.72558C12.708 4.99288 12.7492 5.27034 12.8777 5.51069C13.0061 5.75104 13.214 5.93941 13.4658 6.04369C13.7176 6.14798 13.9977 6.16173 14.2585 6.08261C14.5193 6.00348 14.7446 5.83638 14.896 5.60977C15.0474 5.38316 15.1156 5.11106 15.0888 4.83984C15.0621 4.56862 14.9422 4.31505 14.7495 4.12234C14.5282 3.90189 14.2288 3.77788 13.9165 3.77734Z" fill="white"/></svg>
-                </a>
-                <a href="https://linkedin.com/company/beycome" target="_blank" rel="noopener noreferrer" aria-label="Beycome on LinkedIn">
-                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.61,18.92V7.36H.77v11.56h3.84,0ZM2.69,5.79c.57,0,1.11-.23,1.51-.64.4-.4.62-.95.62-1.52s-.23-1.11-.63-1.52c-.4-.4-.95-.63-1.52-.63s-1.11.23-1.52.63c-.4.4-.63.95-.63,1.52,0,.57.22,1.12.62,1.52.4.4.95.63,1.51.64h.02ZM6.74,18.92h3.84v-6.46c-.01-.32.03-.63.13-.94.14-.41.41-.76.76-1.01.35-.25.77-.39,1.21-.39,1.39,0,1.95,1.06,1.95,2.61v6.18h3.84v-6.63c0-3.55-1.9-5.2-4.42-5.2-.7-.03-1.4.14-2.02.48-.62.34-1.12.85-1.47,1.46h.03v-1.68h-3.84c.05,1.08,0,11.56,0,11.56Z" fill="white"/></svg>
-                </a>
-                <a href="https://x.com/beycome" target="_blank" rel="noopener noreferrer" aria-label="Beycome on X">
-                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.49,8.4L18.14.68h-1.57l-5.77,6.71L6.18.68H.87l6.97,10.14L.87,18.92h1.58l6.09-7.08,4.87,7.08h5.32l-7.23-10.52h0ZM9.34,10.91l-.71-1.01L3.01,1.86h2.42l4.53,6.49.71,1.01,5.89,8.43h-2.42l-4.81-6.88h0Z" fill="white"/></svg>
-                </a>
-                <a href="https://www.zillow.com/profile/gobeycome/" target="_blank" rel="noopener noreferrer" aria-label="Beycome on Zillow">
-                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.15,5.86c.08-.02.11,0,.16.06.26.32,1.09,1.41,1.32,1.71,0,.01.01.02.02.04,0,.01,0,.03,0,.04,0,.01,0,.03-.01.04,0,.01-.02.02-.03.03-1.7,1.45-3.24,3.08-4.6,4.86-.02.03,0,.03.01.03,2.59-1.08,5.27-1.94,8.01-2.57v-2.64L9.51,1.04,1.97,7.47v2.88c3.22-1.86,6.63-3.37,10.18-4.48h0ZM5.87,16.89s.05.04.08.05c.03,0,.06,0,.09-.02,3.51-1.71,7.2-3.02,11-3.91v5.91H1.97v-6.14c2.32-1.29,4.73-2.43,7.2-3.41.03-.01.04,0,.01.03-1.8,1.63-3.39,3.49-4.71,5.53-.05.08-.05.11,0,.16l1.4,1.81Z" fill="white"/></svg>
-                </a>
-            </div>
         </div>
     </div>
-    <hr class="bc-footer-divider">
-    <div class="bc-footer-legal">
-        <p><strong>Agreement to Terms and Privacy Policy:</strong> By using beycome.com, you agree to our <a href="https://www.beycome.com/terms-and-conditions/">Terms and Conditions</a> and our <a href="https://www.beycome.com/privacy-policy/">Privacy Policy</a>.</p>
-        <p><strong>Legal Disclaimer:</strong> Information is current as of May 14, 2024. Beycome Corp. may modify or discontinue products and benefits without notice. Eligibility and underwriting requirements must be met. No guarantee, warranty, or representation of any kind is made regarding the completeness or accuracy of descriptions or measurements (including square footage measurements and property condition); such should be independently verified, and Beycome expressly disclaims any liability in connection therewith.</p>
-        <p><strong>Trademark Notice:</strong> Logos and trademarks on our website are used to illustrate industry partnerships and do not imply endorsement unless explicitly stated. All trademarks belong to their respective owners, and we comply with trademark laws.</p>
-        <p><strong>Beycome Family of Companies:</strong> Beycome Mortgage LLC provides home loans; Beycome Brokerage Realty LLC, Beycome Brokerage Realty Inc., and Beycome of Florida LLC provide real estate services; Beycome Title of Florida LLC provides title insurance services. These are separate entities under Beycome Corp., each governed by its own management as required by law, but all owned by the same individuals, forming a business relationship.<br>
-        Beycome Corp. holds real estate brokerage licenses in Multiple States: Beycome of Florida LLC is licensed in FL. Beycome Brokerage Realty Inc is licensed in CA. Beycome of Connecticut in CT. Beycome Brokerage Realty LLC is licensed in AL, GA, IL, IN, MI, MN, NC, OH, SC, TN and TX.<br>
-        CalDRE #01804683<br>
-        TREC: <a href="/legal/IABS-1-2.pdf" rel="noreferrer noopener" target="_blank">Brokerage Services</a>, <a href="https://www.trec.texas.gov/forms/consumer-protection-notice" rel="noreferrer noopener" target="_blank">Consumer Protection Notice</a></p>
-        <p>IDX© information is provided exclusively for consumers' personal, non-commercial use. It may not be used for any purpose other than to identify prospective properties consumers may be interested in purchasing. Information deemed reliable but not guaranteed to be accurate.</p>
-        <p><strong>Listings Information:</strong> Listings information is updated daily. All information provided is deemed reliable but is not guaranteed accurate and should be independently verified.</p>
-        <p>Broker Compensation is fully negotiable and is not fixed, controlled, recommended, or suggested by law or any multiple listing service or association of REALTORS®.<br>
-        Beycome fully supports the <a href="https://www.hud.gov" rel="noreferrer noopener" target="_blank">Equal Housing Opportunity</a> laws.</p>
+
+    <!-- Lemonade-style bottom bar: socials | phone | email -->
+    <div class="bc-footer-bar">
+        <div class="bc-footer-bar-socials">
+            <a href="https://www.facebook.com/beycomeUSA/" target="_blank" rel="noopener noreferrer" aria-label="Beycome on Facebook">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M10.51,6.68v-1.56c0-.81.06-1.25,1.19-1.25h2.09V.75h-3c-2.91,0-3.58,1.55-3.58,4.09v1.84h-2.21v3.12h2.21v9.05h3.29v-9.05h2.99l.32-3.12h-3.3Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://x.com/beycome" target="_blank" rel="noopener noreferrer" aria-label="Beycome on X">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M11.49,8.4L18.14.68h-1.57l-5.77,6.71L6.18.68H.87l6.97,10.14L.87,18.92h1.58l6.09-7.08,4.87,7.08h5.32l-7.23-10.52h0ZM9.34,10.91l-.71-1.01L3.01,1.86h2.42l4.53,6.49.71,1.01,5.89,8.43h-2.42l-4.81-6.88h0Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.instagram.com/beycome/" target="_blank" rel="noopener noreferrer" aria-label="Beycome on Instagram">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M13.1115 0.753906H5.00447C3.68082 0.755758 2.4119 1.2824 1.47594 2.21837C0.539968 3.15434 0.0133264 4.42325 0.0114746 5.74691L0.0114746 13.8539C0.0133264 15.1776 0.539968 16.4465 1.47594 17.3824C2.4119 18.3184 3.68082 18.8451 5.00447 18.8469H13.1115C14.4353 18.8453 15.7045 18.3188 16.6407 17.3828C17.5768 16.4468 18.1036 15.1777 18.1055 13.8539V5.74691C18.1036 4.42308 17.5768 3.15401 16.6407 2.21801C15.7045 1.28202 14.4353 0.755494 13.1115 0.753906ZM16.4995 13.8539C16.4984 14.7521 16.1411 15.6133 15.506 16.2484C14.8708 16.8836 14.0097 17.2408 13.1115 17.2419H5.00447C4.10625 17.2408 3.24511 16.8836 2.60997 16.2484C1.97482 15.6133 1.61753 14.7521 1.61647 13.8539V5.74691C1.61753 4.84868 1.97482 3.98754 2.60997 3.3524C3.24511 2.71725 4.10625 2.35996 5.00447 2.35891H13.1115C14.0097 2.35996 14.8708 2.71725 15.506 3.3524C16.1411 3.98754 16.4984 4.84868 16.4995 5.74691V13.8539Z" fill="currentColor"/><path d="M9.05845 5.14258C8.13719 5.14258 7.23661 5.41577 6.47061 5.92759C5.7046 6.43942 5.10758 7.1669 4.75502 8.01804C4.40247 8.86917 4.31023 9.80575 4.48996 10.7093C4.66969 11.6129 5.11332 12.4428 5.76475 13.0943C6.41618 13.7457 7.24616 14.1893 8.14972 14.3691C9.05329 14.5488 9.98985 14.4566 10.841 14.104C11.6921 13.7515 12.4196 13.1544 12.9314 12.3884C13.4433 11.6224 13.7165 10.7218 13.7165 9.80058C13.7151 8.5656 13.224 7.38159 12.3507 6.50834C11.4774 5.63508 10.2934 5.1439 9.05845 5.14258ZM9.05845 12.8546C8.45443 12.8546 7.86397 12.6755 7.36174 12.3399C6.85951 12.0043 6.46807 11.5273 6.23692 10.9693C6.00577 10.4112 5.94529 9.79719 6.06313 9.20477C6.18097 8.61235 6.47184 8.06818 6.89895 7.64107C7.32606 7.21396 7.87023 6.9231 8.46265 6.80526C9.05506 6.68742 9.66912 6.7479 10.2272 6.97905C10.7852 7.2102 11.2622 7.60164 11.5978 8.10387C11.9333 8.60609 12.1125 9.19655 12.1125 9.80058C12.1114 10.6102 11.7893 11.3864 11.2168 11.9589C10.6443 12.5314 9.8681 12.8535 9.05845 12.8546Z" fill="currentColor"/><circle cx="13.9165" cy="4.98" r="1.2" fill="currentColor"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/beycome" target="_blank" rel="noopener noreferrer" aria-label="Beycome on LinkedIn">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M4.61,18.92V7.36H.77v11.56h3.84ZM2.69,5.79c.57,0,1.11-.23,1.51-.64.4-.4.62-.95.62-1.52s-.23-1.11-.63-1.52c-.4-.4-.95-.63-1.52-.63s-1.11.23-1.52.63c-.4.4-.63.95-.63,1.52,0,.57.22,1.12.62,1.52.4.4.95.63,1.51.64h.02ZM6.74,18.92h3.84v-6.46c-.01-.32.03-.63.13-.94.14-.41.41-.76.76-1.01.35-.25.77-.39,1.21-.39,1.39,0,1.95,1.06,1.95,2.61v6.18h3.84v-6.63c0-3.55-1.9-5.2-4.42-5.2-.7-.03-1.4.14-2.02.48-.62.34-1.12.85-1.47,1.46h.03v-1.68h-3.84c.05,1.08,0,11.56,0,11.56Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.zillow.com/profile/gobeycome/" target="_blank" rel="noopener noreferrer" aria-label="Beycome on Zillow">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M12.15,5.86c.08-.02.11,0,.16.06.26.32,1.09,1.41,1.32,1.71,0,.01.01.02.02.04,0,.01,0,.03,0,.04,0,.01,0,.03-.01.04,0,.01-.02.02-.03.03-1.7,1.45-3.24,3.08-4.6,4.86-.02.03,0,.03.01.03,2.59-1.08,5.27-1.94,8.01-2.57v-2.64L9.51,1.04,1.97,7.47v2.88c3.22-1.86,6.63-3.37,10.18-4.48h0ZM5.87,16.89s.05.04.08.05c.03,0,.06,0,.09-.02,3.51-1.71,7.2-3.02,11-3.91v5.91H1.97v-6.14c2.32-1.29,4.73-2.43,7.2-3.41.03-.01.04,0,.01.03-1.8,1.63-3.39,3.49-4.71,5.53-.05.08-.05.11,0,.16l1.4,1.81Z" fill="currentColor"/></svg>
+            </a>
+        </div>
+        <div class="bc-footer-bar-sep"></div>
+        <div class="bc-footer-bar-contact">
+            <a href="tel:+18046565007">804-656-5007</a>
+            <span class="bc-footer-bar-sep"></span>
+            <a href="mailto:contact@beycome.com">contact@beycome.com</a>
+        </div>
     </div>
-    <p class="bc-footer-copyright">All rights reserved, Copyright 2026 beycome™ | Made with passion in the USA.</p>
+
+    <hr class="bc-footer-divider">
+
+    <!-- Address + quick legal links row -->
+    <div class="bc-footer-bottom-row">
+        <span class="bc-footer-bottom-row-address">Beycome Corp., 5701 Sunset Drive #224, South Miami, FL 33143</span>
+        <span class="bc-footer-bottom-row-sep">|</span>
+        <div class="bc-footer-bottom-row-links">
+            <a href="https://www.beycome.com/terms-and-conditions/">Terms &amp; Conditions</a>
+            <a href="https://www.beycome.com/privacy-policy/">Privacy Policy</a>
+            <a href="https://www.beycome.com/dmca/">DMCA</a>
+            <a href="https://www.beycome.com/accessibility/">Accessibility</a>
+        </div>
+    </div>
+
+    <div class="bc-footer-legal">
+        <p><strong>Legal Disclaimer:</strong> Information is current as of May 14, 2024. Beycome Corp. may modify or discontinue products and benefits without notice. No guarantee, warranty, or representation of any kind is made regarding the completeness or accuracy of descriptions or measurements; such should be independently verified.</p>
+        <p><strong>Beycome Family of Companies:</strong> Beycome Mortgage LLC provides home loans; Beycome Brokerage Realty LLC, Beycome Brokerage Realty Inc., and Beycome of Florida LLC provide real estate services; Beycome Title of Florida LLC provides title insurance services. Beycome Corp. holds real estate brokerage licenses in FL, CA, CT, AL, GA, IL, IN, MI, MN, NC, OH, SC, TN and TX. CalDRE #01804683. TREC: <a href="/legal/IABS-1-2.pdf" rel="noreferrer noopener" target="_blank">Brokerage Services</a>, <a href="https://www.trec.texas.gov/forms/consumer-protection-notice" rel="noreferrer noopener" target="_blank">Consumer Protection Notice</a>.</p>
+        <p>IDX© information is provided exclusively for consumers' personal, non-commercial use. Broker Compensation is fully negotiable. Beycome fully supports the <a href="https://www.hud.gov" rel="noreferrer noopener" target="_blank">Equal Housing Opportunity</a> laws.</p>
+    </div>
 </div>
 </footer>
 
