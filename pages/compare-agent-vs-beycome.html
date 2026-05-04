@@ -520,10 +520,13 @@
 
         /* ── FOOTER ── */
         .bc-footer {
-            background: #282828; color: #fff; padding: 80px 32px 32px;
+            background: #161616; color: #fff; padding: 80px 0 32px;
+        }
+        .bc-footer-inner {
+            max-width: 1280px; margin: 0 auto; padding: 0 16px;
         }
         .bc-footer-grid {
-            margin: 0 0 64px;
+            max-width: 1200px; margin: 0 auto 64px;
             display: grid; grid-template-columns: 1fr 1fr 1fr 2fr; gap: 48px;
         }
         .bc-footer-col-title {
@@ -1341,6 +1344,7 @@
 
 <!-- FOOTER -->
 <footer class="bc-footer">
+<div class="bc-footer-inner">
     <div class="bc-footer-grid">
         <div class="bc-footer-col">
             <div class="bc-footer-col-title">Features</div>
@@ -1430,6 +1434,7 @@
         Beycome fully supports the <a href="https://www.hud.gov" rel="noreferrer noopener" target="_blank">Equal Housing Opportunity</a> laws.</p>
     </div>
     <p class="bc-footer-copyright">All rights reserved, Copyright 2026 beycome™ | Made with passion in the USA.</p>
+</div>
 </footer>
 
 <script>
