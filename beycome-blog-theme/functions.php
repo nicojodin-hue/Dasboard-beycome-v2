@@ -4,7 +4,7 @@
  */
 
 function beycome_blog_enqueue() {
-    wp_enqueue_style('beycome-blog-main', get_template_directory_uri() . '/assets/main.css', [], '1.7.59');
+    wp_enqueue_style('beycome-blog-main', get_template_directory_uri() . '/assets/main.css', [], '1.7.60');
 }
 add_action('wp_enqueue_scripts', 'beycome_blog_enqueue');
 
