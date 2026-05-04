@@ -476,7 +476,9 @@
         /* ── CTA ── */
         .pg-cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
         .pg-btn-primary {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             background: hsla(16, 100%, 73%, 1);
             color: #fff;
             font-size: 16px;
@@ -484,10 +486,10 @@
             padding: 16px 40px;
             border-radius: 9999px;
             text-decoration: none;
-            box-shadow: 0 4px 14px rgba(255,155,119,0.4);
-            transition: background 0.15s, box-shadow 0.15s;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            transition: opacity 0.15s;
         }
-        .pg-btn-primary:hover { background: hsla(16, 100%, 65%, 1); box-shadow: 0 6px 18px rgba(255,155,119,0.5); }
+        .pg-btn-primary:hover { opacity: 0.9; }
         .pg-btn-secondary {
             display: inline-block;
             background: transparent;
@@ -518,35 +520,37 @@
 
         /* ── FOOTER ── */
         .bc-footer {
-            background: #152330; color: #fff; padding: 80px 32px 32px;
+            background: #282828; color: #fff; padding: 80px 32px 32px;
         }
         .bc-footer-grid {
-            max-width: 1100px; margin: 0 auto 48px;
-            display: grid; grid-template-columns: 1fr 1fr 1fr 1.5fr; gap: 40px;
+            max-width: 1100px; margin: 0 auto 64px;
+            display: grid; grid-template-columns: 1fr 1fr 1fr 2fr; gap: 48px;
         }
         .bc-footer-col-title {
-            font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-            color: rgba(255,255,255,0.35); margin-bottom: 22px;
+            font-size: 12px; font-weight: 700; letter-spacing: normal; text-transform: uppercase;
+            color: #9ca3af; margin-bottom: 24px;
         }
         .bc-footer-col ul { list-style: none; }
-        .bc-footer-col ul li { margin-bottom: 14px; }
-        .bc-footer-col ul li a { text-decoration: none; color: rgba(255,255,255,0.72); font-size: 14px; }
-        .bc-footer-col ul li a:hover { color: #fff; }
-        .bc-footer-contact-item { margin-bottom: 10px; font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.55; }
-        .bc-footer-follow-title { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin: 18px 0 14px; }
-        .bc-footer-socials { display: flex; gap: 14px; align-items: center; }
-        .bc-footer-socials a { color: rgba(255,255,255,0.72); text-decoration: none; display: flex; }
-        .bc-footer-socials a:hover { color: #fff; }
-        .bc-footer-divider { max-width: 1100px; margin: 0 auto 28px; border: none; border-top: 1px solid rgba(255,255,255,0.1); }
-        .bc-footer-legal { max-width: 1100px; margin: 0 auto; font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.65; }
-        .bc-footer-legal p { margin-bottom: 10px; }
-        .bc-footer-legal a { color: rgba(255,255,255,0.5); }
-        .bc-footer-copyright { max-width: 1100px; margin: 20px auto 0; font-size: 12px; color: rgba(255,255,255,0.25); }
-        .bc-footer-cta-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-        .bc-footer-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9999px; font-size: 14px; font-weight: 700; text-decoration: none; transition: opacity 0.15s; white-space: nowrap; }
-        .bc-footer-btn:hover { opacity: 0.88; }
-        .bc-footer-btn-schedule { background: #FF9B77; color: #152330; }
-        .bc-footer-btn-whatsapp { background: #25D366; color: #fff; }
+        .bc-footer-col ul li { margin-bottom: 16px; }
+        .bc-footer-col ul li a { text-decoration: none; color: #fff; font-size: 14px; font-weight: 400; }
+        .bc-footer-col ul li a:hover { color: #fff; opacity: 0.85; }
+        .bc-footer-contact-item { margin-bottom: 16px; font-size: 14px; color: #fff; line-height: 1.55; }
+        .bc-footer-contact-item a { color: #fff; text-decoration: none; }
+        .bc-footer-contact-item a:hover { opacity: 0.85; }
+        .bc-footer-follow-title { font-size: 12px; font-weight: 700; letter-spacing: normal; text-transform: uppercase; color: #9ca3af; margin: 32px 0 16px; }
+        .bc-footer-socials { display: flex; gap: 4px; align-items: center; }
+        .bc-footer-socials a { color: #fff; text-decoration: none; display: inline-flex; width: 40px; height: 40px; align-items: center; }
+        .bc-footer-socials a:hover { opacity: 0.85; }
+        .bc-footer-cta-btns { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; padding-top: 16px; }
+        .bc-footer-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 10px; font-size: 16px; font-weight: 600; text-decoration: none; min-width: 160px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); transition: opacity 0.15s; white-space: nowrap; color: #fff; }
+        .bc-footer-btn:hover { opacity: 0.92; }
+        .bc-footer-btn-schedule { background: rgb(245, 154, 119); }
+        .bc-footer-btn-whatsapp { background: rgb(44, 207, 99); }
+        .bc-footer-divider { max-width: 1100px; margin: 0 auto 32px; border: none; border-top: 1px solid #374151; }
+        .bc-footer-legal { max-width: 1100px; margin: 0 auto; font-size: 12px; color: #9ca3af; line-height: 1.65; }
+        .bc-footer-legal p { margin-bottom: 16px; }
+        .bc-footer-legal a { color: #7d8ff7; text-decoration: underline; }
+        .bc-footer-copyright { max-width: 1100px; margin: 16px auto 0; font-size: 12px; color: #6b7280; }
 
         @media (max-width: 760px) {
             /* Hero */
@@ -1380,7 +1384,7 @@
             <p class="bc-footer-contact-item">5701 Sunset Drive #224,<br>South Miami, FL 33143</p>
             <p class="bc-footer-contact-item">Phone: <a href="tel:+18046565007">804-656-5007</a></p>
             <p class="bc-footer-contact-item">Email: <a href="mailto:contact@beycome.com">contact@beycome.com</a></p>
-            <p class="bc-footer-contact-item" style="margin-top:16px"><strong style="color:#fff">Hours:</strong><br>Mon – Fri: 8:30am – 6:30pm EST<br>Sat: 9am – 5pm EST</p>
+            <p class="bc-footer-contact-item"><strong>Hours:</strong><br>Mon – Fri: 8:30am – 6:30pm EST<br>Sat: 9am – 5pm EST</p>
             <div class="bc-footer-cta-btns">
                 <a href="https://beycome.zohobookings.com/#/customer/beycome" target="_blank" rel="noopener noreferrer" class="bc-footer-btn bc-footer-btn-schedule">
                     <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3V2zm13 8H4v10h16V10z" fill="currentColor"/></svg>
