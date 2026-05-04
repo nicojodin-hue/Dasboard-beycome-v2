@@ -26,6 +26,41 @@ $bc_footer_modifiers = [
     </div>
 </section>
 
+<style>
+.bc-footer{background:#1b1b1b;color:#fff;font-size:16px;padding:80px 0 32px}
+.bc-footer-inner{max-width:1280px;margin:0 auto;padding:0 16px}
+.bc-footer-grid{max-width:1200px;margin:0 auto 64px;display:grid;grid-template-columns:1fr 1fr 1fr 2fr;gap:48px}
+.bc-footer-col-title{font-size:16px;font-weight:700;letter-spacing:normal;text-transform:uppercase;color:#ffffffa6;margin-bottom:24px}
+.bc-footer-col ul{list-style:none}
+.bc-footer-col ul li{margin-bottom:16px}
+.bc-footer-col ul li a{text-decoration:none;color:#fff;font-size:16px;font-weight:400}
+.bc-footer-col ul li a:hover{opacity:.85}
+.bc-footer-btn{display:inline-flex;align-items:center;gap:12px;padding:10px 16px;border-radius:8px;border:1px solid #3a3a3a;background:#2a2a2a;text-decoration:none;color:#fff;transition:border-color .15s,background .15s;white-space:nowrap;min-width:180px}
+.bc-footer-btn:hover{border-color:#666;background:#333}
+.bc-footer-btn-icon{flex-shrink:0;display:flex;align-items:center}
+.bc-footer-btn-text{display:flex;flex-direction:column}
+.bc-footer-btn-label{font-size:11px;color:#ffffffa6;line-height:1.2}
+.bc-footer-btn-name{font-size:15px;font-weight:700;color:#fff;line-height:1.3}
+.bc-footer-bar{display:flex;align-items:center;gap:20px;padding:20px 0;flex-wrap:wrap}
+.bc-footer-bar-socials{display:flex;gap:2px;align-items:center}
+.bc-footer-bar-socials a{color:#ffffffa6;text-decoration:none;display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;transition:color .15s}
+.bc-footer-bar-socials a:hover{color:#fff}
+.bc-footer-bar-sep{width:1px;height:20px;background:#374151;flex-shrink:0}
+.bc-footer-bar-contact{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.bc-footer-bar-contact a{color:#ffffffa6;text-decoration:none;font-size:16px;transition:color .15s}
+.bc-footer-bar-contact a:hover{color:#fff}
+.bc-footer-bar-ctas{display:flex;gap:10px;margin-left:auto}
+.bc-footer-divider{margin:0 0 20px;border:none;border-top:1px solid #2a2a2a}
+.bc-footer-bottom-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.bc-footer-bottom-row-address{font-size:13px;color:#ffffffa6}
+.bc-footer-bottom-row-sep{color:#374151}
+.bc-footer-bottom-row-links{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.bc-footer-bottom-row-links a{font-size:13px;color:#ffffffa6;text-decoration:none;transition:color .15s}
+.bc-footer-bottom-row-links a:hover{color:#fff}
+.bc-footer-legal{font-size:13px;color:#ffffffa6;line-height:1.65}
+.bc-footer-legal p{margin-bottom:12px}
+.bc-footer-legal a{color:#7d8ff7;text-decoration:underline}
+</style>
 <footer class="bc-footer">
 <div class="bc-footer-inner">
     <div class="bc-footer-grid">
