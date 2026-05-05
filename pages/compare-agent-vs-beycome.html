@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent vs Beycome: Real Estate Cost Facts - Beycome</title>
+    <meta name="description" content="See exactly what you pay in real estate commissions — compared side by side like a nutrition label. Traditional agents vs Beycome, broken down to the dollar.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.beycome.com/compare-agent-vs-beycome">
+
+    <style>
+        :root {
+            --c-green: hsla(137, 28%, 49%, 1);
+            --c-red: #b91c1c;
+        }
+
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('../fonts/roboto-400.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url('../fonts/roboto-700.woff2') format('woff2');
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Roboto, ui-sans-serif, system-ui, sans-serif;
+            background: #fff;
+            color: #152330;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ── */
+        .bc-nav {
+            position: sticky; top: 0; z-index: 50;
+            background: #fff; border-bottom: 1px solid #f0f0f5;
+        }
+        .bc-nav-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 80px; max-width: 1280px; margin: 0 auto; padding: 0 16px; position: relative;
+        }
+        .bc-nav-links { display: flex; gap: 32px; }
+        .bc-nav-links a { text-decoration: none; color: #152330; font-size: 16px; font-weight: 600; }
+        .bc-nav-links a:hover { opacity: 0.7; }
+        .bc-nav-logo {
+            position: absolute; left: 0; right: 0; margin: auto;
+            width: fit-content; display: flex; align-items: center; text-decoration: none;
+        }
+        .bc-nav-right a {
+            text-decoration: none; color: #152330; font-size: 16px; font-weight: 600;
+            display: flex; align-items: center; gap: 4px;
+        }
+        .bc-nav-right a:hover { opacity: 0.7; }
+
+        /* ── HERO ── */
+        .pg-hero {
+            text-align: center;
+            padding: 64px 24px 48px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .pg-hero-eyebrow {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #5a6ad4;
+            background: hsla(228,60%,59%,0.1);
+            padding: 6px 14px;
+            border-radius: 99px;
+            margin-bottom: 20px;
+        }
+        .pg-hero h1 {
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji";
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 700;
+            line-height: 1.05;
+            color: #152330;
+            margin-bottom: 20px;
+        }
+        .pg-hero p {
+            font-size: 22px;
+            color: #4a5056;
+            line-height: 1.5;
+            max-width: 620px;
+            margin: 0 auto 40px;
+        }
+
+        /* ── PRICE INPUT ── */
+        .pg-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 56px;
+            flex-wrap: wrap;
+        }
+        .pg-price-toggle {
+            display: inline-flex;
+            gap: 4px;
+            padding: 4px;
+            background: #f3f4f6;
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+        .pg-price-toggle-btn {
+            padding: 9px 16px;
+            font-size: 16px;
+            font-weight: 700;
+            color: hsla(210,39%,14%,0.5);
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+        .pg-price-toggle-btn:hover { color: #152330; }
+        .pg-price-toggle-btn.active {
+            background: #fff;
+            color: #152330;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .pg-price-label { font-size: 16px; font-weight: 700; color: #152330; }
+        .pg-price-input-wrap {
+            position: relative;
+            display: block;
+        }
+        .pg-price-input-wrap span {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 14px;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: #152330;
+            pointer-events: none;
+            line-height: 1;
+        }
+        .pg-price-input-wrap input {
+            width: 180px;
+            height: 44px;
+            padding: 0 14px 0 28px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            background: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            color: #152330;
+            outline: none;
+            font-family: inherit;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        .pg-price-input-wrap input:focus,
+        .pg-price-input-wrap input:focus-visible {
+            border-color: #0066cc !important;
+            box-shadow: 0 0 0 3px rgba(0,102,204,0.2) !important;
+            outline: none !important;
+        }
+
+        /* ── LABELS WRAPPER ── */
+        .pg-labels-section {
+            max-width: 860px;
+            margin: 0 auto 80px;
+            padding: 0 24px;
+        }
+        .pg-labels-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        /* ── NUTRITION LABEL ── */
+        .nf {
+            border: 1px solid #000;
+            padding: 6px 8px 8px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fff;
+            color: #000;
+            position: relative;
+        }
+        .nf-title {
+            font-size: 36px;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 0;
+        }
+        .nf-subtitle {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 3px;
+        }
+        .nf-rule-thin  { border: none; border-top: 1px solid #000; margin: 4px 0; }
+        .nf-rule-med   { border: none; border-top: 5px solid #000; margin: 4px 0; }
+        .nf-rule-thick { border: none; border-top: 9px solid #000; margin: 4px 0; }
+        .nf-rule-max   { border: none; border-top: 18px solid #000; margin: 4px 0; }
+
+        .nf-serving {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        .nf-serving-bold { font-weight: 700; }
+
+        /* Calories row */
+        .nf-cal-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 2px 0 4px;
+        }
+        .nf-cal-label {
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .nf-cal-num {
+            font-size: 60px;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+        .nf-cal-note {
+            font-size: 9px;
+            font-weight: 400;
+            text-align: right;
+            line-height: 1.3;
+        }
+
+        /* DV header */
+        .nf-dv-header {
+            text-align: right;
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1.3;
+            padding: 3px 0 2px;
+        }
+        .nf-dv-header b { font-size: 11px; }
+
+        /* Regular rows */
+        .nf-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 12px;
+            padding: 3px 0 2px;
+            border-top: 1px solid #000;
+            line-height: 1.3;
+        }
+        .nf-row:first-child { border-top: none; }
+        .nf-row-left { display: flex; align-items: baseline; gap: 0; }
+        .nf-row-name { font-weight: 700; }
+        .nf-row-amount { font-weight: 700; font-size: 11px; }
+        .nf-row-dv { font-weight: 700; font-size: 12px; white-space: nowrap; }
+        .nf-row.sub .nf-row-name { padding-left: 14px; font-weight: 400; }
+        .nf-row.sub .nf-row-dv { font-weight: 400; }
+        .nf-row.sub .nf-row-amount { font-size: 10px; }
+        .nf-row.bold-row .nf-row-name { font-weight: 900; font-size: 13px; }
+        .nf-row.bold-row .nf-row-dv { font-size: 13px; }
+
+        .nf-row-green .nf-row-dv,
+        .nf-row-green .nf-row-name { color: var(--c-green); }
+        .nf-row-red .nf-row-dv,
+        .nf-row-red .nf-row-name { color: var(--c-red); }
+        .nf-row-accent .nf-row-dv,
+        .nf-row-accent .nf-row-name { color: #1a237e; }
+
+        /* Star/check/x indicators */
+        .nf-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 3px;
+            line-height: 1.4;
+        }
+        .nf-badge-bad  { background: var(--c-red); color: #fff; }
+        .nf-badge-good { background: var(--c-green); color: #fff; }
+        .nf-badge-neu  { background: #555; color: #fff; }
+
+        /* Footnote */
+        .nf-footnote {
+            font-size: 9px;
+            line-height: 1.5;
+            color: #000;
+            padding-top: 4px;
+        }
+
+        /* Label brand header */
+        .nf-brand {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+        .nf-brand.traditional { color: #000; font-size: 24px; text-transform: none; letter-spacing: 0; }
+        .nf-brand.beycome     { color: #000; }
+
+        /* Beycome label accent */
+        .nf.beycome-label .nf-title { color: #152330; }
+        .nf.beycome-label .nf-cal-num { color: var(--c-green); }
+
+        /* Label product name */
+        .nf-product {
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            padding: 6px 0 4px;
+            line-height: 1.3;
+        }
+        .nf-product .sub {
+            display: block;
+            font-size: 10px;
+            font-weight: 400;
+        }
+
+        /* Savings callout - below labels */
+        .pg-savings-callout {
+            margin-top: 20px;
+            background: hsla(137,28%,49%,0.08);
+            border: 2px solid hsla(137,28%,49%,0.3);
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: center;
+        }
+        .pg-savings-callout .label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #5a9e6f;
+            margin-bottom: 4px;
+        }
+        .pg-savings-callout .amount {
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            font-size: 44px;
+            font-weight: 700;
+            color: var(--c-green);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .pg-savings-callout .note {
+            font-size: 14px;
+            color: rgb(74,80,86);
+        }
+
+        /* ── CONTENT SECTIONS ── */
+        .pg-section { padding: 72px 0; }
+        .pg-section-white { background: #fff; }
+        .pg-section-alt   { background: #f9fafb; }
+        .pg-section-dark  { background: #152330; color: #fff; }
+        .pg-section-inner { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+
+        .pg-section-h2 {
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            font-size: clamp(26px, 3.5vw, 40px);
+            font-weight: 700;
+            line-height: 1.15;
+            color: #152330;
+            margin-bottom: 14px;
+        }
+        .pg-section-sub {
+            font-size: 17px;
+            color: rgb(74,80,86);
+            line-height: 1.6;
+            margin-bottom: 48px;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        .pg-section-dark .pg-section-h2 { color: #fff; }
+        .pg-section-dark .pg-section-sub { color: rgba(255,255,255,0.7); }
+
+        /* ── COMPARE TABLE ── */
+        .pg-compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+        }
+        .pg-compare-table th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: normal;
+            text-transform: none;
+            color: #152330;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .pg-compare-table th:not(:first-child) { text-align: center; }
+        .pg-compare-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #f0f0f5;
+            vertical-align: middle;
+        }
+        .pg-compare-table td:not(:first-child) { text-align: center; font-weight: 700; }
+        .pg-compare-table tr:last-child td { border-bottom: none; }
+        .pg-compare-table .row-label { font-size: 18px; color: #152330; font-weight: 700; }
+        .pg-compare-table .row-sub { font-size: 14px; color: #4a5056; margin-top: 2px; }
+        .pg-compare-table .val-bad  { color: var(--c-red); }
+        .pg-compare-table .val-good { color: var(--c-green); font-size: 18px; }
+        .pg-compare-table .val-neu  { color: #152330; }
+        .pg-compare-table .check { font-size: 18px; }
+        .pg-compare-table .col-beycome { background: hsla(228,60%,59%,0.04); }
+        .pg-compare-table thead .col-beycome { background: hsla(228,60%,59%,0.08); border-radius: 8px 8px 0 0; }
+
+        .pg-th-beycome {
+            background: hsla(228,60%,59%,0.08);
+            border-radius: 8px 8px 0 0;
+            color: #152330;
+            font-size: 24px;
+            letter-spacing: normal;
+            text-transform: none;
+        }
+
+        /* ── STEPS ── */
+        .pg-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .pg-step { display: flex; gap: 16px; align-items: flex-start; }
+        .pg-step-num {
+            flex-shrink: 0;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #5a6ad4;
+            color: #fff;
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .pg-step-body h3 { font-size: 17px; font-weight: 700; color: #152330; margin-bottom: 4px; }
+        .pg-step-body p  { font-size: 16px; color: rgb(74,80,86); line-height: 1.6; }
+
+        /* ── TWO-COL LAYOUT ── */
+        .pg-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+        .pg-two-col-text h2 { margin-bottom: 16px; }
+        .pg-two-col-text p { font-size: 17px; color: rgb(55,65,81); line-height: 1.7; margin-bottom: 14px; }
+        .pg-two-col-text a { color: #5a6ad4; }
+
+        /* ── STAT CARDS ── */
+        .pg-stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .pg-stat-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+        }
+        .pg-stat-num {
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1;
+            color: #FF9B77;
+            margin-bottom: 8px;
+        }
+        .pg-stat-label { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+        /* ── CTA ── */
+        .pg-cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+        .pg-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: hsla(16, 100%, 73%, 1);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 16px 40px;
+            border-radius: 9999px;
+            text-decoration: none;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            transition: opacity 0.15s;
+        }
+        .pg-btn-primary:hover { opacity: 0.9; }
+        .pg-btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 16px 40px;
+            border-radius: 9999px;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.4);
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .pg-btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
+
+        /* ── FAQ ── */
+        .pg-faq-list { column-count: 2; column-gap: 48px; }
+        .pg-faq-item { border-bottom: 1px solid #e5e7eb; padding: 20px 0; break-inside: avoid; }
+        .pg-faq-btn {
+            background: none; border: none; cursor: pointer; width: 100%;
+            text-align: left; display: flex; justify-content: space-between;
+            align-items: center; gap: 16px; font-size: 17px; font-weight: 700;
+            color: #152330; font-family: inherit; padding: 0;
+        }
+        .pg-faq-icon { font-size: 22px; font-weight: 400; color: #152330; flex-shrink: 0; transition: transform 0.2s; }
+        .pg-faq-btn[aria-expanded="true"] .pg-faq-icon { transform: rotate(45deg); }
+        .pg-faq-body { display: none; font-size: 15px; color: rgb(74,80,86); line-height: 1.65; padding-top: 12px; }
+        .pg-faq-body.open { display: block; }
+
+        /* ── FOOTER ── */
+        .bc-footer {
+            background: #1b1b1b; color: var(--color-white, #fff); font-size: 16px; padding: 80px 0 32px;
+        }
+        .bc-footer-inner {
+            max-width: 1280px; margin: 0 auto; padding: 0 16px;
+        }
+        .bc-footer-grid {
+            max-width: 1200px; margin: 0 auto 64px;
+            display: grid; grid-template-columns: 1fr 1fr 1fr 2fr; gap: 48px;
+        }
+        .bc-footer-col-title {
+            font-size: 16px; font-weight: 700; letter-spacing: normal; text-transform: uppercase;
+            color: #ffffffa6; margin-bottom: 24px;
+        }
+        .bc-footer-col ul { list-style: none; }
+        .bc-footer-col ul li { margin-bottom: 16px; }
+        .bc-footer-col ul li a { text-decoration: none; color: var(--color-white, #fff); font-size: 16px; font-weight: 400; }
+        .bc-footer-col ul li a:hover { opacity: 0.85; }
+        .bc-footer-contact-item { margin-bottom: 16px; font-size: 16px; color: var(--color-white, #fff); line-height: 1.55; }
+        .bc-footer-contact-item a { color: var(--color-white, #fff); text-decoration: none; }
+        .bc-footer-contact-item a:hover { opacity: 0.85; }
+        .bc-footer-cta-btns { display: none; }
+        .bc-footer-btn { display: inline-flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: 8px; border: 1px solid #3a3a3a; background: #2a2a2a; text-decoration: none; color: #fff; transition: border-color 0.15s, background 0.15s; white-space: nowrap; min-width: 180px; }
+        .bc-footer-btn:hover { border-color: #666; background: #333; }
+        .bc-footer-btn-icon { flex-shrink: 0; display: flex; align-items: center; }
+        .bc-footer-btn-text { display: flex; flex-direction: column; }
+        .bc-footer-btn-label { font-size: 11px; color: #ffffffa6; line-height: 1.2; }
+        .bc-footer-btn-name { font-size: 15px; font-weight: 700; color: #fff; line-height: 1.3; }
+        /* Lemonade-style bottom bar */
+        .bc-footer-bar { display: flex; align-items: center; gap: 20px; padding: 20px 0; flex-wrap: wrap; }
+        .bc-footer-bar-socials { display: flex; gap: 2px; align-items: center; }
+        .bc-footer-bar-socials a { color: #ffffffa6; text-decoration: none; display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; transition: color 0.15s; }
+        .bc-footer-bar-socials a:hover { color: #fff; }
+        .bc-footer-bar-sep { width: 1px; height: 20px; background: #374151; flex-shrink: 0; }
+        .bc-footer-bar-contact { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .bc-footer-bar-contact a { color: #ffffffa6; text-decoration: none; font-size: 16px; transition: color 0.15s; }
+        .bc-footer-bar-contact a:hover { color: #fff; }
+        .bc-footer-bar-ctas { display: flex; gap: 10px; margin-left: auto; }
+        /* Bottom legal row */
+        .bc-footer-divider { margin: 0 0 20px; border: none; border-top: 1px solid #2a2a2a; }
+        .bc-footer-bottom-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .bc-footer-bottom-row-address { font-size: 13px; color: #ffffffa6; }
+        .bc-footer-bottom-row-sep { color: #374151; }
+        .bc-footer-bottom-row-links { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .bc-footer-bottom-row-links a { font-size: 13px; color: #ffffffa6; text-decoration: none; transition: color 0.15s; }
+        .bc-footer-bottom-row-links a:hover { color: #fff; }
+        .bc-footer-legal { font-size: 13px; color: #ffffffa6; line-height: 1.65; }
+        .bc-footer-legal p { margin-bottom: 12px; }
+        .bc-footer-legal a { color: #7d8ff7; text-decoration: underline; }
+
+        @media (max-width: 760px) {
+            /* Hero */
+            .pg-hero { padding: 48px 16px 32px; }
+            .pg-hero h1 { font-size: 30px; overflow-wrap: break-word; }
+            .pg-hero p { font-size: 18px; }
+
+            /* Price toggle */
+            .pg-price-row { flex-direction: column; align-items: stretch; gap: 8px; padding: 0 16px; }
+            .pg-price-toggle { width: 100%; justify-content: stretch; box-sizing: border-box; }
+            .pg-price-toggle-btn { flex: 1; text-align: center; }
+            .pg-price-label { display: none; }
+            .pg-price-input-wrap { width: 100%; }
+            .pg-price-input-wrap input { width: 100%; box-sizing: border-box; }
+
+            /* Labels */
+            .pg-labels-section { padding: 0 16px; margin: 0 auto 10px; }
+            .pg-labels-wrap { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+
+            /* Sections */
+            .pg-section { padding: 48px 0; }
+            .pg-section-h2 { font-size: 28px; }
+            .pg-two-col { grid-template-columns: 1fr; gap: 40px; }
+            .pg-stat-grid { grid-template-columns: 1fr; }
+
+            /* Steps 2-col → 1-col */
+            .pg-steps { grid-template-columns: 1fr; }
+
+            /* FAQ 2-col → 1-col */
+            .pg-faq-list { column-count: 1; }
+
+            /* Gunmetal CTA cards */
+            .pg-cta-cards { grid-template-columns: 1fr !important; }
+            #pg-sell-cta h2, #pg-buy-cta h2 { font-size: 28px !important; }
+
+            /* Savings callout */
+            .pg-savings-callout { padding: 24px 16px; }
+
+            /* Nutrition label — scale down for mobile */
+            .nf-cal-num { font-size: 40px; }
+            .nf-title { font-size: 26px; }
+            .nf-row { font-size: 13px; }
+            .nf-row-amount { font-size: 10px; }
+
+            /* Footer */
+            .bc-footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .bc-nav-links, .bc-nav-right { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="bc-nav">
+    <div class="bc-nav-inner">
+        <nav class="bc-nav-links">
+            <a href="https://www.beycome.com/flat-fee-mls/">Sell</a>
+            <a href="https://www.beycome.com/i-want-to-buy-a-home/">Buy</a>
+            <a href="https://www.beycometitle.com/">Title Services</a>
+            <a href="https://www.beycome.com/how-much-is-my-home-worth/">Home Estimate</a>
+        </nav>
+        <a href="https://www.beycome.com/" class="bc-nav-logo">
+            <svg width="141" height="27" viewBox="0 0 141 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M55.5,9.8c-.4-.89-.98-1.69-1.7-2.33-.72-.64-1.57-1.12-2.49-1.4-.92-.28-1.89-.35-2.84-.21-.95.14-1.86.48-2.67,1.01-1,.64-1.84,1.52-2.45,2.55-.61,1.04-.97,2.2-1.05,3.41-.14,1.09-.05,2.2.25,3.26.3,1.06.82,2.04,1.51,2.88.63.78,1.42,1.41,2.3,1.86.89.45,1.86.7,2.84.74.99.04,1.97-.13,2.89-.51.92-.38,1.75-.95,2.44-1.67.7-.74,1.21-1.65,1.47-2.64h-3.41c-.06,0-.11.02-.16.05-.05.03-.09.08-.12.13-.28.39-.64.7-1.05.93-.41.23-.87.36-1.34.38-.85.13-1.73-.05-2.46-.51-.74-.46-1.29-1.17-1.57-2.01-.13-.41-.13-.41.28-.41h9.76c.23,0,.32-.04.35-.29.24-1.79-.04-3.6-.8-5.23h0ZM45.71,12.15c.16-.93.66-1.76,1.41-2.32.75-.56,1.68-.8,2.59-.67.83-.03,1.64.26,2.28.81.63.55,1.04,1.33,1.13,2.17h-7.41Z" fill="#070707"/><path d="M106.82,7.54c.58-.81,1.44-1.37,2.4-1.59,1.98-.38,3.78.02,4.92,1.93.12.2.17.23.32.02.58-.79,1.37-1.4,2.27-1.75.9-.36,1.88-.45,2.84-.26,2.75.33,3.98,2.2,4.38,4.58.11.72.16,1.45.15,2.18,0,2.77,0,5.53,0,8.29,0,.28-.06.36-.34.35-.86-.02-1.71-.02-2.57,0-.27,0-.35-.06-.35-.34.01-2.6.01-5.22,0-7.83.01-.76-.07-1.53-.26-2.27-.06-.28-.18-.55-.35-.79s-.38-.44-.62-.6c-.24-.15-.51-.26-.79-.31-.28-.05-.57-.04-.85.03-1.31.16-1.95.91-2.21,2.39-.12.82-.18,1.64-.17,2.46,0,2.31,0,4.62,0,6.93,0,.28-.07.34-.33.33-.86-.02-1.72-.02-2.57,0-.3,0-.39-.05-.39-.38.02-2.78,0-5.55,0-8.33,0-.55-.07-1.1-.22-1.63-.06-.3-.18-.58-.35-.83-.17-.25-.38-.47-.63-.63-.25-.17-.53-.28-.82-.33-.29-.05-.59-.05-.89.02-1.33.14-1.97.91-2.17,2.43-.1.77-.15,1.55-.15,2.32,0,2.33,0,4.67,0,7,0,.27-.05.37-.34.36-.89-.02-1.79-.02-2.68,0-.22,0-.27-.06-.27-.28,0-4.86,0-9.72,0-14.58,0-.24.07-.3.31-.3.81.01,1.62.01,2.43,0,.22,0,.29.05.28.28-.02.34,0,.69,0,1.13" fill="#070707"/><path d="M100.48,8.86c-.93-1.4-2.32-2.4-3.92-2.83-1.6-.43-3.3-.25-4.78.5-1.17.58-2.16,1.46-2.89,2.55-.73,1.1-1.16,2.37-1.25,3.69-.15,1.16-.05,2.34.29,3.45.35,1.11.93,2.14,1.7,3,.99,1.16,2.32,1.94,3.79,2.24,1.47.3,3,.09,4.34-.59,1.19-.57,2.21-1.46,2.94-2.57.74-1.11,1.16-2.41,1.24-3.75.16-2.01-.36-4.02-1.48-5.69h0ZM97.39,17.08c-.33.37-.73.67-1.18.87-.45.2-.93.31-1.42.31-.49,0-.98-.1-1.43-.3-.45-.2-.85-.5-1.19-.86-.83-.91-1.29-2.1-1.31-3.34-.01-1.24.43-2.44,1.23-3.37.36-.42.8-.74,1.3-.96.5-.21,1.04-.31,1.58-.28.54.03,1.07.19,1.54.45.47.27.88.64,1.19,1.1.67.94,1.01,2.09.95,3.25-.06,1.16-.51,2.27-1.27,3.13" fill="#070707"/><path d="M85.96,16.25c-.96,2.73-2.58,4.72-5.48,5.21-1.34.27-2.73.12-3.99-.42-1.26-.54-2.33-1.46-3.07-2.64-1.13-1.64-1.62-3.65-1.37-5.64.08-1.08.38-2.13.89-3.09.51-.95,1.2-1.79,2.05-2.45.83-.64,1.78-1.07,2.79-1.28,1.01-.21,2.06-.19,3.06.07,1,.26,1.94.74,2.73,1.41.8.67,1.44,1.52,1.87,2.48.2.42.37.87.5,1.32h-3.51c-.05,0-.1,0-.15-.03-.04-.03-.08-.07-.1-.12-.29-.65-.77-1.19-1.38-1.54-.61-.34-1.32-.48-2.01-.37-.76.04-1.48.32-2.07.82-.58.49-1,1.17-1.17,1.92-.29.83-.37,1.71-.24,2.58.14.87.49,1.68,1.02,2.37.34.46.79.83,1.3,1.07.51.24,1.08.36,1.64.33.56-.03,1.11-.2,1.6-.5.49-.3.89-.71,1.19-1.2.06-.11.14-.19.25-.25.1-.06.22-.08.34-.06,1.08.01,2.16,0,3.3,0" fill="#070707"/><path d="M57.27,6.13c1.19,0,2.35,0,3.5,0,.23,0,.26.12.31.29.92,3.02,1.84,6.04,2.76,9.06.04.12.03.27.17.36.55-1.66,1.1-3.31,1.65-4.95.5-1.5.99-3,1.49-4.49.04-.13.05-.26.26-.26,1.17.01,2.35,0,3.52,0,.06.14-.03.24-.07.35-2.51,6.51-5.02,13.01-7.53,19.52-.03.11-.09.2-.18.26s-.2.08-.3.07c-1.03-.02-2.07,0-3.11,0-.01-.1.01-.21.07-.29.77-1.97,1.53-3.93,2.31-5.9.04-.09.06-.19.06-.29,0-.1-.02-.2-.05-.29-1.59-4.37-3.17-8.74-4.74-13.12-.03-.09-.06-.18-.09-.3" fill="#070707"/><path d="M139.38,9.77c-.44-.97-1.1-1.82-1.92-2.49-.82-.66-1.78-1.12-2.81-1.34-1.03-.22-2.09-.19-3.1.09-1.01.28-1.95.79-2.73,1.5-1.13,1.01-1.95,2.33-2.38,3.8-.43,1.47-.44,3.04-.04,4.51.4,1.81,1.45,3.41,2.96,4.45,1.5,1.05,3.34,1.47,5.14,1.17,1.21-.15,2.35-.64,3.29-1.42.94-.78,1.65-1.82,2.04-3,.1-.27.03-.31-.22-.31-.99.01-1.97,0-2.96,0-.09,0-.17,0-.25.04-.08.04-.15.09-.2.16-.28.38-.63.69-1.04.92-.41.22-.86.35-1.33.37-.86.13-1.74-.05-2.48-.52-.74-.47-1.3-1.18-1.57-2.03-.09-.28-.08-.39.26-.38,1.62.02,3.24,0,4.86,0s3.29,0,4.93,0c.23,0,.32-.04.35-.29.24-1.8-.04-3.63-.81-5.26h0ZM129.63,12.14c.15-.91.63-1.72,1.35-2.28.72-.56,1.61-.82,2.51-.72.85-.06,1.7.22,2.35.78.66.56,1.08,1.35,1.18,2.22h-7.39Z" fill="#070707"/><path d="M32.3,6.06c-.88.25-1.66.76-2.26,1.46,0-2.06-.01-4.03.01-6.01,0-.36-.1-.43-.43-.42-.83.03-1.67.02-2.5,0-.29,0-.37.06-.37.37.01,3.39,0,6.77,0,10.16,0,3.11,0,6.22,0,9.33,0,.26.06.34.33.34.8-.02,1.6-.02,2.4,0,.23,0,.3-.06.29-.29-.02-.52,0-1.04,0-1.62.33.37.69.72,1.07,1.04.36.3.77.55,1.2.73,1.35.56,2.86.62,4.25.17s2.58-1.39,3.37-2.65c.69-1.09,1.14-2.32,1.32-3.6.19-1.28.11-2.59-.24-3.84-.19-.93-.56-1.8-1.1-2.57-.54-.77-1.22-1.42-2.02-1.9s-1.68-.8-2.59-.92c-.92-.12-1.85-.04-2.74.22h0ZM37.75,13.42c.08,1.24-.27,2.46-1,3.45-.39.48-.88.86-1.44,1.1s-1.17.35-1.77.3c-.61-.05-1.19-.24-1.71-.57-.52-.33-.95-.77-1.27-1.31-.46-.78-.72-1.66-.75-2.56-.03-.91.16-1.81.56-2.61.32-.7.85-1.28,1.51-1.66.66-.38,1.41-.55,2.16-.48.81.05,1.58.36,2.2.89.62.52,1.07,1.23,1.28,2.03.14.46.21.93.22,1.41" fill="#070707"/><path d="M20.19,12.72c-.55-.66-1.34-1.07-2.18-1.16-.85-.09-1.69.17-2.36.7-.06.07-.15.1-.24.11-.09,0-.18-.03-.24-.1-.61-.46-1.35-.71-2.1-.7-.75,0-1.47.25-2.05.73-.58.48-.98,1.15-1.13,1.9-.14.68-.12,1.39.04,2.06.16.68.47,1.31.91,1.84,1.1,1.38,2.49,2.49,4.08,3.23.15.09.33.14.5.13.18,0,.35-.05.5-.14.89-.46,1.74-1.01,2.52-1.63,1.13-.83,1.97-2.01,2.41-3.37.2-.61.25-1.26.14-1.9-.11-.63-.39-1.23-.79-1.72h0ZM19.39,15.43c-.24,1.13-.88,2.14-1.79,2.83-.6.52-1.26.97-1.95,1.34-.05.05-.12.07-.19.08-.07,0-.14,0-.2-.04-1.25-.62-2.34-1.53-3.19-2.65-.37-.47-.59-1.04-.65-1.63-.05-.41.02-.83.21-1.2.19-.37.49-.66.86-.84.38-.12.79-.12,1.18,0,.38.12.72.36.97.67.1.18.26.31.44.39.19.08.39.08.58.03.18-.07.33-.19.43-.35.18-.24.42-.44.68-.59.27-.14.56-.23.86-.25.27,0,.53.05.77.16s.46.28.62.5c.17.21.29.46.35.73.06.27.06.54,0,.81" fill="#ff9b77"/><path d="M.16,14.92c0-1.84,0-3.69,0-5.53,0-.17.03-.34.1-.5.07-.16.18-.29.31-.4C3.67,5.86,6.77,3.23,9.88.59c.56-.48.87-.48,1.43-.01,3.11,2.64,6.22,5.28,9.33,7.93.1.06.19.15.25.25.07.1.11.21.13.33.02.12.01.24-.02.36-.03.12-.09.22-.16.32s-.17.17-.28.22c-.11.05-.22.08-.34.08-.12,0-.23-.02-.34-.07-.11-.05-.2-.12-.28-.21-2.84-2.41-5.69-4.82-8.53-7.24-.48-.41-.47-.41-.95,0-2.63,2.24-5.27,4.47-7.9,6.7-.14.1-.26.24-.34.41-.08.16-.11.34-.1.52.02,3.08.02,6.15,0,9.23,0,.38.11.44.45.44,2.63-.01,5.26,0,7.89,0,.18-.02.36.03.51.13.15.1.26.25.32.42.06.17.06.36,0,.54-.06.17-.17.32-.32.42-.14.1-.3.14-.46.14H1c-.12,0-.23-.01-.34-.05-.11-.04-.2-.11-.28-.19-.08-.09-.14-.19-.18-.3-.04-.11-.05-.23-.04-.35v-5.67" fill="#ff9b77"/></svg>
+        </a>
+        <div class="bc-nav-right">
+            <a href="https://www.beycome.com/dashboard/">Dashboard
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<div class="pg-hero">
+    <h1>The Commission<br>Label.</h1>
+    <p>Real estate commissions are one of the most expensive ingredients in your home sale or purchase. We put them on a label — so you can read exactly what you're paying.</p>
+</div>
+
+<!-- PRICE INPUT + TOGGLE -->
+<div class="pg-price-row">
+    <div class="pg-price-toggle">
+        <button class="pg-price-toggle-btn active" data-mode="sell" onclick="setMode('sell')">I'm selling</button>
+        <button class="pg-price-toggle-btn" data-mode="buy" onclick="setMode('buy')">I'm buying</button>
+    </div>
+    <div class="pg-price-label">Home price:</div>
+    <div class="pg-price-input-wrap">
+        <span>$</span>
+        <input type="text" id="pg-price" value="400,000" inputmode="numeric" autocomplete="off" oninput="onPriceInput(this)">
+    </div>
+</div>
+<!-- LABELS -->
+<div id="pg-sell-labels" class="pg-labels-section">
+    <div class="pg-labels-wrap">
+
+        <!-- TRADITIONAL LABEL -->
+        <div class="nf" id="label-traditional">
+            <div class="nf-brand traditional">Traditional</div>
+            <div class="nf-title">Real Estate<br>Cost Facts</div>
+            <hr class="nf-rule-thin">
+            <div class="nf-serving">
+                Based on <span id="trad-serving-price">$400,000</span> <span id="trad-serving-role">sale</span>, assuming 3% seller agent commission
+            </div>
+            <hr class="nf-rule-max">
+            <div class="nf-cal-row">
+                <div>
+                    <div class="nf-cal-label">Commission</div>
+                    <div class="nf-cal-label" id="trad-pct-display">3% of price</div>
+                </div>
+                <div style="text-align:right">
+                    <div class="nf-cal-num" id="trad-total">$24,000</div>
+                    <div class="nf-cal-note">out of your pocket</div>
+                </div>
+            </div>
+            <hr class="nf-rule-thick">
+            <div class="nf-dv-header"><b>% of home price</b></div>
+            <hr class="nf-rule-med">
+
+            <div class="nf-row bold-row nf-row-red">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Total fees paid</span>
+                </div>
+            </div>
+            <div class="nf-row sub">
+                <div class="nf-row-left">
+                    <span class="nf-row-name" id="trad-row1-label">Listing agent commission &nbsp;</span>
+                    <span class="nf-row-amount" id="trad-listing-amt">$12,000</span>
+                </div>
+                <span class="nf-row-dv" id="trad-listing-pct">3%</span>
+            </div>
+            <div class="nf-row sub">
+                <div class="nf-row-left">
+                    <span class="nf-row-name" id="trad-row2-label">Buyer's agent commission &nbsp;</span>
+                    <span class="nf-row-amount" id="trad-buyers-amt">$12,000</span>
+                </div>
+                <span class="nf-row-dv" id="trad-buyers-pct">3%</span>
+            </div>
+
+            <div class="nf-row bold-row">
+                <div class="nf-row-left">
+                    <span class="nf-row-name" id="trad-net-label">Net cost to you &nbsp;</span>
+                    <span class="nf-row-amount" id="trad-net-amt">$24,000</span>
+                </div>
+                <span class="nf-row-dv" id="trad-net-pct">6%*</span>
+            </div>
+
+            <hr class="nf-rule-med">
+
+            <div class="nf-row">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Negotiation control</span>
+                </div>
+                <span><span class="nf-badge nf-badge-bad">Limited</span></span>
+            </div>
+            <div class="nf-row">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Price transparency</span>
+                </div>
+                <span><span class="nf-badge nf-badge-bad">Medium</span></span>
+            </div>
+            <div class="nf-row">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Commission negotiable</span>
+                </div>
+                <span><span class="nf-badge nf-badge-neu">Has to be</span></span>
+            </div>
+            <div class="nf-row">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">MLS listing</span>
+                </div>
+                <span><span class="nf-badge nf-badge-good">Yes</span></span>
+            </div>
+
+            <hr class="nf-rule-thick">
+            <div class="nf-footnote">*Assuming 3% listing agent + 3% buyer's agent. Actual rates vary and are negotiable. Commission is typically deducted from seller proceeds at closing.</div>
+        </div>
+
+        <!-- BEYCOME LABEL -->
+        <div class="nf beycome-label" id="label-beycome">
+            <div class="nf-brand beycome"><img src="../logos/logo-beycome.svg" alt="Beycome" style="height:28px;display:block;margin:0 auto"></div>
+            <div class="nf-title">Real Estate<br>Cost Facts</div>
+            <hr class="nf-rule-thin">
+            <div class="nf-serving">
+                Based on <span id="byc-serving-price">$400,000</span> <span id="byc-serving-role">sale</span>, assuming 3% seller agent commission
+            </div>
+            <hr class="nf-rule-max">
+            <div class="nf-cal-row">
+                <div>
+                    <div class="nf-cal-label">Total commission</div>
+                    <div class="nf-cal-label" id="byc-pct-display">&lt;0.1% of price</div>
+                </div>
+                <div style="text-align:right">
+                    <div class="nf-cal-num" id="byc-total">$399</div>
+                    <div class="nf-cal-note">flat fee to list**</div>
+                </div>
+            </div>
+            <hr class="nf-rule-thick">
+            <div class="nf-dv-header"><b>% of home price</b></div>
+            <hr class="nf-rule-med">
+
+            <div class="nf-row bold-row nf-row-green">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Total fees paid</span>
+                </div>
+            </div>
+            <div class="nf-row sub">
+                <div class="nf-row-left">
+                    <span class="nf-row-name" id="byc-row1-label">Flat fee listing &nbsp;</span>
+                    <span class="nf-row-amount" id="byc-listing-amt">$399</span>
+                </div>
+                <span class="nf-row-dv" id="byc-listing-pct">&lt;0.1%</span>
+            </div>
+            <div class="nf-row sub">
+                <div class="nf-row-left">
+                    <span class="nf-row-name" id="byc-row2-label">Buyer's agent (your choice/offer) &nbsp;</span>
+                </div>
+                <span class="nf-row-dv" id="byc-buyers-pct">You set it</span>
+            </div>
+
+            <div class="nf-row bold-row nf-row-green">
+                <div class="nf-row-left">
+                    <span class="nf-row-name" id="byc-net-label">Net cost to you &nbsp;</span>
+                    <span class="nf-row-amount" id="byc-net-amt">$399</span>
+                </div>
+                <span class="nf-row-dv" id="byc-net-pct">&lt;0.1%</span>
+            </div>
+
+            <hr class="nf-rule-med">
+
+            <div class="nf-row">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Negotiation control</span>
+                </div>
+                <span><span class="nf-badge nf-badge-good">Full</span></span>
+            </div>
+            <div class="nf-row">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Price transparency</span>
+                </div>
+                <span><span class="nf-badge nf-badge-good">100%</span></span>
+            </div>
+            <div class="nf-row">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Commission negotiable</span>
+                </div>
+                <span><span class="nf-badge nf-badge-good">Always</span></span>
+            </div>
+            <div class="nf-row">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">MLS listing</span>
+                </div>
+                <span><span class="nf-badge nf-badge-good">Yes</span></span>
+            </div>
+
+            <hr class="nf-rule-thick">
+            <div class="nf-footnote" id="byc-footnote">**Flat-fee MLS listing. Beycome offers 3 packages all flat fee: $99, $399 or $999. Seller chooses their own buyer's agent commission.</div>
+        </div>
+
+    </div>
+
+    <!-- SAVINGS CALLOUT -->
+    <div class="pg-savings-callout">
+        <div class="label" id="savings-label">As a seller, you will save a minimum of</div>
+        <div class="amount" id="savings-amount">$11,601</div>
+        <div class="note" id="savings-note">vs. paying a traditional listing agent on a $400,000 home — keeping your buyer's agent offer the same</div>
+    </div>
+</div>
+
+<!-- BUY LABELS -->
+<div id="pg-buy-labels" class="pg-labels-section" style="display:none">
+    <div class="pg-labels-wrap">
+
+        <!-- TRADITIONAL BUYER LABEL -->
+        <div class="nf" id="buy-label-traditional">
+            <div class="nf-brand traditional">Traditional</div>
+            <div class="nf-title">Real Estate<br>Cost Facts</div>
+            <hr class="nf-rule-thin">
+            <div class="nf-serving">
+                Based on <span id="bt-serving-price">$400,000</span> sale, assuming 3% buyer agent commission
+            </div>
+            <hr class="nf-rule-max">
+            <div class="nf-cal-row">
+                <div>
+                    <div class="nf-cal-label">Cash back to you</div>
+                    <div class="nf-cal-label">at closing</div>
+                </div>
+                <div style="text-align:right">
+                    <div class="nf-cal-num" style="color:var(--c-red)">$0</div>
+                    <div class="nf-cal-note">agent keeps <span id="bt-total">$12,000</span></div>
+                </div>
+            </div>
+            <hr class="nf-rule-thick">
+            <div class="nf-dv-header"><b>% of home price</b></div>
+            <hr class="nf-rule-med">
+
+            <div class="nf-row bold-row nf-row-red">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Cash back to you &nbsp;</span>
+                    <span class="nf-row-amount">$0</span>
+                </div>
+                <span class="nf-row-dv">0%</span>
+            </div>
+            <div class="nf-row sub">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Commission offered to Agent* &nbsp;</span>
+                    <span class="nf-row-amount" id="bt-listing-amt">$12,000</span>
+                </div>
+                <span class="nf-row-dv" id="bt-listing-pct">3%</span>
+            </div>
+            <div class="nf-row sub">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Agent keeps &nbsp;</span>
+                    <span class="nf-row-amount" id="bt-fees-amt">$12,000</span>
+                </div>
+                <span class="nf-row-dv" id="bt-fees-pct">3%</span>
+            </div>
+
+            <hr class="nf-rule-med">
+
+            <div class="nf-row">
+                <div class="nf-row-left"><span class="nf-row-name">Rebate back to you</span></div>
+                <span><span class="nf-badge nf-badge-bad">$0</span></span>
+            </div>
+            <div class="nf-row">
+                <div class="nf-row-left"><span class="nf-row-name">Agent fee transparency</span></div>
+                <span><span class="nf-badge nf-badge-neu">Disclosed</span></span>
+            </div>
+            <div class="nf-row">
+                <div class="nf-row-left"><span class="nf-row-name">Commission negotiable</span></div>
+                <span><span class="nf-badge nf-badge-neu">Has to be</span></span>
+            </div>
+
+            <hr class="nf-rule-thick">
+            <div class="nf-footnote">*The buyer's agent commission is funded by the seller but built into the purchase price. Since Aug 2024 (NAR settlement), agents must disclose their fee before showing homes.</div>
+        </div>
+
+        <!-- BEYCOME BUYER LABEL -->
+        <div class="nf beycome-label" id="buy-label-beycome">
+            <div class="nf-brand beycome"><img src="../logos/logo-beycome.svg" alt="Beycome" style="height:28px;display:block;margin:0 auto"></div>
+            <div class="nf-title">Real Estate<br>Cost Facts</div>
+            <hr class="nf-rule-thin">
+            <div class="nf-serving">
+                Based on <span id="bb-serving-price">$400,000</span> sale, assuming 3% buyer agent commission
+            </div>
+            <hr class="nf-rule-max">
+            <div class="nf-cal-row">
+                <div>
+                    <div class="nf-cal-label">Cash back to you</div>
+                    <div class="nf-cal-label" id="bb-pct-display">(2% rebate**)</div>
+                </div>
+                <div style="text-align:right">
+                    <div class="nf-cal-num" id="bb-total" style="color:var(--c-green)">+$8,000</div>
+                    <div class="nf-cal-note">cash or closing cost credit</div>
+                </div>
+            </div>
+            <hr class="nf-rule-thick">
+            <div class="nf-dv-header"><b>% of home price</b></div>
+            <hr class="nf-rule-med">
+
+            <div class="nf-row bold-row nf-row-green">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Cash back to you &nbsp;</span>
+                    <span class="nf-row-amount" id="bb-rebate-amt">$8,000</span>
+                </div>
+                <span class="nf-row-dv" id="bb-rebate-pct">2%</span>
+            </div>
+            <div class="nf-row sub">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Commission offered by seller &nbsp;</span>
+                    <span class="nf-row-amount" id="bb-listing-amt">$12,000</span>
+                </div>
+                <span class="nf-row-dv" id="bb-listing-pct">3%</span>
+            </div>
+            <div class="nf-row sub">
+                <div class="nf-row-left">
+                    <span class="nf-row-name">Beycome fee (1%) &nbsp;</span>
+                    <span class="nf-row-amount" id="bb-fees-amt">$4,000</span>
+                </div>
+                <span class="nf-row-dv" id="bb-fees-pct">1%</span>
+            </div>
+            <hr class="nf-rule-med">
+
+            <div class="nf-row">
+                <div class="nf-row-left"><span class="nf-row-name">Rebate back to you</span></div>
+                <span><span class="nf-badge nf-badge-good">Up to 2%</span></span>
+            </div>
+            <div class="nf-row">
+                <div class="nf-row-left"><span class="nf-row-name">Agent fee transparency</span></div>
+                <span><span class="nf-badge nf-badge-good">100% clear</span></span>
+            </div>
+            <div class="nf-row">
+                <div class="nf-row-left"><span class="nf-row-name">Commission negotiable</span></div>
+                <span><span class="nf-badge nf-badge-good">Always</span></span>
+            </div>
+
+            <hr class="nf-rule-thick">
+            <div class="nf-footnote">**Beycome charges 1% as buyer's agent fee. Any seller-offered commission above 1% is credited back to you as cash or closing cost credit. Subject to lender approval. Min. fee: $1,499 or 1%, whichever is greater.</div>
+        </div>
+
+    </div>
+
+    <!-- BUY SAVINGS CALLOUT -->
+    <div class="pg-savings-callout">
+        <div class="label" id="buy-savings-label">Cash back at closing — as a buyer</div>
+        <div class="amount" id="buy-savings-amount">$8,000</div>
+        <div class="note" id="buy-savings-note">rebated to you from the 3% buyer commission on a $400,000 home — use it toward your rate, closing costs, or down payment</div>
+    </div>
+</div>
+
+<!-- WHAT THIS MEANS -->
+<section class="pg-section pg-section-white">
+    <div class="pg-section-inner">
+        <div style="margin:0 0 48px">
+            <h2 class="pg-section-h2">What you're actually paying for.</h2>
+            <p style="font-size:17px;color:rgb(55,65,81);line-height:1.7;margin-bottom:14px">In a traditional transaction, the seller pays both agents with money paid by the buyer. The listing agent typically takes 2.5–3%, and the buyer's agent takes another 2.5–3%. That 5–6% commission comes out of the sale proceeds — it's the largest single cost in the entire transaction, and most people never see it as a line item.</p>
+            <p style="font-size:17px;color:rgb(55,65,81);line-height:1.7;margin-bottom:14px">If you sell with Beycome, we replace the listing agent percentage fee with a flat $99–$399 or $999 charge and give you full control over what you offer — or don't offer — to the buyer's agent. On a $400,000 home where you'd normally pay $12,000 just for the listing agent alone, you instead pay $99–$399 or $999, and you decide whether to offer a commission to a buyer's agent. Your decision. That's a check you keep.</p>
+            <p style="font-size:17px;color:rgb(55,65,81);line-height:1.7;margin-bottom:0">Since August 2024 and the NAR settlement, any agent representing you on a purchase must have you sign a representation agreement disclosing what they will charge — typically 2.5–3%. This commission is normally offered by the seller. Beycome charges just 1%, which means that if the seller offers 3%, we credit you everything above 1% — in this case, 2% back. That credit can come as cash or be applied toward your closing costs.</p>
+        </div>
+        <div>
+            <div class="pg-steps">
+                    <div class="pg-step">
+                        <div class="pg-step-num">1</div>
+                        <div class="pg-step-body">
+                            <h3>Total Commission = what leaves your transaction</h3>
+                            <p>Like Calories on a food label — it's the headline number. For sellers: what you pay to agents. For buyers: what your agent earns from the seller-funded commission.</p>
+                        </div>
+                    </div>
+                    <div class="pg-step">
+                        <div class="pg-step-num">2</div>
+                        <div class="pg-step-body">
+                            <h3>% of Home Price = the "daily value" equivalent</h3>
+                            <p>Every percentage point on a $400,000 home is $4,000. Knowing the percentage makes it easy to compare across price ranges without a calculator.</p>
+                        </div>
+                    </div>
+                    <div class="pg-step">
+                        <div class="pg-step-num">3</div>
+                        <div class="pg-step-body">
+                            <h3>Rebate back to you = a nutrient you want MORE of</h3>
+                            <p>Traditional agents: $0 back. Beycome buyers: up to 2% back at closing, applied toward your mortgage buydown, closing costs, or principal.</p>
+                        </div>
+                    </div>
+                    <div class="pg-step">
+                        <div class="pg-step-num">4</div>
+                        <div class="pg-step-body">
+                            <h3>Net cost to you = the number that actually matters</h3>
+                            <p>After fees and rebates, how much did the transaction actually cost you? With Beycome, sellers pay a flat fee. Buyers often walk away with cash back.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+<!-- FULL COMPARISON TABLE — SELLER -->
+<section id="pg-sell-table" class="pg-section pg-section-alt">
+    <div class="pg-section-inner">
+        <h2 class="pg-section-h2" style="text-align:center;margin-bottom:8px">Side-by-side breakdown.</h2>
+        <p class="pg-section-sub" style="text-align:center;margin-bottom:40px">Every line item compared — no fine print.</p>
+
+        <div style="overflow-x:auto">
+            <table class="pg-compare-table">
+                <thead>
+                    <tr>
+                        <th style="width:40%">Feature</th>
+                        <th>Traditional</th>
+                        <th class="pg-th-beycome"><img src="../logos/logo-beycome.svg" alt="Beycome" style="height:26px;display:block;margin:0 auto"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="row-label">Listing / agent fee</div>
+                            <div class="row-sub">What the seller pays to list &amp; be represented</div>
+                        </td>
+                        <td><span class="val-bad">2.5–3% (~$12,000)</span></td>
+                        <td class="col-beycome"><span class="val-good">$99–$399 or $999 flat</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Buyer's agent commission</div>
+                            <div class="row-sub">Paid by seller, goes to buyer's agent</div>
+                        </td>
+                        <td><span class="val-bad">2.5–3% (standard)</span></td>
+                        <td class="col-beycome"><span class="val-good">You decide</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Professional photos</div>
+                            <div class="row-sub">Listing photography for MLS &amp; marketing</div>
+                        </td>
+                        <td><span class="val-bad">$300 – $500</span></td>
+                        <td class="col-beycome"><span class="val-good">Included</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Transaction / brokerage fee</div>
+                            <div class="row-sub">Admin fee charged by the brokerage at closing</div>
+                        </td>
+                        <td><span class="val-bad">$300 – $900</span></td>
+                        <td class="col-beycome"><span class="val-good">$0</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">MLS listing</div>
+                            <div class="row-sub">Syndicated to Zillow, Realtor.com, Redfin etc</div>
+                        </td>
+                        <td><span class="check val-good">✓</span></td>
+                        <td class="col-beycome"><span class="check val-good">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Contract &amp; paperwork</div>
+                            <div class="row-sub">Offers, counteroffers, addenda, closing docs</div>
+                        </td>
+                        <td><span class="check val-good">✓ Agent handles</span></td>
+                        <td class="col-beycome"><span class="val-good">Agent + You + AI</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Control over your listing</div>
+                            <div class="row-sub">Price, showings, negotiation, timeline</div>
+                        </td>
+                        <td><span class="val-bad">Shared with agent</span></td>
+                        <td class="col-beycome"><span class="val-good">100% yours</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Dual agency risk</div>
+                            <div class="row-sub">Agent representing both buyer and seller</div>
+                        </td>
+                        <td><span class="val-bad">Possible</span></td>
+                        <td class="col-beycome"><span class="val-good">None</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Commission negotiable</div>
+                            <div class="row-sub">Can you change what you offer to buyer's agent?</div>
+                        </td>
+                        <td><span class="val-bad">Has to be</span></td>
+                        <td class="col-beycome"><span class="val-good">Always</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Typical net savings as seller</div>
+                            <div class="row-sub">vs. 3% listing agent, $400k home</div>
+                        </td>
+                        <td><span class="val-bad">$0</span></td>
+                        <td class="col-beycome"><span class="val-good">~$11,600</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- FULL COMPARISON TABLE — BUYER -->
+<section id="pg-buy-table" class="pg-section pg-section-alt" style="display:none">
+    <div class="pg-section-inner">
+        <h2 class="pg-section-h2" style="text-align:center;margin-bottom:8px">Side-by-side breakdown.</h2>
+        <p class="pg-section-sub" style="text-align:center;margin-bottom:40px">Every line item compared — no fine print.</p>
+
+        <div style="overflow-x:auto">
+            <table class="pg-compare-table">
+                <thead>
+                    <tr>
+                        <th style="width:40%">Feature</th>
+                        <th>Traditional</th>
+                        <th class="pg-th-beycome"><img src="../logos/logo-beycome.svg" alt="Beycome" style="height:26px;display:block;margin:0 auto"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="row-label">Buyer's agent fee</div>
+                            <div class="row-sub">What the agent charges you (since Aug 2024 NAR settlement, must be disclosed)</div>
+                        </td>
+                        <td><span class="val-bad">2.5–3% (~$12,000)</span></td>
+                        <td class="col-beycome"><span class="val-good">1%</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Buyer rebate</div>
+                            <div class="row-sub">Cash or closing cost credit back to you at closing*</div>
+                        </td>
+                        <td><span class="val-bad">$0</span></td>
+                        <td class="col-beycome">
+                            <span class="val-good">Up to 2% back</span>
+                            <div class="row-sub" style="text-align:left;margin-top:4px">*Does not apply to Beycome-listed homes, FSBOs, or deals without a commission. Min. Beycome fee: $1,499 or 1%, whichever is greater.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Signed representation agreement</div>
+                            <div class="row-sub">Required before touring homes (post NAR settlement)</div>
+                        </td>
+                        <td><span class="val-neu">Required</span></td>
+                        <td class="col-beycome"><span class="val-neu">Required</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Commission negotiable</div>
+                            <div class="row-sub">Can you negotiate what you pay your agent?</div>
+                        </td>
+                        <td><span class="val-bad">Rarely in practice</span></td>
+                        <td class="col-beycome"><span class="val-good">Always — 1% fixed</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Transaction / brokerage fee</div>
+                            <div class="row-sub">Admin fee charged by the brokerage at closing</div>
+                        </td>
+                        <td><span class="val-bad">$300 – $900</span></td>
+                        <td class="col-beycome"><span class="val-good">$0</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Contract &amp; paperwork</div>
+                            <div class="row-sub">Offers, counteroffers, addenda, closing docs</div>
+                        </td>
+                        <td><span class="check val-good">✓ Agent handles</span></td>
+                        <td class="col-beycome"><span class="val-good">Agent + You + AI</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Dual agency risk</div>
+                            <div class="row-sub">Agent representing both buyer and seller</div>
+                        </td>
+                        <td><span class="val-bad">Possible</span></td>
+                        <td class="col-beycome"><span class="val-good">None</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Price transparency</div>
+                            <div class="row-sub">Do you see exactly what your agent earns?</div>
+                        </td>
+                        <td><span class="val-bad">Often unclear</span></td>
+                        <td class="col-beycome"><span class="val-good">100% transparent</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-label">Typical buyer net gain</div>
+                            <div class="row-sub">via rebate on 3% commission, $400k home</div>
+                        </td>
+                        <td><span class="val-bad">$0</span></td>
+                        <td class="col-beycome"><span class="val-good">+$8,000 back</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- GUNMETAL CTA — SELLER -->
+<section id="pg-sell-cta" class="pg-section pg-section-dark">
+    <div class="pg-section-inner" style="text-align:center">
+        <h2 class="pg-section-h2" style="font-size:42px">The commission is negotiable.<br>So is your listing fee.</h2>
+        <p style="font-size:20px;font-weight:400;color:#ffffffbf;max-width:400px;margin:0 auto 24px;line-height:1.4">Every dollar you don't pay in commission is a dollar that stays in your pocket at closing.</p>
+        <div class="pg-cta-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:40px 0;text-align:left">
+            <div style="background:rgba(255,255,255,0.05);border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.1)">
+                <p style="font-size:16px;color:hsla(16,100%,73%,1);text-transform:uppercase;letter-spacing:0.5px;margin:0 0 8px;font-weight:700">Highest impact</p>
+                <p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 12px">List flat-fee for $99</p>
+                <p style="font-size:16px;color:rgba(255,255,255,0.65);line-height:1.6;margin:0">Get full MLS exposure — Zillow, Realtor.com, Redfin — without paying a 3% listing commission. That's $12,000 saved on a $400k home.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.1)">
+                <p style="font-size:16px;color:hsla(16,100%,73%,1);text-transform:uppercase;letter-spacing:0.5px;margin:0 0 8px;font-weight:700">Keep control</p>
+                <p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 12px">Negotiate every offer yourself</p>
+                <p style="font-size:16px;color:rgba(255,255,255,0.65);line-height:1.6;margin:0">You set the price, review every offer, and choose the terms. Beycome's platform plus AI tools guide you through every step — without an agent taking 3%.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.1)">
+                <p style="font-size:16px;color:hsla(16,100%,73%,1);text-transform:uppercase;letter-spacing:0.5px;margin:0 0 8px;font-weight:700">The Beycome advantage</p>
+                <p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 12px">More net proceeds, same exposure</p>
+                <p style="font-size:16px;color:rgba(255,255,255,0.65);line-height:1.6;margin:0">Sellers on Beycome keep an average of $15,000 more at closing compared to traditional listings. Professional photos included. No hidden fees.</p>
+            </div>
+        </div>
+        <a href="https://www.beycome.com/flat-fee-mls/" class="pg-btn-primary">Start selling for $99 →</a>
+    </div>
+</section>
+
+<!-- GUNMETAL CTA — BUYER -->
+<section id="pg-buy-cta" class="pg-section pg-section-dark" style="display:none">
+    <div class="pg-section-inner" style="text-align:center">
+        <h2 class="pg-section-h2">The rebate pays for the buydown. You keep the savings.</h2>
+        <p style="font-size:20px;font-weight:700;color:hsla(16,100%,73%,1);margin:0 0 24px;line-height:1.4">Every action between now and closing directly changes how much cash comes back to you.</p>
+        <div class="pg-cta-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:40px 0;text-align:left">
+            <div style="background:rgba(255,255,255,0.05);border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.1)">
+                <p style="font-size:11px;color:hsla(16,100%,73%,1);text-transform:uppercase;letter-spacing:0.5px;margin:0 0 8px;font-weight:700">Highest impact, fastest results</p>
+                <p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 12px">Get 2% back at closing</p>
+                <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;margin:0">Beycome credits 2% of the purchase price back to you at closing — cash you can apply to your down payment, closing costs, or rate buydown. On a $400k home, that's $8,000.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.1)">
+                <p style="font-size:11px;color:hsla(16,100%,73%,1);text-transform:uppercase;letter-spacing:0.5px;margin:0 0 8px;font-weight:700">Most sustainable over time</p>
+                <p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 12px">Lower your loan, lower your rate</p>
+                <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;margin:0">Apply the rebate to your down payment and borrow less — reducing your monthly payment for the life of the loan. A bigger down also removes PMI faster, saving hundreds per year.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.1)">
+                <p style="font-size:16px;color:hsla(16,100%,73%,1);text-transform:uppercase;letter-spacing:0.5px;margin:0 0 8px;font-weight:700">The Beycome advantage</p>
+                <p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 12px">Full service. Your agent fee, back to you</p>
+                <p style="font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;margin:0">You get full buyer representation — showings, offers, negotiations, closing — plus a rebate check at the end. Traditional agents keep all of that commission. Beycome gives it back.</p>
+            </div>
+        </div>
+        <a href="https://www.beycome.com/i-want-to-buy-a-home/" class="pg-btn-primary">Start buying with Beycome →</a>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="pg-section pg-section-white">
+    <div class="pg-section-inner">
+        <h2 class="pg-section-h2" style="text-align:center;margin-bottom:8px">Frequently Asked Questions.</h2>
+
+        <div class="pg-faq-list">
+            <div class="pg-faq-item">
+                <button class="pg-faq-btn" aria-expanded="true" onclick="pgToggleFaq(this)">
+                    <span>If the buyer pays nothing, why does any of this matter to me as a buyer?</span>
+                    <span class="pg-faq-icon">＋</span>
+                </button>
+                <div class="pg-faq-body open">
+                    The buyer's agent commission is paid by the seller — but it's baked into the price you offer. Economists widely agree that buyer agent commissions are effectively funded by the sale price, which means buyers pay them indirectly. More importantly: when your agent earns $12,000 from a sale you close, and you earn $0 back — that's $12,000 that could have been in your pocket. With Beycome, 2% of that comes back to you as a rebate at closing.
+                </div>
+            </div>
+            <div class="pg-faq-item">
+                <button class="pg-faq-btn" aria-expanded="false" onclick="pgToggleFaq(this)">
+                    <span>Does Beycome list on the MLS?</span>
+                    <span class="pg-faq-icon">＋</span>
+                </button>
+                <div class="pg-faq-body">
+                    Yes. Beycome's flat-fee MLS service lists your home on the local MLS, which syndicates automatically to Zillow, Realtor.com, Redfin, Trulia, and hundreds of other sites. Your listing gets the same exposure as a traditionally-listed home — without the 3% listing agent commission.
+                </div>
+            </div>
+            <div class="pg-faq-item">
+                <button class="pg-faq-btn" aria-expanded="false" onclick="pgToggleFaq(this)">
+                    <span>Do I still need to offer a buyer's agent commission?</span>
+                    <span class="pg-faq-icon">＋</span>
+                </button>
+                <div class="pg-faq-body">
+                    You can set your own buyer's agent commission — or offer none at all. Since the 2024 NAR settlement, buyers are expected to negotiate agent compensation directly. You decide what you're willing to offer a buyer's agent, and that number is visible on the MLS. Many sellers still offer 2–2.5% to attract buyers — but the decision is entirely yours, not something a listing agent locks you into.
+                </div>
+            </div>
+            <div class="pg-faq-item">
+                <button class="pg-faq-btn" aria-expanded="false" onclick="pgToggleFaq(this)">
+                    <span>What support do I get with a flat-fee listing?</span>
+                    <span class="pg-faq-icon">＋</span>
+                </button>
+                <div class="pg-faq-body">
+                    Beycome provides the MLS listing, document templates (offer review, counteroffers, disclosures), and customer support via phone, email, and WhatsApp. You manage showings and negotiations — but you're not alone. Beycome also offers Beycome Title for a seamless close without a separate title company search.
+                </div>
+            </div>
+            <div class="pg-faq-item">
+                <button class="pg-faq-btn" aria-expanded="false" onclick="pgToggleFaq(this)">
+                    <span>Is the buyer rebate legal?</span>
+                    <span class="pg-faq-icon">＋</span>
+                </button>
+                <div class="pg-faq-body">
+                    Yes — in 40+ U.S. states. Buyer rebates are explicitly recognized by the CFPB as a legitimate practice. They are restricted in a small number of states including Alaska, Kansas, Louisiana, Mississippi, Missouri, Oklahoma, Oregon, and Tennessee. Rebates are subject to lender approval (classified as seller concessions) — check with your loan officer to confirm your program allows it.
+                </div>
+            </div>
+            <div class="pg-faq-item">
+                <button class="pg-faq-btn" aria-expanded="false" onclick="pgToggleFaq(this)">
+                    <span>Why hasn't anyone shown me this before?</span>
+                    <span class="pg-faq-icon">＋</span>
+                </button>
+                <div class="pg-faq-body">
+                    Traditional real estate agents have a financial interest in keeping commission structures opaque — and the industry historically required sellers to pay buyer agent commissions as a condition of MLS access. The 2024 NAR settlement changed that. Beycome was built from day one on the premise that buyers and sellers deserve to see exactly what they're paying, and to choose a better deal if one exists.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bc-footer">
+<div class="bc-footer-inner">
+    <div class="bc-footer-grid">
+        <div class="bc-footer-col">
+            <div class="bc-footer-col-title">Features</div>
+            <ul>
+                <li><a href="https://www.beycome.com/flat-fee-mls/">Sell My Home</a></li>
+                <li><a href="https://www.beycome.com/i-want-to-buy-a-home/">Buy a Home</a></li>
+                <li><a href="https://www.beycometitle.com/" target="_blank" rel="noopener noreferrer">Title</a></li>
+                <li><a href="https://www.beycome.com/yard-sign/">Yard Sign</a></li>
+                <li><a href="https://www.beycome.com/military-fsbo/">Military</a></li>
+                <li><a href="https://www.beycome.com/closed-homes/">Closed Homes</a></li>
+            </ul>
+        </div>
+        <div class="bc-footer-col">
+            <div class="bc-footer-col-title">Resources</div>
+            <ul>
+                <li><a href="https://www.beycome.com/blog/">Blog</a></li>
+                <li><a href="https://www.beycome.com/faq/">FAQ</a></li>
+                <li><a href="https://www.beycome.com/how-it-works/">How It Works</a></li>
+                <li><a href="https://www.beycome.com/real-estate-glossary/">Real Estate Glossary</a></li>
+            </ul>
+        </div>
+        <div class="bc-footer-col">
+            <div class="bc-footer-col-title">Company</div>
+            <ul>
+                <li><a href="https://www.beycome.com/about/">About Us</a></li>
+                <li><a href="https://www.beycome.com/reviews/">Reviews</a></li>
+                <li><a href="https://www.beycome.com/press/">Press</a></li>
+                <li><a href="https://investor.beycome.com/" target="_blank" rel="noopener noreferrer">Investors</a></li>
+            </ul>
+        </div>
+        <div class="bc-footer-col">
+            <div class="bc-footer-col-title">Tools</div>
+            <ul>
+                <li><a href="https://www.beycome.com/how-much-is-my-home-worth/">Property Price Estimator</a></li>
+                <li><a href="https://www.beycome.com/market-trends/">Market Trends</a></li>
+                <li><a href="https://www.beycome.com/calculators/">Real Estate Calculators</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Lemonade-style bottom bar: socials | phone | email | CTAs right -->
+    <div class="bc-footer-bar">
+        <div class="bc-footer-bar-socials">
+            <a href="https://www.facebook.com/beycomeUSA/" target="_blank" rel="noopener noreferrer" aria-label="Beycome on Facebook">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M10.51,6.68v-1.56c0-.81.06-1.25,1.19-1.25h2.09V.75h-3c-2.91,0-3.58,1.55-3.58,4.09v1.84h-2.21v3.12h2.21v9.05h3.29v-9.05h2.99l.32-3.12h-3.3Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://x.com/beycome" target="_blank" rel="noopener noreferrer" aria-label="Beycome on X">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M11.49,8.4L18.14.68h-1.57l-5.77,6.71L6.18.68H.87l6.97,10.14L.87,18.92h1.58l6.09-7.08,4.87,7.08h5.32l-7.23-10.52h0ZM9.34,10.91l-.71-1.01L3.01,1.86h2.42l4.53,6.49.71,1.01,5.89,8.43h-2.42l-4.81-6.88h0Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.instagram.com/beycome/" target="_blank" rel="noopener noreferrer" aria-label="Beycome on Instagram">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M13.1115 0.753906H5.00447C3.68082 0.755758 2.4119 1.2824 1.47594 2.21837C0.539968 3.15434 0.0133264 4.42325 0.0114746 5.74691L0.0114746 13.8539C0.0133264 15.1776 0.539968 16.4465 1.47594 17.3824C2.4119 18.3184 3.68082 18.8451 5.00447 18.8469H13.1115C14.4353 18.8453 15.7045 18.3188 16.6407 17.3828C17.5768 16.4468 18.1036 15.1777 18.1055 13.8539V5.74691C18.1036 4.42308 17.5768 3.15401 16.6407 2.21801C15.7045 1.28202 14.4353 0.755494 13.1115 0.753906ZM16.4995 13.8539C16.4984 14.7521 16.1411 15.6133 15.506 16.2484C14.8708 16.8836 14.0097 17.2408 13.1115 17.2419H5.00447C4.10625 17.2408 3.24511 16.8836 2.60997 16.2484C1.97482 15.6133 1.61753 14.7521 1.61647 13.8539V5.74691C1.61753 4.84868 1.97482 3.98754 2.60997 3.3524C3.24511 2.71725 4.10625 2.35996 5.00447 2.35891H13.1115C14.0097 2.35996 14.8708 2.71725 15.506 3.3524C16.1411 3.98754 16.4984 4.84868 16.4995 5.74691V13.8539Z" fill="currentColor"/><path d="M9.05845 5.14258C8.13719 5.14258 7.23661 5.41577 6.47061 5.92759C5.7046 6.43942 5.10758 7.1669 4.75502 8.01804C4.40247 8.86917 4.31023 9.80575 4.48996 10.7093C4.66969 11.6129 5.11332 12.4428 5.76475 13.0943C6.41618 13.7457 7.24616 14.1893 8.14972 14.3691C9.05329 14.5488 9.98985 14.4566 10.841 14.104C11.6921 13.7515 12.4196 13.1544 12.9314 12.3884C13.4433 11.6224 13.7165 10.7218 13.7165 9.80058C13.7151 8.5656 13.224 7.38159 12.3507 6.50834C11.4774 5.63508 10.2934 5.1439 9.05845 5.14258ZM9.05845 12.8546C8.45443 12.8546 7.86397 12.6755 7.36174 12.3399C6.85951 12.0043 6.46807 11.5273 6.23692 10.9693C6.00577 10.4112 5.94529 9.79719 6.06313 9.20477C6.18097 8.61235 6.47184 8.06818 6.89895 7.64107C7.32606 7.21396 7.87023 6.9231 8.46265 6.80526C9.05506 6.68742 9.66912 6.7479 10.2272 6.97905C10.7852 7.2102 11.2622 7.60164 11.5978 8.10387C11.9333 8.60609 12.1125 9.19655 12.1125 9.80058C12.1114 10.6102 11.7893 11.3864 11.2168 11.9589C10.6443 12.5314 9.8681 12.8535 9.05845 12.8546Z" fill="currentColor"/><circle cx="13.9165" cy="4.98" r="1.2" fill="currentColor"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/beycome" target="_blank" rel="noopener noreferrer" aria-label="Beycome on LinkedIn">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M4.61,18.92V7.36H.77v11.56h3.84ZM2.69,5.79c.57,0,1.11-.23,1.51-.64.4-.4.62-.95.62-1.52s-.23-1.11-.63-1.52c-.4-.4-.95-.63-1.52-.63s-1.11.23-1.52.63c-.4.4-.63.95-.63,1.52,0,.57.22,1.12.62,1.52.4.4.95.63,1.51.64h.02ZM6.74,18.92h3.84v-6.46c-.01-.32.03-.63.13-.94.14-.41.41-.76.76-1.01.35-.25.77-.39,1.21-.39,1.39,0,1.95,1.06,1.95,2.61v6.18h3.84v-6.63c0-3.55-1.9-5.2-4.42-5.2-.7-.03-1.4.14-2.02.48-.62.34-1.12.85-1.47,1.46h.03v-1.68h-3.84c.05,1.08,0,11.56,0,11.56Z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.zillow.com/profile/gobeycome/" target="_blank" rel="noopener noreferrer" aria-label="Beycome on Zillow">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none"><path d="M12.15,5.86c.08-.02.11,0,.16.06.26.32,1.09,1.41,1.32,1.71,0,.01.01.02.02.04,0,.01,0,.03,0,.04,0,.01,0,.03-.01.04,0,.01-.02.02-.03.03-1.7,1.45-3.24,3.08-4.6,4.86-.02.03,0,.03.01.03,2.59-1.08,5.27-1.94,8.01-2.57v-2.64L9.51,1.04,1.97,7.47v2.88c3.22-1.86,6.63-3.37,10.18-4.48h0ZM5.87,16.89s.05.04.08.05c.03,0,.06,0,.09-.02,3.51-1.71,7.2-3.02,11-3.91v5.91H1.97v-6.14c2.32-1.29,4.73-2.43,7.2-3.41.03-.01.04,0,.01.03-1.8,1.63-3.39,3.49-4.71,5.53-.05.08-.05.11,0,.16l1.4,1.81Z" fill="currentColor"/></svg>
+            </a>
+        </div>
+        <div class="bc-footer-bar-sep"></div>
+        <div class="bc-footer-bar-contact">
+            <a href="tel:+18046565007">1-804-656-5007</a>
+            <span class="bc-footer-bar-sep"></span>
+            <a href="mailto:contact@beycome.com">contact@beycome.com</a>
+        </div>
+        <div class="bc-footer-bar-ctas">
+            <a href="https://beycome.zohobookings.com/#/customer/beycome" target="_blank" rel="noopener noreferrer" class="bc-footer-btn">
+                <span class="bc-footer-btn-icon"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3V2zm13 8H4v10h16V10z" fill="currentColor"/></svg></span>
+                <span class="bc-footer-btn-text">
+                    <span class="bc-footer-btn-name">Schedule a call</span>
+                </span>
+            </a>
+            <a href="https://wa.me/18046565007" target="_blank" rel="noopener noreferrer" class="bc-footer-btn">
+                <span class="bc-footer-btn-icon"><svg viewBox="0 0 17 17" width="22" height="22" aria-hidden="true"><path d="M16.5333 8.7668C16.5333 13.0668 13.02 16.5535 8.67999 16.5535C7.29999 16.5535 6.01333 16.2001 4.87999 15.5868L0.533325 16.9668L1.95333 12.7868C1.21185 11.5746 0.81965 10.1811 0.819992 8.76013C0.826659 4.45346 4.34666 0.966797 8.68666 0.966797C13.0133 0.966797 16.5333 4.45346 16.5333 8.7668ZM8.67999 2.20013C5.03999 2.20013 2.07999 5.14013 2.07999 8.75346C2.07999 10.1868 2.54666 11.5135 3.33333 12.5935L2.50666 15.0335L5.03999 14.2335C6.12135 14.9422 7.38707 15.3178 8.67999 15.3135C12.32 15.3135 15.28 12.3801 15.28 8.76013C15.2712 7.01671 14.5715 5.3479 13.3343 4.11948C12.0972 2.89106 10.4234 2.20325 8.67999 2.2068V2.20013ZM12.6467 10.5535C12.5933 10.4735 12.4667 10.4268 12.2733 10.3335C12.0867 10.2401 11.14 9.77346 10.96 9.71346C10.7867 9.6468 10.6533 9.61346 10.5267 9.8068C10.3933 10.0001 10.0267 10.4268 9.91999 10.5535C9.80666 10.6868 9.69333 10.7001 9.49999 10.6068C9.30666 10.5068 8.68666 10.3068 7.95333 9.65346C7.53454 9.26854 7.17509 8.82372 6.88666 8.33346C6.76666 8.14013 6.86666 8.04013 6.96666 7.9468C7.05333 7.86013 7.15999 7.72013 7.25333 7.61346C7.35333 7.50013 7.38666 7.41346 7.44666 7.29346C7.51333 7.16013 7.47999 7.05346 7.43333 6.96013C7.37999 6.86013 6.99999 5.92013 6.83333 5.54013C6.67333 5.15346 6.51333 5.22013 6.40666 5.22013C6.29333 5.22013 6.15999 5.20013 6.03333 5.20013C5.89999 5.20013 5.69999 5.25346 5.51999 5.44013C5.34666 5.63346 4.85333 6.09346 4.85333 7.04013C4.85333 7.97346 5.53999 8.88013 5.63333 9.01346C5.72666 9.14013 6.96666 11.1268 8.91999 11.8935C10.88 12.6601 10.88 12.4068 11.2333 12.3735C11.5867 12.3401 12.3667 11.9068 12.5333 11.4668C12.6933 11.0201 12.6933 10.6335 12.6467 10.5535Z" fill="currentColor"/></svg></span>
+                <span class="bc-footer-btn-text">
+                    <span class="bc-footer-btn-name">WhatsApp</span>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <hr class="bc-footer-divider">
+
+    <!-- Address + quick legal links row -->
+    <div class="bc-footer-bottom-row">
+        <span class="bc-footer-bottom-row-address">Beycome Corp., 5701 Sunset Drive #224, South Miami, FL 33143</span>
+        <span class="bc-footer-bottom-row-sep">|</span>
+        <div class="bc-footer-bottom-row-links">
+            <a href="https://www.beycome.com/terms-and-conditions/">Terms &amp; Conditions</a>
+            <a href="https://www.beycome.com/privacy-policy/">Privacy Policy</a>
+            <a href="https://www.beycome.com/dmca/">DMCA</a>
+            <a href="https://www.beycome.com/accessibility/">Accessibility</a>
+        </div>
+    </div>
+
+    <div class="bc-footer-legal">
+        <p><strong>Agreement to Terms and Privacy Policy:</strong> By using beycome.com, you agree to our <a href="https://www.beycome.com/terms-and-conditions/">Terms and Conditions</a> and our <a href="https://www.beycome.com/privacy-policy/">Privacy Policy</a>.</p>
+        <p><strong>Technology Platform — Not a Brokerage:</strong> Beycome Corp. is a software technology company and does not provide real estate brokerage, mortgage lending, or title insurance services. Beycome Corp. is not a licensed real estate broker, mortgage lender, or title insurer, and nothing on this platform constitutes real estate, legal, financial, or investment advice. The beycome.com platform connects consumers with independently operated licensed entities and third-party service providers. Beycome Corp. expressly disclaims any liability arising from real estate transactions, brokerage activities, loan origination, or title services conducted by any affiliated or third-party company.</p>
+        <p><strong>Affiliated Licensed Entities (Separate Legal Entities):</strong> The following companies are legally separate from Beycome Corp., each governed by its own licensed management as required by applicable law, and each solely responsible for its own licensed activities: Beycome Brokerage Realty LLC, Beycome Brokerage Realty Inc., and Beycome of Florida LLC provide real estate brokerage services; Beycome Mortgage LLC provides mortgage loan origination in Florida; Beycome Title of Florida LLC provides title insurance services in Florida; Beycome Title of Texas LLC provides title insurance services in Texas. These entities share common ownership with Beycome Corp. but operate independently and are individually liable for their respective licensed activities. Licensed states: FL (Beycome of Florida LLC), CA — CalDRE #01804683 (Beycome Brokerage Realty Inc.), CT (Beycome of Connecticut), AL, GA, IL, IN, MI, MN, NC, OH, SC, TN, TX (Beycome Brokerage Realty LLC). TREC: <a href="/legal/IABS-1-2.pdf" rel="noreferrer noopener" target="_blank">Brokerage Services</a>, <a href="https://www.trec.texas.gov/forms/consumer-protection-notice" rel="noreferrer noopener" target="_blank">Consumer Protection Notice</a>.</p>
+        <p><strong>Legal Disclaimer:</strong> Information is current as of May 14, 2024. Beycome Corp. may modify or discontinue products and benefits without notice. No guarantee, warranty, or representation of any kind is made regarding the completeness or accuracy of descriptions or measurements (including square footage and property condition); such should be independently verified, and Beycome Corp. expressly disclaims any liability in connection therewith.</p>
+        <p><strong>Trademark Notice:</strong> Logos and trademarks on this website are used to illustrate industry partnerships and do not imply endorsement unless explicitly stated. All trademarks belong to their respective owners.</p>
+        <p>IDX© information is provided exclusively for consumers' personal, non-commercial use. It may not be used for any purpose other than to identify prospective properties consumers may be interested in purchasing. Information deemed reliable but not guaranteed to be accurate. Listings information is updated daily. Broker Compensation is fully negotiable and is not fixed, controlled, recommended, or suggested by any MLS or association of REALTORS®. Beycome fully supports the <a href="https://www.hud.gov" rel="noreferrer noopener" target="_blank">Equal Housing Opportunity</a> laws.</p>
+    </div>
+</div>
+</footer>
+
+<script>
+var currentMode = 'sell';
+
+function onPriceInput(el) {
+    var raw = el.value.replace(/[^0-9]/g, '');
+    var num = parseInt(raw, 10);
+    if (!isNaN(num)) {
+        var cursor = el.selectionStart;
+        var oldLen = el.value.length;
+        el.value = num.toLocaleString('en-US');
+        var diff = el.value.length - oldLen;
+        el.setSelectionRange(cursor + diff, cursor + diff);
+    } else {
+        el.value = '';
+    }
+    update();
+}
+
+function setMode(mode) {
+    currentMode = mode;
+    document.querySelectorAll('.pg-price-toggle-btn').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.mode === mode);
+    });
+    var isBuying = mode === 'buy';
+    document.getElementById('pg-sell-labels').style.display = isBuying ? 'none' : '';
+    document.getElementById('pg-buy-labels').style.display  = isBuying ? '' : 'none';
+    document.getElementById('pg-sell-table').style.display  = isBuying ? 'none' : '';
+    document.getElementById('pg-buy-table').style.display   = isBuying ? '' : 'none';
+    document.getElementById('pg-sell-cta').style.display    = isBuying ? 'none' : '';
+    document.getElementById('pg-buy-cta').style.display     = isBuying ? '' : 'none';
+    update();
+}
+
+function fmt(n) {
+    if (n === 0) return '$0';
+    return '$' + Math.round(n).toLocaleString('en-US');
+}
+
+function fmtPct(n) {
+    if (n < 0.1) return '<0.1%';
+    return n.toFixed(n % 1 === 0 ? 0 : 1) + '%';
+}
+
+function update() {
+    var price = parseFloat(document.getElementById('pg-price').value.replace(/,/g, '')) || 400000;
+    price = Math.max(50000, Math.min(5000000, price));
+
+    if (currentMode === 'sell') {
+        updateSell(price);
+    } else {
+        updateBuy(price);
+    }
+}
+
+function updateSell(price) {
+    var tradListingPct  = 3;
+    var tradBuyersPct   = 3;
+    var tradTotal       = price * (tradListingPct + tradBuyersPct) / 100;
+    var tradListing     = price * tradListingPct / 100;
+    var tradBuyers      = price * tradBuyersPct / 100;
+
+    var bycFlat         = 399;
+    var bycTotal        = bycFlat;
+    var savings         = tradListing - bycFlat;
+
+    var priceLabel = fmt(price);
+
+    // Traditional
+    document.getElementById('trad-serving-price').textContent = priceLabel;
+    document.getElementById('trad-serving-role').textContent  = 'sale';
+    document.getElementById('trad-pct-display').textContent   = '3% of price';
+    document.getElementById('trad-total').textContent         = fmt(tradListing);
+    document.getElementById('trad-fees-amt').textContent      = fmt(tradTotal);
+    document.getElementById('trad-fees-pct').textContent      = fmtPct(tradListingPct + tradBuyersPct) + '*';
+    document.getElementById('trad-row1-label').textContent    = 'Listing agent fee ';
+    document.getElementById('trad-listing-amt').textContent   = fmt(tradListing);
+    document.getElementById('trad-listing-pct').textContent   = fmtPct(tradListingPct);
+    document.getElementById('trad-row2-label').textContent    = "Buyer's agent fee ";
+    document.getElementById('trad-buyers-amt').textContent    = fmt(tradBuyers);
+    document.getElementById('trad-buyers-pct').textContent    = fmtPct(tradBuyersPct);
+    document.getElementById('trad-net-label').textContent     = 'Net cost to you ';
+    document.getElementById('trad-net-amt').textContent       = fmt(tradTotal);
+    document.getElementById('trad-net-pct').textContent       = fmtPct(tradListingPct + tradBuyersPct) + '*';
+
+    // Beycome
+    document.getElementById('byc-serving-price').textContent = priceLabel;
+    document.getElementById('byc-serving-role').textContent  = 'sale';
+    document.getElementById('byc-pct-display').textContent   = '<0.1% of price';
+    document.getElementById('byc-total').textContent         = '$399';
+    document.getElementById('byc-fees-amt').textContent      = '$399';
+    document.getElementById('byc-fees-pct').textContent      = '<0.1%';
+    document.getElementById('byc-row1-label').textContent    = 'Flat fee listing ';
+    document.getElementById('byc-listing-amt').textContent   = '$399';
+    document.getElementById('byc-listing-pct').textContent   = '<0.1%';
+    document.getElementById('byc-row2-label').textContent    = "Buyer's agent (your choice/offer) ";
+    document.getElementById('byc-buyers-pct').textContent    = 'flexible';
+    document.getElementById('byc-rebate-label').textContent  = 'Rebate back to you ';
+    document.getElementById('byc-rebate-amt').textContent    = '$0';
+    document.getElementById('byc-rebate-pct').textContent    = '0%';
+    document.getElementById('byc-net-label').textContent     = 'Net cost to you ';
+    document.getElementById('byc-net-amt').textContent       = '$399';
+    document.getElementById('byc-net-pct').textContent       = '<0.1%';
+    document.getElementById('byc-footnote').textContent      = '**Flat-fee MLS listing. Beycome offers 3 packages all flat fee: $99, $399 or $999. Seller chooses their own buyer\'s agent commission.';
+
+    // Savings callout
+    document.getElementById('savings-label').textContent  = 'As a seller, you will save a minimum of';
+    document.getElementById('savings-amount').textContent = fmt(savings);
+    document.getElementById('savings-note').textContent   = 'vs. paying a traditional 3% listing agent on a ' + priceLabel + ' home — keeping your buyer\'s agent offer the same';
+}
+
+function updateBuy(price) {
+    var commissionPct   = 3;
+    var commissionAmt   = price * commissionPct / 100;
+    var bycFeePct       = 1;
+    var bycFeeAmt       = price * bycFeePct / 100;
+    var rebatePct       = commissionPct - bycFeePct;
+    var rebateAmt       = price * rebatePct / 100;
+    var priceLabel      = fmt(price);
+
+    // Traditional buyer label
+    document.getElementById('bt-serving-price').textContent = priceLabel;
+    document.getElementById('bt-total').textContent         = fmt(commissionAmt);
+    document.getElementById('bt-listing-amt').textContent   = fmt(commissionAmt);
+    document.getElementById('bt-listing-pct').textContent   = fmtPct(commissionPct);
+    document.getElementById('bt-fees-amt').textContent      = fmt(commissionAmt);
+    document.getElementById('bt-fees-pct').textContent      = fmtPct(commissionPct);
+    document.getElementById('bt-pct-display').textContent   = '*seller funds it, but it\u2019s priced into your purchase';
+
+    // Beycome buyer label
+    document.getElementById('bb-serving-price').textContent = priceLabel;
+    document.getElementById('bb-pct-display').textContent   = '(' + fmtPct(rebatePct) + ' rebate*)';
+    document.getElementById('bb-total').textContent         = '+' + fmt(rebateAmt);
+    document.getElementById('bb-rebate-amt').textContent    = fmt(rebateAmt);
+    document.getElementById('bb-rebate-pct').textContent    = fmtPct(rebatePct);
+    document.getElementById('bb-listing-amt').textContent   = fmt(commissionAmt);
+    document.getElementById('bb-listing-pct').textContent   = fmtPct(commissionPct);
+    document.getElementById('bb-fees-amt').textContent      = fmt(bycFeeAmt);
+    document.getElementById('bb-fees-pct').textContent      = fmtPct(bycFeePct);
+    document.getElementById('bb-fee-amt2').textContent      = fmt(rebateAmt);
+    document.getElementById('bb-fee-pct2').textContent      = fmtPct(rebatePct);
+    document.getElementById('bb-net-amt').textContent       = '$0*';
+    document.getElementById('bb-net-pct').textContent       = '*seller-funded, Beycome credits the rest to you';
+
+    // Buy savings callout
+    document.getElementById('buy-savings-label').textContent  = 'Cash back at closing — as a buyer';
+    document.getElementById('buy-savings-amount').textContent = fmt(rebateAmt);
+    document.getElementById('buy-savings-note').textContent   = 'rebated to you from the ' + fmtPct(commissionPct) + ' buyer commission on a ' + priceLabel + ' home — use it toward your rate, closing costs, or down payment';
+}
+
+
+window.pgToggleFaq = function(btn) {
+    var expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    var body = btn.nextElementSibling;
+    if (body) body.classList.toggle('open', !expanded);
+};
+
+setMode('sell');
+</script>
+</body>
+</html>
