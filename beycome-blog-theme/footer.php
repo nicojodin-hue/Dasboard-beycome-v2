@@ -168,6 +168,14 @@ $bc_footer_modifiers = [
 </footer>
 <script>
 (function() {
+    // Guard against double-init: WP Fastest Cache bundles this inline IIFE
+    // into the combined deferred JS file while ALSO leaving the inline tag in
+    // place, so without this both copies would attach click listeners and
+    // every other click would toggle the .open class back off — making the
+    // search button look broken (visible icon, nothing happens on click).
+    if (window.__bcHSearchInit) return;
+    window.__bcHSearchInit = true;
+
     var form = document.getElementById('bc-hsearch');
     var btn = document.getElementById('bc-hsearch-btn');
     var input = document.getElementById('bc-hsearch-input');
