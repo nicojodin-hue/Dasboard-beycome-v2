@@ -4,8 +4,8 @@
  */
 
 function beycome_blog_enqueue() {
-    wp_enqueue_style('beycome-blog-main', get_template_directory_uri() . '/assets/main.css', [], '1.7.69');
-    wp_enqueue_script('beycome-blog-js', get_template_directory_uri() . '/assets/blog.js', [], '1.7.69', true);
+    wp_enqueue_style('beycome-blog-main', get_template_directory_uri() . '/assets/main.css', [], '1.7.70');
+    wp_enqueue_script('beycome-blog-js', get_template_directory_uri() . '/assets/blog.js', [], '1.7.70', true);
 }
 add_action('wp_enqueue_scripts', 'beycome_blog_enqueue');
 

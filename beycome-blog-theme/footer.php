@@ -166,69 +166,11 @@ $bc_footer_modifiers = [
     </div>
 </div>
 </footer>
-<script>
-(function() {
-    // Guard against double-init: WP Fastest Cache bundles this inline IIFE
-    // into the combined deferred JS file while ALSO leaving the inline tag in
-    // place, so without this both copies would attach click listeners and
-    // every other click would toggle the .open class back off — making the
-    // search button look broken (visible icon, nothing happens on click).
-    if (window.__bcHSearchInit) return;
-    window.__bcHSearchInit = true;
-
-    var form = document.getElementById('bc-hsearch');
-    var btn = document.getElementById('bc-hsearch-btn');
-    var input = document.getElementById('bc-hsearch-input');
-    if (!form || !btn || !input) return;
-
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (!form.classList.contains('open')) {
-            form.classList.add('open');
-            setTimeout(function() { input.focus(); }, 150);
-        } else if (input.value.trim()) {
-            form.submit();
-        } else {
-            form.classList.remove('open');
-        }
-    });
-
-    input.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') { form.classList.remove('open'); input.value = ''; }
-    });
-
-    document.addEventListener('click', function(e) {
-        if (form.classList.contains('open') && !form.contains(e.target)) {
-            form.classList.remove('open');
-            input.value = '';
-        }
-    });
-
-    var menuBtn = document.getElementById('bc-mobile-menu-btn');
-    var menu = document.getElementById('bc-mobile-menu');
-    if (menuBtn && menu) {
-        var iconOpen = menuBtn.querySelector('.bc-menu-icon-open');
-        var iconClose = menuBtn.querySelector('.bc-menu-icon-close');
-        menuBtn.addEventListener('click', function() {
-            var isOpen = menu.classList.toggle('open');
-            menu.style.display = isOpen ? 'block' : 'none';
-            menuBtn.setAttribute('aria-expanded', isOpen);
-            if (iconOpen) iconOpen.style.display = isOpen ? 'none' : 'block';
-            if (iconClose) iconClose.style.display = isOpen ? 'block' : 'none';
-        });
-        document.addEventListener('click', function(e) {
-            if (menu.classList.contains('open') && !menu.contains(e.target) && !menuBtn.contains(e.target)) {
-                menu.classList.remove('open');
-                menu.style.display = 'none';
-                menuBtn.setAttribute('aria-expanded', 'false');
-                if (iconOpen) iconOpen.style.display = 'block';
-                if (iconClose) iconClose.style.display = 'none';
-            }
-        });
-    }
-})();
-</script>
+<?php /* Header-search + mobile-menu JS is enqueued via assets/blog.js
+       in functions.php. We used to also include it as an inline <script>
+       here, which caused WP Fastest Cache to attach two copies of every
+       click listener — every other click toggled state back to nothing.
+       Single source now. */ ?>
 <?php wp_footer(); ?>
 </body>
 </html>
