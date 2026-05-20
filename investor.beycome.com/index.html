@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beycome Investor Report | Apr 2026</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('../fonts/roboto-400.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url('../fonts/roboto-700.woff2') format('woff2');
+        }
+
+        :root {
+            --c-primary: #152330;
+            --c-secondary: #4a5568;
+            --c-muted: #718096;
+            --c-accent: #7d8ff7;
+            --c-accent-bg: #eef0fe;
+            --c-orange: #FF9B77;
+            --c-border: #e2e8f0;
+            --c-card-bg: #f7f8fa;
+            --c-green: #3d9a5c;
+            --c-green-bg: #f0faf4;
+            --c-red: #c0392b;
+            --c-red-bg: #fdf2f2;
+            --c-orange-warn: #d97706;
+            --c-orange-warn-bg: #fffbeb;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Roboto, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            background: #fff;
+            color: var(--c-primary);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        /* ── Password Gate ── */
+        #gate {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .gate-wrap {
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        .gate-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            text-decoration: none;
+        }
+
+        .gate-logo svg { width: 28px; height: 28px; }
+
+        .gate-logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--c-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .gate-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .gate-sub {
+            font-size: 14px;
+            color: var(--c-muted);
+            margin-bottom: 28px;
+        }
+
+        .gate-input {
+            width: 100%;
+            border: 1px solid var(--c-border);
+            border-radius: 10px;
+            padding: 13px 16px;
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.15s;
+            text-align: center;
+            letter-spacing: 0.06em;
+            color: var(--c-primary);
+            margin-bottom: 10px;
+        }
+
+        .gate-input:focus { border-color: var(--c-accent); }
+        .gate-input.error { border-color: var(--c-red); }
+
+        .gate-error {
+            font-size: 13px;
+            color: var(--c-red);
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .gate-btn {
+            width: 100%;
+            background: var(--c-primary);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 13px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+
+        .gate-btn:hover { opacity: 0.82; }
+
+        .gate-note {
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--c-muted);
+        }
+
+        /* ── Report ── */
+        #report { display: none; }
+
+        /* ── Header ── */
+        .ir-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 32px;
+            border-bottom: 1px solid var(--c-border);
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 50;
+        }
+
+        .ir-header-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .ir-header-logo-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--c-primary);
+            letter-spacing: -0.3px;
+        }
+
+        .ir-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .ir-header-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: var(--c-secondary);
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            padding: 0;
+        }
+
+        .ir-header-btn:hover { color: var(--c-primary); }
+
+        /* ── Page ── */
+        .ir-page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        /* ── Title Block ── */
+        .ir-title-block {
+            text-align: center;
+            padding: 52px 0 40px;
+            border-bottom: 1px solid var(--c-border);
+            margin-bottom: 40px;
+        }
+
+        .ir-title-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--c-muted);
+            margin-bottom: 12px;
+        }
+
+        .ir-title-main {
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji";
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--c-primary);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .ir-title-sub {
+            font-size: 16px;
+            color: var(--c-muted);
+        }
+
+        /* ── Section Card ── */
+        .ir-card {
+            background: var(--c-card-bg);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 24px;
+        }
+
+        .ir-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .ir-card-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--c-accent-bg);
+            color: var(--c-accent);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .ir-card-title {
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji";
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--c-primary);
+        }
+
+        /* ── Subsection label ── */
+        .ir-sub-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--c-muted);
+            margin: 24px 0 12px;
+        }
+
+        .ir-sub-label:first-of-type { margin-top: 0; }
+
+        /* ── Body text ── */
+        .ir-text {
+            font-size: 15px;
+            line-height: 1.75;
+            color: var(--c-primary);
+            margin-bottom: 14px;
+        }
+
+        .ir-text:last-child { margin-bottom: 0; }
+        .ir-text strong { font-weight: 700; }
+
+        /* ── Highlight banner ── */
+        .ir-highlight {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--c-green-bg);
+            border-left: 4px solid var(--c-green);
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin: 20px 0;
+        }
+
+        .ir-highlight-value {
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--c-green);
+            white-space: nowrap;
+        }
+
+        .ir-highlight-label { font-size: 14px; font-weight: 700; }
+        .ir-highlight-sub { font-size: 12px; color: var(--c-muted); margin-top: 2px; }
+
+        /* ── KPI grid: 4 cols ── */
+        .ir-kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .ir-kpi-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .ir-kpi {
+            background: #fff;
+            border: 1px solid var(--c-border);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .ir-kpi-val {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--c-primary);
+            line-height: 1.1;
+            margin-bottom: 5px;
+        }
+
+        .ir-kpi-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--c-secondary);
+        }
+
+        .ir-kpi-delta {
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .ir-kpi-delta.up   { color: var(--c-green); }
+        .ir-kpi-delta.down { color: var(--c-red); }
+        .ir-kpi-delta.flat { color: var(--c-muted); }
+
+        /* ── Q2 Target Cards ── */
+        .ir-q2-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .ir-q2-card {
+            background: #fff;
+            border: 1px solid var(--c-border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .ir-q2-stream {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--c-muted);
+            margin-bottom: 6px;
+        }
+
+        .ir-q2-pct {
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .ir-q2-pct.orange { color: var(--c-orange-warn); }
+        .ir-q2-pct.green  { color: var(--c-green); }
+        .ir-q2-pct.red    { color: var(--c-red); }
+
+        .ir-q2-pct-sub { font-size: 12px; color: var(--c-muted); margin-bottom: 12px; }
+
+        .ir-progress {
+            height: 7px;
+            background: var(--c-border);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+
+        .ir-progress-fill { height: 100%; border-radius: 999px; }
+        .ir-progress-fill.orange { background: var(--c-orange-warn); }
+        .ir-progress-fill.green  { background: var(--c-green); }
+        .ir-progress-fill.red    { background: var(--c-red); }
+
+        .ir-q2-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--c-muted);
+            margin-bottom: 4px;
+        }
+
+        .ir-q2-row strong { color: var(--c-primary); font-weight: 700; }
+
+        .ir-q2-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-top: 10px;
+        }
+
+        .ir-q2-badge.monitor  { background: var(--c-orange-warn-bg); color: var(--c-orange-warn); }
+        .ir-q2-badge.on-track { background: var(--c-green-bg); color: var(--c-green); }
+        .ir-q2-badge.at-risk  { background: var(--c-red-bg); color: var(--c-red); }
+
+        /* Combined Q2 summary row */
+        .ir-q2-combined {
+            background: #fff;
+            border: 1px solid var(--c-border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: grid;
+            grid-template-columns: auto 1fr 1fr 1fr auto;
+            gap: 0 24px;
+            align-items: center;
+        }
+
+        .ir-q2-combined-col-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--c-muted);
+            margin-bottom: 4px;
+        }
+
+        .ir-q2-combined-col-value {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--c-primary);
+        }
+
+        .ir-q2-combined-divider {
+            width: 1px;
+            height: 40px;
+            background: var(--c-border);
+        }
+
+        .ir-q2-combined-pct {
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--c-orange-warn);
+        }
+
+        .ir-q2-combined-pct-label {
+            font-size: 12px;
+            color: var(--c-muted);
+        }
+
+        /* ── Tables ── */
+        .ir-table-wrap { overflow-x: auto; margin-bottom: 28px; }
+
+        .ir-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .ir-table thead tr {
+            background: #eef0f3;
+        }
+
+        .ir-table th {
+            padding: 11px 16px;
+            text-align: right;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--c-muted);
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .ir-table th:first-child { text-align: left; }
+
+        .ir-table td {
+            padding: 11px 16px;
+            border-bottom: 1px solid var(--c-border);
+            text-align: right;
+            color: var(--c-secondary);
+            white-space: nowrap;
+        }
+
+        .ir-table td:first-child { text-align: left; }
+
+        .ir-table tr.row-bold td { font-weight: 700; color: var(--c-primary); }
+        .ir-table tr.row-indent td:first-child { padding-left: 32px; font-size: 13px; }
+
+        .ir-table tr.row-net td {
+            font-weight: 700;
+            color: var(--c-red);
+            background: var(--c-red-bg);
+        }
+
+        .ir-table tr.row-net-pos td {
+            font-weight: 700;
+            color: var(--c-primary);
+        }
+
+        .ir-table .mom-up   { color: var(--c-green); }
+        .ir-table .mom-down { color: var(--c-red); }
+        .ir-table .mom-neutral { color: var(--c-muted); }
+
+        .ir-table-note {
+            font-size: 12px;
+            color: var(--c-muted);
+            margin-top: -20px;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        /* ── Product list ── */
+        .ir-product-list { list-style: none; }
+
+        .ir-product-item {
+            display: flex;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--c-border);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .ir-product-item:first-child { border-top: 1px solid var(--c-border); }
+
+        .ir-product-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--c-accent);
+            flex-shrink: 0;
+            margin-top: 9px;
+        }
+
+        .ir-product-dot.wip { background: var(--c-orange); }
+
+        /* ── Closing ── */
+        .ir-closing {
+            background: #fff;
+            border: 1px solid var(--c-border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 20px;
+            font-size: 15px;
+            line-height: 1.75;
+            color: var(--c-secondary);
+        }
+
+        .ir-closing p { margin-bottom: 10px; }
+        .ir-closing p:last-child { margin-bottom: 0; }
+        .ir-closing strong { color: var(--c-primary); }
+
+        /* ── Financial Documents ── */
+        .ir-docs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .ir-doc-card {
+            background: #fff;
+            border: 1px solid var(--c-border);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: border-color 0.15s;
+        }
+
+        .ir-doc-card:hover { border-color: var(--c-accent); }
+
+        .ir-doc-icon {
+            width: 36px; height: 36px;
+            background: #fff0ee;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #e74c3c;
+        }
+
+        .ir-doc-info { flex: 1; min-width: 0; }
+
+        .ir-doc-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--c-primary);
+        }
+
+        .ir-doc-meta {
+            font-size: 12px;
+            color: var(--c-muted);
+            margin-top: 2px;
+        }
+
+        .ir-doc-dl {
+            color: var(--c-accent);
+            flex-shrink: 0;
+        }
+
+        /* ── Legal Footer ── */
+        .ir-footer {
+            background: #f7f8fa;
+            border-top: 1px solid var(--c-border);
+            padding: 32px 24px;
+            margin-top: 32px;
+        }
+
+        .ir-footer-inner {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .ir-footer-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--c-muted);
+            margin-bottom: 12px;
+        }
+
+        .ir-footer p {
+            font-size: 12px;
+            color: var(--c-muted);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .ir-footer a { color: var(--c-accent); text-decoration: none; }
+        .ir-footer a:hover { text-decoration: underline; }
+
+        /* ── Print ── */
+        @media print {
+            .ir-header, .ir-footer { display: none; }
+            .ir-card { break-inside: avoid; }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .ir-header { padding: 14px 16px; }
+            .ir-page { padding: 0 16px 60px; }
+            .ir-card { padding: 20px; }
+            .ir-title-main { font-size: 28px; }
+            .ir-kpi-grid, .ir-kpi-grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .ir-q2-grid { grid-template-columns: 1fr; }
+            .ir-q2-combined { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .ir-docs-grid { grid-template-columns: 1fr; }
+            .ir-header-logo-text { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── PASSWORD GATE ── -->
+<div id="gate">
+    <div class="gate-wrap">
+        <a class="gate-logo" href="#">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" fill="#152330"/>
+                <rect x="9" y="13" width="6" height="8" rx="1" fill="#fff"/>
+            </svg>
+            <span class="gate-logo-text">beycome</span>
+        </a>
+        <div class="gate-title">Investor Portal</div>
+        <div class="gate-sub">Enter your access password to continue</div>
+        <input type="password" id="gate-input" class="gate-input" placeholder="Password" autocomplete="current-password">
+        <div class="gate-error" id="gate-error">Incorrect password. Please try again.</div>
+        <button class="gate-btn" id="gate-btn">Continue</button>
+        <p class="gate-note">This portal contains confidential information intended solely for Beycome investors.</p>
+    </div>
+</div>
+
+<!-- ── REPORT ── -->
+<div id="report">
+
+    <header class="ir-header">
+        <a class="ir-header-logo" href="#">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" fill="#152330"/>
+                <rect x="9" y="13" width="6" height="8" rx="1" fill="#fff"/>
+            </svg>
+            <span class="ir-header-logo-text">beycome</span>
+        </a>
+        <div class="ir-header-actions">
+            <button class="ir-header-btn" onclick="window.print()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                Print / PDF
+            </button>
+            <button class="ir-header-btn" id="logout-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                Back
+            </button>
+        </div>
+    </header>
+
+    <div class="ir-page">
+
+        <!-- Title block -->
+        <div class="ir-title-block">
+            <div class="ir-title-label">Monthly Operating Update</div>
+            <h1 class="ir-title-main">Beycome Investor Report<br>April 2026</h1>
+            <div class="ir-title-sub">AI-first real estate platform &nbsp;·&nbsp; Confidential</div>
+        </div>
+
+        <!-- 01 Executive Summary -->
+        <div class="ir-card">
+            <div class="ir-card-header">
+                <div class="ir-card-num">01</div>
+                <h2 class="ir-card-title">Executive Summary</h2>
+            </div>
+
+            <div class="ir-sub-label">Overview</div>
+
+            <p class="ir-text">
+                Revenue was <strong>$274,778</strong> in April, up 11.7% from $245,911 in March — the highest monthly revenue on record. The growth was driven by Title revenue, which more than doubled MoM to $77,086 from $37,780 (+104%). Basic Listing ($108,851, +2.6%) and Enhanced Listing ($46,683, +1.0%) were broadly stable. Concierge declined to $14,342 (–41.2%). Buy Side recovered to $11,400 (+14.0%).
+            </p>
+            <p class="ir-text">
+                Listing client volume was 1,203 unique clients in April (1,069 Basic, 115 Enhanced, 19 Concierge). Refund activity was $11,842 (78 transactions), above the Q1 average of ~$8,500/month and ~66 transactions/month. Active users reached <strong>296,000</strong> per Google Analytics, up from 134,000 in March.
+            </p>
+            <p class="ir-text">
+                Gross margin compressed to <strong>80%</strong> from 85% in March. Title COGS scaled with the higher volume ($23,256 vs. $9,778), and Sell Side COGS increased to $28,508 (driven by Photography at $21,570). Net loss was ($46,969), representing a <strong>–17% net margin</strong>, an improvement from March (–22%).
+            </p>
+            <p class="ir-text">
+                Total S&M was $114,002, up 10.6% from March. Traffic spend (Advertising + Acquisition) was $72,013 with a <strong>Traffic CAC of $60 per listing client</strong>, flat versus March ($60). Total CAC (all S&M / listing clients) was $95, up from $85 in March. Revenue per client increased to $228 from $203 (+12.4%), keeping the revenue-to-CAC ratio at 2.4x.
+            </p>
+            <p class="ir-text">
+                Cash on hand was <strong>$1,884,292</strong> across all entities as of end of April. Estimated runway is <strong>31.6 months</strong> based on the trailing 4-month average burn of $59,666.
+            </p>
+
+            <div class="ir-highlight">
+                <div class="ir-highlight-value">+11.7%</div>
+                <div>
+                    <div class="ir-highlight-label">Revenue Growth MoM</div>
+                    <div class="ir-highlight-sub">Apr 2026 vs Mar 2026 — highest monthly revenue on record</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02 Key Performance Indicators -->
+        <div class="ir-card">
+            <div class="ir-card-header">
+                <div class="ir-card-num">02</div>
+                <h2 class="ir-card-title">Key Performance Indicators</h2>
+            </div>
+
+            <div class="ir-sub-label">Marketplace</div>
+            <div class="ir-kpi-grid">
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">1,203</div>
+                    <div class="ir-kpi-lbl">Listing Clients (Apr)</div>
+                    <div class="ir-kpi-delta flat">vs 951/mo avg Q1</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">296K</div>
+                    <div class="ir-kpi-lbl">Active Users (Apr)</div>
+                    <div class="ir-kpi-delta up">+121% vs Mar (134K)</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$11,842</div>
+                    <div class="ir-kpi-lbl">Refunds (Apr)</div>
+                    <div class="ir-kpi-delta flat">78 transactions</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">1,069</div>
+                    <div class="ir-kpi-lbl">Basic Listings</div>
+                </div>
+            </div>
+            <div class="ir-kpi-grid" style="margin-top:10px;">
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">115</div>
+                    <div class="ir-kpi-lbl">Enhanced Listings</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">19</div>
+                    <div class="ir-kpi-lbl">Concierge</div>
+                </div>
+            </div>
+
+            <div class="ir-sub-label">Revenue Breakdown</div>
+            <div class="ir-kpi-grid">
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$108.9K</div>
+                    <div class="ir-kpi-lbl">Basic Listing</div>
+                    <div class="ir-kpi-delta up">+2.6% vs Mar</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$46.7K</div>
+                    <div class="ir-kpi-lbl">Enhanced Listing</div>
+                    <div class="ir-kpi-delta up">+1.0% vs Mar</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$14.3K</div>
+                    <div class="ir-kpi-lbl">Concierge</div>
+                    <div class="ir-kpi-delta down">–41.2% vs Mar</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$11.4K</div>
+                    <div class="ir-kpi-lbl">Buy Side</div>
+                    <div class="ir-kpi-delta up">+14.0% vs Mar</div>
+                </div>
+            </div>
+            <div class="ir-kpi-grid" style="margin-top:10px;">
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$77.1K</div>
+                    <div class="ir-kpi-lbl">Title</div>
+                    <div class="ir-kpi-delta up">+104.0% vs Mar</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$16.4K</div>
+                    <div class="ir-kpi-lbl">Other Sell Side</div>
+                    <div class="ir-kpi-delta flat">Incl. add-ons, refunds</div>
+                </div>
+            </div>
+
+            <div class="ir-sub-label">Unit Economics</div>
+            <div class="ir-kpi-grid">
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$95</div>
+                    <div class="ir-kpi-lbl">CAC (Total S&M)</div>
+                    <div class="ir-kpi-delta flat">vs $85 Mar / $88 Q1 avg</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$60</div>
+                    <div class="ir-kpi-lbl">Traffic CAC</div>
+                    <div class="ir-kpi-delta flat">Flat vs Mar ($60)</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$228</div>
+                    <div class="ir-kpi-lbl">Rev / Client</div>
+                    <div class="ir-kpi-delta up">+12.4% vs Mar ($203)</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">2.4x</div>
+                    <div class="ir-kpi-lbl">Rev / CAC Ratio</div>
+                    <div class="ir-kpi-delta flat">Stable vs Mar</div>
+                </div>
+            </div>
+            <div class="ir-kpi-grid" style="margin-top:10px;">
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">41.5%</div>
+                    <div class="ir-kpi-lbl">S&M as % of Rev</div>
+                    <div class="ir-kpi-delta flat">vs 41.9% Mar</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$72.0K</div>
+                    <div class="ir-kpi-lbl">Traffic Spend</div>
+                    <div class="ir-kpi-delta flat">vs $72.5K Mar</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03 Q2 2026 Revenue Targets -->
+        <div class="ir-card">
+            <div class="ir-card-header">
+                <div class="ir-card-num">03</div>
+                <h2 class="ir-card-title">Q2 2026 Revenue Targets</h2>
+            </div>
+            <p class="ir-text" style="margin-bottom: 20px;">April actuals vs Q2 targets. Run rate assumes April pace sustained for May and June (×3).</p>
+
+            <div class="ir-q2-grid">
+                <div class="ir-q2-card">
+                    <div class="ir-q2-stream">Listings</div>
+                    <div class="ir-q2-pct orange">80%</div>
+                    <div class="ir-q2-pct-sub">of target at run rate</div>
+                    <div class="ir-progress"><div class="ir-progress-fill orange" style="width:80%"></div></div>
+                    <div class="ir-q2-row"><span>April Actual</span><strong>$186,292</strong></div>
+                    <div class="ir-q2-row"><span>Run Rate (×3)</span><strong>$558,876</strong></div>
+                    <div class="ir-q2-row"><span>Q2 Target</span><strong>$700,000</strong></div>
+                    <span class="ir-q2-badge monitor">MONITOR</span>
+                </div>
+                <div class="ir-q2-card">
+                    <div class="ir-q2-stream">Title</div>
+                    <div class="ir-q2-pct green">116%</div>
+                    <div class="ir-q2-pct-sub">of target at run rate</div>
+                    <div class="ir-progress"><div class="ir-progress-fill green" style="width:100%"></div></div>
+                    <div class="ir-q2-row"><span>April Actual</span><strong>$77,086</strong></div>
+                    <div class="ir-q2-row"><span>Run Rate (×3)</span><strong>$231,258</strong></div>
+                    <div class="ir-q2-row"><span>Q2 Target</span><strong>$200,000</strong></div>
+                    <span class="ir-q2-badge on-track">ON TRACK</span>
+                </div>
+                <div class="ir-q2-card">
+                    <div class="ir-q2-stream">Buyer</div>
+                    <div class="ir-q2-pct red">43%</div>
+                    <div class="ir-q2-pct-sub">of target at run rate</div>
+                    <div class="ir-progress"><div class="ir-progress-fill red" style="width:43%"></div></div>
+                    <div class="ir-q2-row"><span>April Actual</span><strong>$11,400</strong></div>
+                    <div class="ir-q2-row"><span>Run Rate (×3)</span><strong>$34,200</strong></div>
+                    <div class="ir-q2-row"><span>Q2 Target</span><strong>$80,000</strong></div>
+                    <span class="ir-q2-badge at-risk">AT RISK</span>
+                </div>
+            </div>
+
+            <div class="ir-q2-combined">
+                <div>
+                    <div class="ir-q2-combined-col-label">Combined Q2</div>
+                </div>
+                <div>
+                    <div class="ir-q2-combined-col-label">April Total</div>
+                    <div class="ir-q2-combined-col-value">$274,778</div>
+                </div>
+                <div>
+                    <div class="ir-q2-combined-col-label">Run Rate (×3)</div>
+                    <div class="ir-q2-combined-col-value">$824,334</div>
+                </div>
+                <div>
+                    <div class="ir-q2-combined-col-label">Q2 Target</div>
+                    <div class="ir-q2-combined-col-value">$980,000</div>
+                </div>
+                <div style="text-align:right; padding-left: 20px; border-left: 1px solid var(--c-border);">
+                    <div class="ir-q2-combined-pct">84%</div>
+                    <div class="ir-q2-combined-pct-label">of target at pace</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04 Financial Health -->
+        <div class="ir-card">
+            <div class="ir-card-header">
+                <div class="ir-card-num">04</div>
+                <h2 class="ir-card-title">Financial Health</h2>
+            </div>
+            <div class="ir-kpi-grid">
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">$1.88M</div>
+                    <div class="ir-kpi-lbl">Cash Balance</div>
+                    <div class="ir-kpi-delta flat">End of April 2026</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val" style="color: var(--c-red);">($59.7K)</div>
+                    <div class="ir-kpi-lbl">Avg Monthly Burn</div>
+                    <div class="ir-kpi-delta flat">Trailing 4 months</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">31.6 mo</div>
+                    <div class="ir-kpi-lbl">Runway</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">80%</div>
+                    <div class="ir-kpi-lbl">Gross Margin</div>
+                    <div class="ir-kpi-delta down">vs 85% in Mar</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 05 Financial Statements -->
+        <div class="ir-card">
+            <div class="ir-card-header">
+                <div class="ir-card-num">05</div>
+                <h2 class="ir-card-title">Financial Statements</h2>
+            </div>
+
+            <div class="ir-table-wrap">
+                <table class="ir-table">
+                    <thead>
+                        <tr>
+                            <th style="width:46%">Line Item</th>
+                            <th>Mar 2026</th>
+                            <th>Apr 2026</th>
+                            <th>MoM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row-bold">
+                            <td>Revenue</td><td>$245,911</td><td>$274,778</td><td class="mom-up">+11.7%</td>
+                        </tr>
+                        <tr class="row-bold">
+                            <td>Cost of Revenue</td><td>($35,765)</td><td>($53,724)</td><td class="mom-down">+50.2%</td>
+                        </tr>
+                        <tr class="row-indent">
+                            <td>Sell Side COGS</td><td>($25,602)</td><td>($28,508)</td><td class="mom-neutral">+11.4%</td>
+                        </tr>
+                        <tr class="row-indent">
+                            <td>Buy Side COGS</td><td>($385)</td><td>($1,960)</td><td class="mom-neutral">+409%</td>
+                        </tr>
+                        <tr class="row-indent">
+                            <td>Title COGS</td><td>($9,778)</td><td>($23,256)</td><td class="mom-neutral">+137.8%</td>
+                        </tr>
+                        <tr class="row-bold">
+                            <td>Gross Profit</td><td>$210,146</td><td>$221,054</td><td class="mom-up">+5.2%</td>
+                        </tr>
+                        <tr>
+                            <td>% Gross Margin</td><td>85%</td><td>80%</td><td class="mom-down">–5pp</td>
+                        </tr>
+                        <tr>
+                            <td>Sales &amp; Marketing</td><td>($103,056)</td><td>($114,002)</td><td class="mom-neutral">+10.6%</td>
+                        </tr>
+                        <tr>
+                            <td>People</td><td>($80,791)</td><td>($87,335)</td><td class="mom-neutral">+8.1%</td>
+                        </tr>
+                        <tr>
+                            <td>Other G&amp;A</td><td>($79,173)</td><td>($78,528)</td><td class="mom-neutral">+0.8%</td>
+                        </tr>
+                        <tr class="row-bold">
+                            <td>Total SG&amp;A</td><td>($263,019)</td><td>($279,865)</td><td class="mom-neutral">+6.4%</td>
+                        </tr>
+                        <tr>
+                            <td>Other Income / Expense</td><td>$0</td><td>$0</td><td>—</td>
+                        </tr>
+                        <tr class="row-net">
+                            <td>Net Income</td><td>($52,964)</td><td>($46,969)</td><td></td>
+                        </tr>
+                        <tr class="row-net-pos">
+                            <td>% Net Margin</td><td>–22%</td><td>–17%</td><td class="mom-up">+5pp</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="ir-table-note">Consolidated P&L across Beycome Corp, Beycome Title of Florida LLC (1 &amp; 2), and Beycome Title of Texas LLC. Source: QuickBooks (accrual basis).</p>
+
+            <div class="ir-sub-label">S&M Breakdown</div>
+            <div class="ir-table-wrap">
+                <table class="ir-table">
+                    <thead>
+                        <tr>
+                            <th style="width:55%">Line Item</th>
+                            <th>Apr 2026</th>
+                            <th>% of S&M</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Marketing Acquisition</td><td>($57,072)</td><td>50.1%</td></tr>
+                        <tr><td>Broker Fees</td><td>($15,975)</td><td>14.0%</td></tr>
+                        <tr><td>Advertising &amp; Marketing</td><td>($14,941)</td><td>13.1%</td></tr>
+                        <tr><td>Seller Program</td><td>($11,895)</td><td>10.4%</td></tr>
+                        <tr><td>MLS Fees</td><td>($9,696)</td><td>8.5%</td></tr>
+                        <tr><td>MLS Support</td><td>($2,893)</td><td>2.5%</td></tr>
+                        <tr><td>MLS Subscriptions</td><td>($817)</td><td>0.7%</td></tr>
+                        <tr><td>Other (Hiring, Software)</td><td>($714)</td><td>0.6%</td></tr>
+                        <tr class="row-bold"><td>Total S&M</td><td>($114,002)</td><td>100%</td></tr>
+                        <tr class="row-indent"><td>Traffic (Adv + Acquisition)</td><td>($72,013)</td><td>63.2%</td></tr>
+                        <tr class="row-indent"><td>Non-traffic</td><td>($41,989)</td><td>36.8%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ir-sub-label">SEO &amp; Traffic</div>
+            <div class="ir-kpi-grid">
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">1.81M</div>
+                    <div class="ir-kpi-lbl">Impressions</div>
+                    <div class="ir-kpi-delta up">+19% vs prior</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">19,716</div>
+                    <div class="ir-kpi-lbl">Clicks</div>
+                    <div class="ir-kpi-delta up">+21% vs prior</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">1.06%</div>
+                    <div class="ir-kpi-lbl">CTR (Apr)</div>
+                </div>
+                <div class="ir-kpi">
+                    <div class="ir-kpi-val">10.7</div>
+                    <div class="ir-kpi-lbl">Avg Position</div>
+                    <div class="ir-kpi-delta flat">vs 10.0 in March</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 06 Product & Technology Updates -->
+        <div class="ir-card">
+            <div class="ir-card-header">
+                <div class="ir-card-num">06</div>
+                <h2 class="ir-card-title">Product &amp; Technology Updates</h2>
+            </div>
+
+            <div class="ir-sub-label">April 2026</div>
+            <ul class="ir-product-list">
+                <li class="ir-product-item"><div class="ir-product-dot"></div><span>Launched script to find and fix misconfigured ShowingTime — 30% error rate detected and resolved.</span></li>
+                <li class="ir-product-item"><div class="ir-product-dot"></div><span>Artur AI now answers email tickets (not just triage) — processing 75%+ of all incoming emails.</span></li>
+                <li class="ir-product-item"><div class="ir-product-dot"></div><span>MLS automation now automatically publishing open houses.</span></li>
+                <li class="ir-product-item"><div class="ir-product-dot"></div><span>Improved MLS process with new Back-Office — team now lists 200% more per day (60+ per day).</span></li>
+                <li class="ir-product-item"><div class="ir-product-dot"></div><span>Fixed 900+ ShowingTime missing configurations, with alerts for future misconfigurations.</span></li>
+                <li class="ir-product-item"><div class="ir-product-dot"></div><span>Using Gemini to fill missing MLS fields (Subdivision, Zoning, Plot, Schools, School District).</span></li>
+                <li class="ir-product-item"><div class="ir-product-dot"></div><span>Artur AI can now prepare comps.</span></li>
+                <li class="ir-product-item"><div class="ir-product-dot"></div><span>Photographer map launched.</span></li>
+                <li class="ir-product-item"><div class="ir-product-dot"></div><span>Auto-fix discrepancies implemented.</span></li>
+                <li class="ir-product-item"><div class="ir-product-dot wip"></div><span>Maryland launch in progress.</span></li>
+            </ul>
+
+            <div class="ir-closing">
+                <p>Thank you for your continued partnership. We remain committed to building a durable business and will continue to operate with transparency and discipline. Questions or feedback are always welcome.</p>
+                <p><strong>— The Beycome Team</strong></p>
+            </div>
+        </div>
+
+        <!-- Financial Documents -->
+        <div class="ir-card">
+            <div class="ir-card-header">
+                <div class="ir-card-num" style="background:#f0faf4; color: var(--c-green);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </div>
+                <h2 class="ir-card-title">Financial Documents</h2>
+            </div>
+            <div class="ir-docs-grid">
+                <a href="#" class="ir-doc-card">
+                    <div class="ir-doc-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="ir-doc-info">
+                        <div class="ir-doc-name">P&L April</div>
+                        <div class="ir-doc-meta">PDF · QuickBooks</div>
+                    </div>
+                    <div class="ir-doc-dl">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </div>
+                </a>
+                <a href="#" class="ir-doc-card">
+                    <div class="ir-doc-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="ir-doc-info">
+                        <div class="ir-doc-name">Balance Sheet</div>
+                        <div class="ir-doc-meta">PDF · QuickBooks</div>
+                    </div>
+                    <div class="ir-doc-dl">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </div>
+                </a>
+                <a href="#" class="ir-doc-card">
+                    <div class="ir-doc-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="ir-doc-info">
+                        <div class="ir-doc-name">P&L Beycome Title</div>
+                        <div class="ir-doc-meta">PDF · QuickBooks</div>
+                    </div>
+                    <div class="ir-doc-dl">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div><!-- /ir-page -->
+
+    <footer class="ir-footer">
+        <div class="ir-footer-inner">
+            <div class="ir-footer-title">Confidentiality &amp; Legal Notice</div>
+            <p>This portal contains confidential and proprietary information of Beycome Corp. and is intended solely for the use of authorized investors and prospective investors of Beycome. Access to this portal is restricted and subject to applicable confidentiality obligations.</p>
+            <p>If you have accessed this portal in error, you are not authorized to review, use, copy, disclose, or distribute any of the information contained herein. Please exit immediately and notify us at <a href="mailto:policy@beycome.com">policy@beycome.com</a> so that we can take appropriate action.</p>
+            <p>All content, materials, data, financial information, projections, and communications available through this portal are provided for informational purposes only and do not constitute an offer to sell, a solicitation of an offer to buy, or a recommendation to invest in any securities.</p>
+            <p>Questions or feedback — <a href="mailto:nj@beycome.com">nj@beycome.com</a> &amp; <a href="mailto:cyril@beycome.com">cyril@beycome.com</a></p>
+        </div>
+    </footer>
+
+</div><!-- /report -->
+
+<script>
+    (function () {
+        var PASSWORD = 'beycome2026';
+        var KEY = 'bc_investor_v2';
+
+        var gate = document.getElementById('gate');
+        var report = document.getElementById('report');
+        var input = document.getElementById('gate-input');
+        var btn = document.getElementById('gate-btn');
+        var errEl = document.getElementById('gate-error');
+        var logoutBtn = document.getElementById('logout-btn');
+
+        function show() {
+            gate.style.display = 'none';
+            report.style.display = 'block';
+        }
+
+        function hide() {
+            localStorage.removeItem(KEY);
+            report.style.display = 'none';
+            gate.style.display = 'flex';
+            input.value = '';
+            errEl.style.display = 'none';
+            input.classList.remove('error');
+        }
+
+        if (localStorage.getItem(KEY) === '1') show();
+
+        function attempt() {
+            if (input.value === PASSWORD) {
+                localStorage.setItem(KEY, '1');
+                show();
+            } else {
+                input.classList.add('error');
+                errEl.style.display = 'block';
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        btn.addEventListener('click', attempt);
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') attempt();
+            if (input.classList.contains('error')) {
+                input.classList.remove('error');
+                errEl.style.display = 'none';
+            }
+        });
+
+        logoutBtn.addEventListener('click', hide);
+    })();
+</script>
+
+</body>
+</html>
